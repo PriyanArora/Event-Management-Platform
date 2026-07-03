@@ -89,6 +89,15 @@ public class ProxyService {
         if (accept != null && !accept.isBlank()) {
             headers.set(HttpHeaders.ACCEPT, accept);
         }
+        // identity-service is the JWT authority and re-validates the token itself
+        // (e.g. /api/auth/me), so the bearer token must reach it. Business services
+        // trust the X-User-* headers instead and never see the raw token.
+        if (request.getRequestURI().startsWith("/api/auth/")) {
+            String authorization = request.getHeader(HttpHeaders.AUTHORIZATION);
+            if (authorization != null && !authorization.isBlank()) {
+                headers.set(HttpHeaders.AUTHORIZATION, authorization);
+            }
+        }
         if (principal != null) {
             headers.set("X-User-Id", principal.userId().toString());
             headers.set("X-User-Email", principal.email());
