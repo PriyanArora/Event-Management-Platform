@@ -52,10 +52,10 @@ export function SurveysTab() {
             <Card key={s.id} className="flex flex-col gap-3 p-5 sm:flex-row sm:items-center sm:justify-between">
               <div>
                 <div className="flex items-center gap-2">
-                  <p className="font-semibold text-gray-900">{s.title}</p>
+                  <p className="font-semibold text-ink">{s.title}</p>
                   <StatusBadge meta={surveyStatusMeta[s.status]} />
                 </div>
-                <p className="mt-1 text-[13px] text-gray-500">{s.questions.length} question(s)</p>
+                <p className="mt-1 text-[13px] text-zinc-500">{s.questions.length} question(s)</p>
               </div>
               <Button size="sm" variant="outline" onClick={() => setResponsesFor(s)} leftIcon={<BarChart3 className="h-4 w-4" />}>
                 View responses
@@ -150,14 +150,14 @@ function CreateSurveyModal({
 
         <div>
           <div className="mb-2 flex items-center justify-between">
-            <p className="text-[13px] font-medium text-gray-700">Questions</p>
+            <p className="text-[13px] font-medium text-zinc-700">Questions</p>
             <Button size="sm" variant="ghost" onClick={addQuestion} leftIcon={<Plus className="h-4 w-4" />}>Add question</Button>
           </div>
           <div className="space-y-3">
             {questions.map((q, i) => (
-              <div key={i} className="rounded-xl border border-gray-200 p-3.5">
+              <div key={i} className="rounded border border-zinc-200 p-3.5">
                 <div className="flex items-start gap-2">
-                  <span className="mt-2.5 text-[13px] font-semibold text-gray-400">{i + 1}</span>
+                  <span className="mt-2.5 text-[13px] font-semibold text-zinc-400">{i + 1}</span>
                   <div className="flex-1 space-y-3">
                     <Input value={q.questionText} onChange={(e) => update(i, { questionText: e.target.value })} placeholder="How would you rate the event?" />
                     <div className="flex flex-wrap items-center gap-3">
@@ -166,14 +166,14 @@ function CreateSurveyModal({
                           <option key={t} value={t}>{questionTypeLabel[t]}</option>
                         ))}
                       </Select>
-                      <label className="flex items-center gap-2 text-[13px] text-gray-600">
-                        <input type="checkbox" checked={q.required} onChange={(e) => update(i, { required: e.target.checked })} className="h-4 w-4 rounded border-gray-300 text-brand focus:ring-brand" />
+                      <label className="flex items-center gap-2 text-[13px] text-zinc-600">
+                        <input type="checkbox" checked={q.required} onChange={(e) => update(i, { required: e.target.checked })} className="h-4 w-4 rounded-sm border-zinc-300 text-accent focus:ring-accent" />
                         Required
                       </label>
                     </div>
                   </div>
                   {questions.length > 1 && (
-                    <button onClick={() => removeQuestion(i)} className="mt-1 rounded-lg p-2 text-gray-400 hover:bg-rose-50 hover:text-rose-600" aria-label="Remove question">
+                    <button onClick={() => removeQuestion(i)} className="mt-1 rounded p-2 text-zinc-400 hover:bg-red-50 hover:text-red-700" aria-label="Remove question">
                       <Trash2 className="h-4 w-4" />
                     </button>
                   )}
@@ -214,21 +214,21 @@ function ResponsesModal({
       ) : (
         <div className="space-y-4">
           {(data ?? []).map((sub) => (
-            <div key={sub.submissionId} className="rounded-xl border border-gray-100 bg-gray-50/60 p-4">
-              <p className="mb-2.5 text-[12px] text-gray-400">Submitted {formatDateTime(sub.submittedAt)}</p>
+            <div key={sub.submissionId} className="rounded border border-zinc-200 bg-zinc-50/60 p-4">
+              <p className="mb-2.5 text-[12px] text-zinc-400">Submitted {formatDateTime(sub.submittedAt)}</p>
               <ul className="space-y-2.5">
                 {sub.answers.map((a, i) => (
                   <li key={i}>
-                    <p className="text-[12px] font-medium text-gray-500">{questionText(a.questionId)}</p>
+                    <p className="text-[12px] font-medium text-zinc-500">{questionText(a.questionId)}</p>
                     {questionType(a.questionId) === 'RATING_1_TO_5' && a.ratingValue != null ? (
-                      <span className="mt-0.5 inline-flex items-center gap-1 text-sm text-gray-800">
+                      <span className="mt-0.5 inline-flex items-center gap-1 text-sm text-zinc-800">
                         {Array.from({ length: 5 }).map((_, n) => (
-                          <Star key={n} className={`h-4 w-4 ${n < (a.ratingValue ?? 0) ? 'fill-brand text-brand' : 'fill-transparent text-gray-300'}`} />
+                          <Star key={n} className={`h-4 w-4 ${n < (a.ratingValue ?? 0) ? 'fill-accent text-accent' : 'fill-transparent text-zinc-300'}`} />
                         ))}
-                        <span className="ml-1 text-gray-500">{a.ratingValue}/5</span>
+                        <span className="ml-1 text-zinc-500">{a.ratingValue}/5</span>
                       </span>
                     ) : (
-                      <p className="mt-0.5 text-sm text-gray-800">{a.answerText || '—'}</p>
+                      <p className="mt-0.5 text-sm text-zinc-800">{a.answerText || '—'}</p>
                     )}
                   </li>
                 ))}

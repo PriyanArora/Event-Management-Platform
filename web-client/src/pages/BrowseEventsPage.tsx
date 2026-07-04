@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react';
-import { Search, SlidersHorizontal, CalendarX2 } from 'lucide-react';
+import { Search, CalendarX2 } from 'lucide-react';
 import { eventsApi } from '../lib/api';
 import { useApi } from '../hooks/useApi';
 import type { EventFormat } from '../lib/types';
@@ -38,7 +38,7 @@ export function BrowseEventsPage() {
   }, [data, query, format, category]);
 
   return (
-    <div className="bg-[#F5F5F5] py-10 sm:py-14">
+    <div className="bg-paper py-10 sm:py-14">
       <Container>
         <PageHeader
           eyebrow="Discover"
@@ -47,22 +47,23 @@ export function BrowseEventsPage() {
         />
 
         {/* Filters */}
-        <div className="mb-8 flex flex-col gap-3 rounded-2xl border border-gray-100 bg-white p-3 shadow-card sm:flex-row sm:items-center">
+        <div className="mb-8 flex flex-col gap-3 rounded border border-zinc-200 bg-white p-3 sm:flex-row sm:items-center">
           <div className="relative flex-1">
-            <Search className="pointer-events-none absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400" />
+            <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-zinc-400" />
             <Input
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               placeholder="Search by title, city, or category"
-              className="border-transparent bg-gray-50 pl-10"
+              className="pl-9"
+              aria-label="Search events"
             />
           </div>
           <div className="flex items-center gap-2.5">
-            <SlidersHorizontal className="hidden h-4 w-4 text-gray-400 sm:block" />
             <Select
               value={format}
               onChange={(e) => setFormat(e.target.value as EventFormat | 'ALL')}
-              className="w-auto border-transparent bg-gray-50"
+              className="w-auto"
+              aria-label="Filter by format"
             >
               {FORMATS.map((f) => (
                 <option key={f} value={f}>
@@ -73,7 +74,8 @@ export function BrowseEventsPage() {
             <Select
               value={category}
               onChange={(e) => setCategory(e.target.value)}
-              className="w-auto border-transparent bg-gray-50"
+              className="w-auto"
+              aria-label="Filter by category"
             >
               <option value="ALL">All categories</option>
               {categories.map((c) => (
@@ -106,7 +108,7 @@ export function BrowseEventsPage() {
           />
         ) : (
           <>
-            <p className="mb-4 text-[13px] text-gray-500">
+            <p className="microlabel mb-4">
               {filtered.length} {filtered.length === 1 ? 'event' : 'events'}
             </p>
             <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">

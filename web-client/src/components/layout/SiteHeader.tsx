@@ -15,7 +15,7 @@ import { ButtonLink } from '../ui/Button';
 
 const navLinkClass = ({ isActive }: { isActive: boolean }) =>
   `text-sm transition-colors ${
-    isActive ? 'text-gray-900 font-medium' : 'text-gray-500 hover:text-gray-900'
+    isActive ? 'font-medium text-ink' : 'text-zinc-500 hover:text-ink'
   }`;
 
 export function SiteHeader() {
@@ -41,8 +41,8 @@ export function SiteHeader() {
   };
 
   return (
-    <header className="sticky top-0 z-40 border-b border-gray-100 bg-white/80 backdrop-blur-md">
-      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-4 px-5 sm:px-8 lg:px-12">
+    <header className="sticky top-0 z-40 border-b border-zinc-200 bg-paper/90 backdrop-blur">
+      <div className="mx-auto flex h-14 max-w-7xl items-center justify-between gap-4 px-5 sm:px-8 lg:px-12">
         <div className="flex items-center gap-8">
           <Logo />
           <nav className="hidden items-center gap-6 md:flex">
@@ -66,7 +66,7 @@ export function SiteHeader() {
         <div className="hidden items-center gap-3 md:flex">
           {!isAuthenticated ? (
             <>
-              <Link to="/login" className="text-sm font-medium text-gray-700 hover:text-gray-900">
+              <Link to="/login" className="text-sm font-medium text-zinc-600 hover:text-ink">
                 Sign in
               </Link>
               <ButtonLink to="/signup" size="sm">
@@ -77,26 +77,26 @@ export function SiteHeader() {
             <div className="relative" ref={menuRef}>
               <button
                 onClick={() => setMenuOpen((v) => !v)}
-                className="flex items-center gap-2 rounded-full border border-gray-200 bg-white py-1.5 pl-1.5 pr-3 transition-colors hover:border-gray-300"
+                className="flex items-center gap-2 rounded border border-zinc-300 bg-white py-1 pl-1 pr-2.5 transition-colors hover:border-ink"
               >
-                <span className="flex h-7 w-7 items-center justify-center rounded-full bg-gray-900 text-[11px] font-semibold text-white">
+                <span className="flex h-6 w-6 items-center justify-center rounded-sm bg-ink font-mono text-[10px] font-medium text-white">
                   {initials(user?.displayName || user?.email || '?')}
                 </span>
-                <span className="max-w-[120px] truncate text-[13px] font-medium text-gray-800">
+                <span className="max-w-[120px] truncate text-[13px] font-medium text-ink">
                   {user?.displayName}
                 </span>
-                <ChevronDown className="h-4 w-4 text-gray-400" />
+                <ChevronDown className="h-4 w-4 text-zinc-400" />
               </button>
               {menuOpen && (
-                <div className="absolute right-0 mt-2 w-60 overflow-hidden rounded-2xl border border-gray-100 bg-white p-1.5 shadow-pop animate-scale-in">
+                <div className="absolute right-0 mt-2 w-60 overflow-hidden rounded border border-zinc-200 bg-white p-1 shadow-pop animate-scale-in">
                   <div className="px-3 py-2">
-                    <p className="truncate text-sm font-medium text-gray-900">{user?.displayName}</p>
-                    <p className="truncate text-xs text-gray-500">{user?.email}</p>
-                    <span className="mt-1.5 inline-block rounded-full bg-brand-soft px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-brand-ink">
+                    <p className="truncate text-sm font-medium text-ink">{user?.displayName}</p>
+                    <p className="truncate text-xs text-zinc-500">{user?.email}</p>
+                    <span className="mt-1.5 inline-block rounded-sm border border-accent/40 bg-accent-soft px-1.5 py-0.5 font-mono text-[10px] font-medium uppercase tracking-[0.08em] text-accent-ink">
                       {user?.role === 'ORGANIZER' ? 'Organizer' : 'Attendee'}
                     </span>
                   </div>
-                  <div className="my-1 h-px bg-gray-100" />
+                  <div className="my-1 h-px bg-zinc-200" />
                   {isOrganizer ? (
                     <MenuItem to="/organizer" icon={<LayoutDashboard className="h-4 w-4" />} onClick={() => setMenuOpen(false)}>
                       Organizer dashboard
@@ -111,7 +111,7 @@ export function SiteHeader() {
                   </MenuItem>
                   <button
                     onClick={handleLogout}
-                    className="flex w-full items-center gap-2.5 rounded-xl px-3 py-2 text-left text-sm text-gray-700 transition-colors hover:bg-gray-100"
+                    className="flex w-full items-center gap-2.5 rounded-sm px-3 py-2 text-left text-sm text-zinc-700 transition-colors hover:bg-zinc-100 hover:text-ink"
                   >
                     <LogOut className="h-4 w-4" />
                     Sign out
@@ -125,7 +125,7 @@ export function SiteHeader() {
         {/* Mobile toggle */}
         <button
           onClick={() => setMobileOpen((v) => !v)}
-          className="rounded-full bg-gray-900 p-2.5 text-white md:hidden"
+          className="rounded border border-zinc-300 bg-white p-2 text-ink md:hidden"
           aria-label="Toggle menu"
         >
           {mobileOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
@@ -134,7 +134,7 @@ export function SiteHeader() {
 
       {/* Mobile sheet */}
       {mobileOpen && (
-        <div className="border-t border-gray-100 bg-white px-5 py-4 md:hidden">
+        <div className="border-t border-zinc-200 bg-white px-5 py-4 md:hidden">
           <nav className="flex flex-col gap-1">
             <MobileLink to="/events" onClick={() => setMobileOpen(false)}>Browse events</MobileLink>
             {isAuthenticated && !isOrganizer && (
@@ -144,7 +144,7 @@ export function SiteHeader() {
               <MobileLink to="/organizer" onClick={() => setMobileOpen(false)}>Organizer dashboard</MobileLink>
             )}
           </nav>
-          <div className="mt-4 flex flex-col gap-2 border-t border-gray-100 pt-4">
+          <div className="mt-4 flex flex-col gap-2 border-t border-zinc-200 pt-4">
             {!isAuthenticated ? (
               <>
                 <ButtonLink to="/login" variant="outline" onClick={() => setMobileOpen(false)}>
@@ -157,15 +157,15 @@ export function SiteHeader() {
             ) : (
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-2.5">
-                  <span className="flex h-9 w-9 items-center justify-center rounded-full bg-gray-900 text-[11px] font-semibold text-white">
+                  <span className="flex h-9 w-9 items-center justify-center rounded-sm bg-ink font-mono text-[11px] font-medium text-white">
                     {initials(user?.displayName || '?')}
                   </span>
                   <div>
-                    <p className="text-sm font-medium text-gray-900">{user?.displayName}</p>
-                    <p className="text-xs text-gray-500">{user?.email}</p>
+                    <p className="text-sm font-medium text-ink">{user?.displayName}</p>
+                    <p className="text-xs text-zinc-500">{user?.email}</p>
                   </div>
                 </div>
-                <button onClick={handleLogout} className="rounded-full p-2 text-gray-500 hover:bg-gray-100">
+                <button onClick={handleLogout} className="rounded p-2 text-zinc-500 hover:bg-zinc-100" aria-label="Sign out">
                   <LogOut className="h-5 w-5" />
                 </button>
               </div>
@@ -192,7 +192,7 @@ function MenuItem({
     <Link
       to={to}
       onClick={onClick}
-      className="flex items-center gap-2.5 rounded-xl px-3 py-2 text-sm text-gray-700 transition-colors hover:bg-gray-100"
+      className="flex items-center gap-2.5 rounded-sm px-3 py-2 text-sm text-zinc-700 transition-colors hover:bg-zinc-100 hover:text-ink"
     >
       {icon}
       {children}
@@ -206,8 +206,8 @@ function MobileLink({ to, children, onClick }: { to: string; children: React.Rea
       to={to}
       onClick={onClick}
       className={({ isActive }) =>
-        `flex items-center gap-2 rounded-xl px-3 py-2.5 text-[15px] ${
-          isActive ? 'bg-gray-100 font-medium text-gray-900' : 'text-gray-700'
+        `flex items-center gap-2 rounded px-3 py-2.5 text-[15px] ${
+          isActive ? 'bg-zinc-100 font-medium text-ink' : 'text-zinc-700'
         }`
       }
     >

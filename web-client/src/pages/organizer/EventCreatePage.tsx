@@ -28,7 +28,7 @@ export function EventCreatePage() {
   };
 
   return (
-    <div className="bg-[#F5F5F5] py-10 sm:py-14">
+    <div className="bg-paper py-10 sm:py-14">
       <Container size="md">
         <PageHeader
           breadcrumbs={[{ label: 'Organizer', to: '/organizer' }, { label: 'New event' }]}

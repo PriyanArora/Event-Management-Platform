@@ -66,17 +66,17 @@ function ToastCard({ toast, onClose }: { toast: Toast; onClose: () => void }) {
   const Icon = toast.kind === 'success' ? CheckCircle2 : toast.kind === 'error' ? XCircle : Info;
   const color =
     toast.kind === 'success'
-      ? 'text-emerald-600'
+      ? 'text-emerald-700'
       : toast.kind === 'error'
-        ? 'text-rose-600'
-        : 'text-sky-600';
+        ? 'text-red-700'
+        : 'text-accent';
   return (
-    <div className="pointer-events-auto flex items-start gap-3 rounded-xl border border-gray-100 bg-white p-3.5 shadow-pop animate-scale-in">
+    <div className="pointer-events-auto flex items-start gap-3 rounded border border-zinc-200 bg-white p-3.5 shadow-pop animate-scale-in">
       <Icon className={`mt-0.5 h-5 w-5 shrink-0 ${color}`} />
-      <p className="flex-1 text-[13px] leading-snug text-gray-800">{toast.message}</p>
+      <p className="flex-1 text-[13px] leading-snug text-ink">{toast.message}</p>
       <button
         onClick={onClose}
-        className="text-gray-400 transition-colors hover:text-gray-700"
+        className="text-zinc-400 transition-colors hover:text-ink"
         aria-label="Dismiss"
       >
         <X className="h-4 w-4" />

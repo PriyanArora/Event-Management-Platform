@@ -38,10 +38,11 @@ export function QuestionField({
               key={opt}
               type="button"
               onClick={() => onChange(opt)}
-              className={`flex-1 rounded-xl border px-4 py-2.5 text-sm font-medium transition-all ${
+              aria-pressed={value === opt}
+              className={`flex-1 rounded border px-4 py-2.5 text-sm font-medium transition-colors duration-200 ${
                 value === opt
-                  ? 'border-brand bg-brand-soft text-brand-ink ring-2 ring-brand/20'
-                  : 'border-gray-200 bg-white text-gray-600 hover:border-gray-300'
+                  ? 'border-accent bg-accent-soft text-accent-ink'
+                  : 'border-zinc-300 bg-white text-zinc-600 hover:border-ink hover:text-ink'
               }`}
             >
               {opt === 'YES' ? 'Yes' : 'No'}
@@ -59,15 +60,16 @@ export function QuestionField({
                 type="button"
                 onClick={() => onChange(String(n))}
                 aria-label={`${n} star${n > 1 ? 's' : ''}`}
-                className="rounded-lg p-1 transition-transform hover:scale-110"
+                aria-pressed={Number(value) === n}
+                className="rounded p-1 transition-colors hover:bg-zinc-100"
               >
                 <Star
-                  className={`h-7 w-7 ${active ? 'fill-brand text-brand' : 'fill-transparent text-gray-300'}`}
+                  className={`h-6 w-6 ${active ? 'fill-accent text-accent' : 'fill-transparent text-zinc-300'}`}
                 />
               </button>
             );
           })}
-          {value && <span className="ml-1.5 text-sm text-gray-500">{value}/5</span>}
+          {value && <span className="ml-1.5 font-mono text-sm text-zinc-500">{value}/5</span>}
         </div>
       )}
     </Field>

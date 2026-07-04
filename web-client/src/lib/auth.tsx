@@ -56,6 +56,13 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     return () => controller.abort();
   }, []);
 
+  // api.ts fires this after clearing an expired/rejected token on a 401.
+  useEffect(() => {
+    const onUnauthorized = () => setUser(null);
+    window.addEventListener('qeue:unauthorized', onUnauthorized);
+    return () => window.removeEventListener('qeue:unauthorized', onUnauthorized);
+  }, []);
+
   const login = useCallback(async (email: string, password: string) => {
     const res = await authApi.login({ email, password });
     setToken(res.accessToken);

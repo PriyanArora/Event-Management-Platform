@@ -36,20 +36,20 @@ export function Modal({
 
   return createPortal(
     <div className="fixed inset-0 z-[90] flex items-end justify-center sm:items-center">
-      <div className="absolute inset-0 bg-gray-900/40 backdrop-blur-sm" onClick={onClose} />
+      <div className="absolute inset-0 bg-ink/40" onClick={onClose} />
       <div
         role="dialog"
         aria-modal="true"
-        className={`relative z-10 m-0 flex max-h-[92vh] w-full ${maxW} flex-col overflow-hidden rounded-t-2xl bg-white shadow-pop animate-slide-up sm:m-4 sm:rounded-2xl sm:animate-scale-in`}
+        className={`relative z-10 m-0 flex max-h-[92vh] w-full ${maxW} flex-col overflow-hidden rounded-t border border-zinc-200 bg-white shadow-pop animate-slide-up sm:m-4 sm:rounded sm:animate-scale-in`}
       >
-        <div className="flex items-start justify-between gap-4 border-b border-gray-100 px-6 py-4">
+        <div className="flex items-start justify-between gap-4 border-b border-zinc-200 px-6 py-4">
           <div>
-            <h3 className="text-base font-semibold text-gray-900">{title}</h3>
-            {description && <p className="mt-0.5 text-[13px] text-gray-500">{description}</p>}
+            <h3 className="text-base font-semibold text-ink">{title}</h3>
+            {description && <p className="mt-0.5 text-[13px] text-zinc-500">{description}</p>}
           </div>
           <button
             onClick={onClose}
-            className="rounded-full p-1.5 text-gray-400 transition-colors hover:bg-gray-100 hover:text-gray-700"
+            className="rounded p-1.5 text-zinc-400 transition-colors hover:bg-zinc-100 hover:text-ink"
             aria-label="Close"
           >
             <X className="h-5 w-5" />
@@ -57,7 +57,7 @@ export function Modal({
         </div>
         <div className="flex-1 overflow-y-auto px-6 py-5">{children}</div>
         {footer && (
-          <div className="flex justify-end gap-3 border-t border-gray-100 bg-gray-50/60 px-6 py-4">
+          <div className="flex justify-end gap-3 border-t border-zinc-200 bg-zinc-50 px-6 py-4">
             {footer}
           </div>
         )}

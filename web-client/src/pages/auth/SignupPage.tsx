@@ -46,7 +46,7 @@ export function SignupPage() {
       subtitle={
         <>
           Already have one?{' '}
-          <Link to="/login" className="font-medium text-brand hover:underline">
+          <Link to="/login" className="font-medium text-accent hover:underline">
             Sign in
           </Link>
         </>
@@ -54,13 +54,13 @@ export function SignupPage() {
     >
       <form onSubmit={submit} className="space-y-4">
         {error && (
-          <div className="rounded-xl border border-rose-100 bg-rose-50 px-3.5 py-2.5 text-[13px] text-rose-700">
+          <div className="rounded border border-red-200 bg-red-50 px-3.5 py-2.5 text-[13px] text-red-800">
             {error}
           </div>
         )}
 
         <div>
-          <p className="mb-2 text-[13px] font-medium text-gray-700">I want to…</p>
+          <p className="mb-2 text-[13px] font-medium text-zinc-700">I want to…</p>
           <div className="grid grid-cols-2 gap-3">
             <RoleOption
               active={role === 'ATTENDEE'}
@@ -143,22 +143,23 @@ function RoleOption({
     <button
       type="button"
       onClick={onClick}
-      className={`flex flex-col items-start gap-2 rounded-xl border p-3.5 text-left transition-all ${
+      aria-pressed={active}
+      className={`flex flex-col items-start gap-2 rounded border p-3.5 text-left transition-colors duration-200 ${
         active
-          ? 'border-brand bg-brand-soft ring-2 ring-brand/20'
-          : 'border-gray-200 bg-white hover:border-gray-300'
+          ? 'border-accent bg-accent-soft'
+          : 'border-zinc-300 bg-white hover:border-ink'
       }`}
     >
       <span
-        className={`flex h-9 w-9 items-center justify-center rounded-lg ${
-          active ? 'bg-brand text-white' : 'bg-gray-100 text-gray-500'
+        className={`flex h-9 w-9 items-center justify-center rounded ${
+          active ? 'bg-accent text-white' : 'bg-zinc-100 text-zinc-500'
         }`}
       >
         {icon}
       </span>
       <span>
-        <span className="block text-[13px] font-semibold text-gray-900">{title}</span>
-        <span className="block text-[11px] text-gray-500">{desc}</span>
+        <span className="block text-[13px] font-semibold text-ink">{title}</span>
+        <span className="block text-[11px] text-zinc-500">{desc}</span>
       </span>
     </button>
   );

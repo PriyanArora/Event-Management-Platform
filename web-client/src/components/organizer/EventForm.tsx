@@ -111,7 +111,7 @@ export function EventForm({
   return (
     <form onSubmit={submit} className="space-y-5">
       <Card className="space-y-5 p-6">
-        <h2 className="text-base font-semibold text-gray-900">Basics</h2>
+        <h2 className="text-base font-semibold text-ink">Basics</h2>
         <Field label="Event title" required error={err('title')}>
           <Input value={form.title} onChange={(e) => set('title')(e.target.value)} placeholder="Qeue Launch Night" />
         </Field>
@@ -143,7 +143,7 @@ export function EventForm({
       </Card>
 
       <Card className="space-y-5 p-6">
-        <h2 className="text-base font-semibold text-gray-900">Schedule & capacity</h2>
+        <h2 className="text-base font-semibold text-ink">Schedule & capacity</h2>
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
           <Field label="Starts at" required error={err('startsAt')}>
             <Input type="datetime-local" value={form.startsAt} onChange={(e) => set('startsAt')(e.target.value)} />
@@ -166,7 +166,7 @@ export function EventForm({
       </Card>
 
       <Card className="space-y-5 p-6">
-        <h2 className="text-base font-semibold text-gray-900">Venue</h2>
+        <h2 className="text-base font-semibold text-ink">Venue</h2>
         <Field label="Venue name" required error={err('venueName')}>
           <Input value={form.venueName} onChange={(e) => set('venueName')(e.target.value)} placeholder="Community Hall" />
         </Field>
@@ -179,7 +179,7 @@ export function EventForm({
           </Field>
         </div>
         {form.eventFormat === 'ONLINE' && (
-          <p className="text-[12px] text-gray-400">
+          <p className="text-[12px] text-zinc-400">
             For online events, venue fields are still stored — use them for the platform name or a note.
           </p>
         )}

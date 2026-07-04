@@ -83,10 +83,10 @@ function SpeakersSection({
             <div key={sp.id} className="group relative">
               <SpeakerCard speaker={sp} />
               <div className="absolute right-3 top-3 flex gap-1 opacity-0 transition-opacity group-hover:opacity-100">
-                <button onClick={() => setEditing(sp)} className="rounded-lg bg-white p-1.5 text-gray-400 shadow-sm hover:text-gray-700" aria-label="Edit">
+                <button onClick={() => setEditing(sp)} className="rounded bg-white p-1.5 text-zinc-400 shadow-sm hover:text-ink" aria-label="Edit">
                   <Pencil className="h-3.5 w-3.5" />
                 </button>
-                <button onClick={() => setRemoving(sp)} className="rounded-lg bg-white p-1.5 text-gray-400 shadow-sm hover:text-rose-600" aria-label="Remove">
+                <button onClick={() => setRemoving(sp)} className="rounded bg-white p-1.5 text-zinc-400 shadow-sm hover:text-red-700" aria-label="Remove">
                   <Trash2 className="h-3.5 w-3.5" />
                 </button>
               </div>
@@ -242,34 +242,34 @@ function SessionsSection({
             <Card key={s.id} className="flex items-start justify-between gap-4 p-4">
               <div className="min-w-0">
                 <div className="flex flex-wrap items-center gap-2">
-                  <p className="font-medium text-gray-900">{s.title}</p>
-                  <Badge className={s.status === 'PUBLISHED' ? 'bg-emerald-50 text-emerald-700 ring-emerald-600/20' : s.status === 'DRAFT' ? 'bg-amber-50 text-amber-700 ring-amber-600/20' : 'bg-rose-50 text-rose-700 ring-rose-600/20'}>
+                  <p className="font-medium text-ink">{s.title}</p>
+                  <Badge className={s.status === 'PUBLISHED' ? 'border-emerald-300 bg-emerald-50 text-emerald-800' : s.status === 'DRAFT' ? 'border-amber-300 bg-amber-50 text-amber-800' : 'border-red-300 bg-red-50 text-red-800'}>
                     {s.status.charAt(0) + s.status.slice(1).toLowerCase()}
                   </Badge>
                 </div>
-                <div className="mt-1.5 flex flex-wrap items-center gap-x-4 gap-y-1 text-[12px] text-gray-500">
+                <div className="mt-1.5 flex flex-wrap items-center gap-x-4 gap-y-1 text-[12px] text-zinc-500">
                   <span className="inline-flex items-center gap-1.5">
-                    <Clock className="h-3.5 w-3.5 text-gray-400" />
+                    <Clock className="h-3.5 w-3.5 text-zinc-400" />
                     {formatDate(s.startsAt, timezone)} · {formatTime(s.startsAt, timezone)}–{formatTime(s.endsAt, timezone)}
                   </span>
                   {s.roomName && (
                     <span className="inline-flex items-center gap-1.5">
-                      <MapPin className="h-3.5 w-3.5 text-gray-400" />{s.roomName}
+                      <MapPin className="h-3.5 w-3.5 text-zinc-400" />{s.roomName}
                     </span>
                   )}
                   <span>Cap. {s.capacity}</span>
                 </div>
                 {s.speakers && s.speakers.length > 0 && (
-                  <p className="mt-1.5 text-[12px] text-gray-500">
+                  <p className="mt-1.5 text-[12px] text-zinc-500">
                     Speakers: {s.speakers.map((sp) => sp.name).join(', ')}
                   </p>
                 )}
               </div>
               <div className="flex shrink-0 items-center gap-1">
-                <button onClick={() => setEditing(s)} className="rounded-lg p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-700" aria-label="Edit">
+                <button onClick={() => setEditing(s)} className="rounded p-2 text-zinc-400 hover:bg-zinc-100 hover:text-ink" aria-label="Edit">
                   <Pencil className="h-4 w-4" />
                 </button>
-                <button onClick={() => setRemoving(s)} className="rounded-lg p-2 text-gray-400 hover:bg-rose-50 hover:text-rose-600" aria-label="Remove">
+                <button onClick={() => setRemoving(s)} className="rounded p-2 text-zinc-400 hover:bg-red-50 hover:text-red-700" aria-label="Remove">
                   <Trash2 className="h-4 w-4" />
                 </button>
               </div>
@@ -412,7 +412,7 @@ function SessionModal({
                     type="button"
                     onClick={() => toggleSpeaker(sp.id)}
                     className={`rounded-full border px-3 py-1.5 text-[13px] font-medium transition-all ${
-                      on ? 'border-brand bg-brand-soft text-brand-ink' : 'border-gray-200 bg-white text-gray-600 hover:border-gray-300'
+                      on ? 'border-accent bg-accent-soft text-accent-ink' : 'border-zinc-300 bg-white text-zinc-600 hover:border-ink'
                     }`}
                   >
                     {sp.name}

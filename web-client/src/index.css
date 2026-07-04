@@ -9,20 +9,28 @@
   }
 
   body {
-    @apply bg-[#F5F5F5] text-gray-900 font-sans;
+    @apply bg-paper font-sans text-ink;
+  }
+
+  ::selection {
+    @apply bg-accent-soft text-accent-ink;
   }
 
   /* Consistent focus ring for keyboard users. */
   :focus-visible {
-    outline: 2px solid #F26522;
+    outline: 2px solid #4f46e5;
     outline-offset: 2px;
+  }
+
+  p {
+    text-wrap: pretty;
   }
 }
 
 @layer components {
-  /* Signature pill button label container used by the text-roll hover. */
-  .roll-mask {
-    @apply relative block h-[20px] overflow-hidden;
+  /* Mono micro-label: eyebrows, section indices, table headers. */
+  .microlabel {
+    @apply font-mono text-[11px] font-medium uppercase tracking-[0.12em] text-zinc-500;
   }
 }
 
@@ -30,7 +38,7 @@
 .skeleton {
   position: relative;
   overflow: hidden;
-  background: #e9e9ec;
+  background: #ececea;
 }
 .skeleton::after {
   content: '';
@@ -58,4 +66,13 @@
 .no-scrollbar {
   -ms-overflow-style: none;
   scrollbar-width: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
 }
