@@ -169,15 +169,12 @@ spec:
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 4002
-            - containerPort: 9001
           envFrom:
             - configMapRef:
                 name: qeue-config
           env:
             - name: REGISTRATION_SERVICE_PORT
               value: "4002"
-            - name: REGISTRATION_GRPC_PORT
-              value: "9001"
             - name: REGISTRATION_DB_USERNAME
               valueFrom:
                 secretKeyRef:
@@ -224,9 +221,6 @@ spec:
     - name: http
       port: 4002
       targetPort: 4002
-    - name: grpc
-      port: 9001
-      targetPort: 9001
 ---
 apiVersion: apps/v1
 kind: Deployment

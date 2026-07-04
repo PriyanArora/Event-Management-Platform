@@ -30,8 +30,11 @@ public class NotificationDeliveryService {
     }
 
     public NotificationDeliveryResult deliver(NotificationType type, RegistrationNotificationMessage message) {
-        String subject = render(subjectTemplateFor(type), message);
-        String body = render(bodyTemplateFor(type), message);
+        NotificationTemplate template = templateRepository
+                .findFirstByNotificationTypeAndActiveTrueOrderByUpdatedAtDesc(type)
+                .orElse(null);
+        String subject = render(template != null ? template.getSubjectTemplate() : fallbackSubject(type), message);
+        String body = render(template != null ? template.getBodyTemplate() : fallbackBody(type), message);
         if (!properties.isMailhogEnabled()) {
             log.info(
                     "Notification recorded without SMTP action=notification_log_only type={} registrationId={} eventId={} recipient={}",
@@ -62,18 +65,6 @@ public class NotificationDeliveryService {
             );
             return new NotificationDeliveryResult(NotificationStatus.FAILED, subject, body);
         }
-    }
-
-    private String subjectTemplateFor(NotificationType type) {
-        return templateRepository.findFirstByNotificationTypeAndActiveTrueOrderByUpdatedAtDesc(type)
-                .map(NotificationTemplate::getSubjectTemplate)
-                .orElseGet(() -> fallbackSubject(type));
-    }
-
-    private String bodyTemplateFor(NotificationType type) {
-        return templateRepository.findFirstByNotificationTypeAndActiveTrueOrderByUpdatedAtDesc(type)
-                .map(NotificationTemplate::getBodyTemplate)
-                .orElseGet(() -> fallbackBody(type));
     }
 
     private String fallbackSubject(NotificationType type) {

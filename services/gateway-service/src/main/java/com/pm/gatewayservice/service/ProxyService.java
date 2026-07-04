@@ -6,6 +6,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.*;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StreamUtils;
+import org.springframework.web.client.ResourceAccessException;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.server.ResponseStatusException;
@@ -39,6 +40,9 @@ public class ProxyService {
             return ResponseEntity.status(response.getStatusCode())
                     .headers(filterResponseHeaders(response.getHeaders()))
                     .body(response.getBody());
+        } catch (ResourceAccessException ex) {
+            // Connect/read timeout or connection refused.
+            throw new ResponseStatusException(HttpStatus.GATEWAY_TIMEOUT, "Downstream service timed out");
         } catch (RestClientException ex) {
             throw new ResponseStatusException(HttpStatus.BAD_GATEWAY, "Downstream service unavailable");
         }
@@ -110,6 +114,11 @@ public class ProxyService {
         HttpHeaders headers = new HttpHeaders();
         if (source.getContentType() != null) {
             headers.setContentType(source.getContentType());
+        }
+        // Needed so file downloads (e.g. the registrations CSV export) keep their filename.
+        String contentDisposition = source.getFirst(HttpHeaders.CONTENT_DISPOSITION);
+        if (contentDisposition != null) {
+            headers.set(HttpHeaders.CONTENT_DISPOSITION, contentDisposition);
         }
         return headers;
     }

@@ -17,7 +17,7 @@ prototype into a real, runnable, deployable application.
 ### Repo facts (so steps are concrete)
 
 - Services live in `services/`: `identity-service` (4001), `gateway-service` (8080),
-  `event-service` (4000), `registration-service` (HTTP 4002 / gRPC 9001),
+  `event-service` (4000), `registration-service` (4002),
   `notification-worker` (4003). Web UI in `web-client/` (Compose 3000, Vite dev 5173).
 - Local stack: `infra/docker-compose.yml`. Env template: `.env.example`.
 - Infra: PostgreSQL, RabbitMQ (UI 15672), MailHog (UI 8025).

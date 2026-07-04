@@ -20,6 +20,7 @@ The product goal is simple: organizers can build and publish events, attendees c
 - [Local Kubernetes](#local-kubernetes)
 - [Configuration Notes](#configuration-notes)
 - [CI](#ci)
+- [Recent Additions](#recent-additions)
 
 ## Current Feature Scope
 
@@ -49,7 +50,7 @@ All active runtime code lives under `services/` and `web-client/`.
 | `services/identity-service` | `4001` | User registration, login, BCrypt password hashing, JWT issuing, and `/api/auth/me`. |
 | `services/gateway-service` | `8080` | Browser-facing API gateway, JWT validation, role checks, and downstream proxy routing. |
 | `services/event-service` | `4000` | Event lifecycle, event setup, registration-question definitions, registration-type definitions, speakers, sessions, surveys, and the event outbox. |
-| `services/registration-service` | `4002`, gRPC `9001` | Registration correctness, event inventory projection, registration answers, tickets, check-in, attendee lists, CSV export, analytics, survey submissions, and the registration outbox. |
+| `services/registration-service` | `4002` | Registration correctness, event inventory projection, registration answers, tickets, check-in, attendee lists, CSV export, analytics, survey submissions, and the registration outbox. |
 | `services/notification-worker` | `4003` | RabbitMQ notification consumer, template rendering, notification logs, and optional MailHog SMTP delivery. |
 | `web-client` | Compose `3000`, Vite `5173` | React and Vite browser UI for public browsing, auth, organizer workflows, attendee registration, tickets, check-in, analytics, and surveys. |
 
@@ -90,7 +91,6 @@ qeue/
     openapi/             HTTP API specs (identity, event, registration)
     asyncapi/            RabbitMQ event message specs
   api-requests/          Manual HTTP request examples per service
-  grpc-requests/         Manual gRPC request examples
   infra/                 Local Docker Compose stack and init scripts
   deploy/k8s/            Kubernetes manifests with Kustomize overlays
   .github/               GitHub Actions CI workflow
@@ -106,7 +106,6 @@ qeue/
 - PostgreSQL 16 for the local service databases.
 - H2 for most fast service tests, and Testcontainers PostgreSQL for registration concurrency tests.
 - RabbitMQ topic exchange plus transactional outbox tables for cross-service event propagation.
-- gRPC in `registration-service` for the retained registration stub interface.
 - React 19, TypeScript, Vite, and React Router for the UI.
 - Docker Compose for the full local developer stack.
 - Kubernetes manifests with Kustomize for local deployment shape validation.
@@ -249,7 +248,7 @@ kubectl kustomize deploy/k8s/overlays/local
 - Registration API: `contracts/openapi/registration-api.yaml`
 - Platform events: `contracts/asyncapi/event-platform-events.yaml`
 
-Manual request examples live in `api-requests/` and `grpc-requests/`.
+Manual request examples live in `api-requests/`.
 
 ## Local Kubernetes
 
@@ -287,3 +286,16 @@ GitHub Actions runs:
 - Docker image builds.
 - Kubernetes Kustomize validation.
 - `git diff --check`.
+
+## Recent Additions
+
+Changes from the July 2026 simplification and hardening pass:
+
+- **Removed the unused gRPC surface** in `registration-service` (stub service, proto, six build dependencies, port `9001` across Compose, Kubernetes, and `.env.example`). It duplicated the REST API and had no callers.
+- **Outbox publishers now retry transient broker failures.** Previously any publish error marked the message `FAILED` permanently, silently dropping the event. Transient AMQP failures now stay `PENDING` and retry on the next scheduled run; only permanently unroutable messages (unknown event type) go `FAILED`. Applies to both `event-service` and `registration-service`.
+- **Gateway timeouts and error mapping.** The proxy `RestTemplate` now has a 3s connect / 15s read timeout so a hung downstream service cannot pin gateway threads indefinitely; timeouts surface as `504` instead of a generic `502`.
+- **Gateway passes `Content-Disposition` through**, so the registrations CSV export keeps its server-provided filename.
+- **Web client session expiry handling.** A `401` on an authenticated request now clears the stored token and flips the UI to logged-out, instead of leaving a stale session where every call fails until a manual reload.
+- **Route-driven document titles** in the web client, so browser tabs and history show the page (`Browse events — Qeue`) rather than one static title.
+- **Notification template rendering** fetches the active template once per delivery instead of twice.
+- **Registration idempotency keys** use `crypto.randomUUID()` instead of `Math.random`, making collisions practically impossible.

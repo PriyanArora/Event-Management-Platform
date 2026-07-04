@@ -106,7 +106,6 @@ services:
     container_name: qeue-registration-service
     environment:
       REGISTRATION_SERVICE_PORT: 4002
-      REGISTRATION_GRPC_PORT: 9001
       REGISTRATION_DB_URL: jdbc:postgresql://postgres:5432/${REGISTRATION_DB_NAME:-qeue_registration}
       REGISTRATION_DB_USERNAME: ${REGISTRATION_DB_USERNAME:-qeue_registration_user}
       REGISTRATION_DB_PASSWORD: ${REGISTRATION_DB_PASSWORD:-change-me-local-only}
@@ -118,7 +117,6 @@ services:
       REGISTRATION_OUTBOX_PUBLISHER_ENABLED: "true"
     ports:
       - "${REGISTRATION_SERVICE_PORT:-4002}:4002"
-      - "${REGISTRATION_GRPC_PORT:-9001}:9001"
     depends_on:
       postgres:
         condition: service_healthy

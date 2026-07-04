@@ -43,7 +43,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@SpringBootTest(properties = "grpc.server.port=0")
+@SpringBootTest
 @AutoConfigureMockMvc
 @Testcontainers
 class RegistrationControllerIntegrationTests {
