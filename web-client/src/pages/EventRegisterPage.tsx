@@ -97,12 +97,12 @@ export function EventRegisterPage() {
     return (
       <Container size="md" className="py-16">
         <Card className="mx-auto max-w-md p-8 text-center">
-          <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-emerald-50 text-emerald-600">
+          <div className="mx-auto flex h-14 w-14 items-center justify-center rounded border border-emerald-300 bg-emerald-50 text-emerald-700">
             <CheckCircle2 className="h-7 w-7" />
           </div>
-          <h1 className="mt-5 text-xl font-semibold text-gray-900">You're registered!</h1>
-          <p className="mt-2 text-sm text-gray-500">
-            You're confirmed for <span className="font-medium text-gray-700">{event.title}</span>.
+          <h1 className="mt-5 text-xl font-semibold text-ink">You're registered!</h1>
+          <p className="mt-2 text-sm text-zinc-500">
+            You're confirmed for <span className="font-medium text-zinc-700">{event.title}</span>.
             Your ticket is available in your tickets.
           </p>
           <div className="mt-6 flex flex-col gap-2.5">
@@ -119,7 +119,7 @@ export function EventRegisterPage() {
   }
 
   return (
-    <div className="bg-[#F5F5F5] py-10 sm:py-14">
+    <div className="bg-paper py-10 sm:py-14">
       <Container size="md">
         <PageHeader
           breadcrumbs={[
@@ -141,15 +141,16 @@ export function EventRegisterPage() {
                       key={t.id}
                       type="button"
                       onClick={() => setTypeId(t.id)}
-                      className={`flex flex-col items-start rounded-xl border p-4 text-left transition-all ${
+                      aria-pressed={typeId === t.id}
+                      className={`flex flex-col items-start rounded border p-4 text-left transition-colors duration-200 ${
                         typeId === t.id
-                          ? 'border-brand bg-brand-soft ring-2 ring-brand/20'
-                          : 'border-gray-200 bg-white hover:border-gray-300'
+                          ? 'border-accent bg-accent-soft'
+                          : 'border-zinc-300 bg-white hover:border-ink'
                       }`}
                     >
-                      <span className="text-sm font-semibold text-gray-900">{t.name}</span>
-                      {t.description && <span className="mt-0.5 text-[12px] text-gray-500">{t.description}</span>}
-                      <span className="mt-2 text-[11px] font-medium text-gray-400">{t.capacity} seats</span>
+                      <span className="text-sm font-semibold text-ink">{t.name}</span>
+                      {t.description && <span className="mt-0.5 text-[12px] text-zinc-500">{t.description}</span>}
+                      <span className="mt-2 font-mono text-[11px] font-medium text-zinc-400">{t.capacity} seats</span>
                     </button>
                   ))}
                 </div>
@@ -159,7 +160,7 @@ export function EventRegisterPage() {
 
           {activeQuestions.length > 0 && (
             <Card className="space-y-5 p-6">
-              <h2 className="text-base font-semibold text-gray-900">A few questions</h2>
+              <h2 className="text-base font-semibold text-ink">A few questions</h2>
               {activeQuestions.map((q) => (
                 <QuestionField
                   key={q.id}
@@ -176,7 +177,7 @@ export function EventRegisterPage() {
           )}
 
           <div className="flex items-center justify-between gap-4">
-            <Link to={`/events/${eventId}`} className="text-sm text-gray-500 hover:text-gray-900">
+            <Link to={`/events/${eventId}`} className="text-sm text-zinc-500 hover:text-ink">
               Cancel
             </Link>
             <Button type="submit" size="lg" loading={submitting} leftIcon={<Ticket className="h-4 w-4" />}>

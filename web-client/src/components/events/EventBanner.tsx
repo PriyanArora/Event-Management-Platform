@@ -1,10 +1,17 @@
 import { accentFor } from '../../lib/format';
 
-/** Event banner image with a deterministic gradient fallback. */
+/* Fine grid texture for banner-less events — flat tint, no gradients. */
+const gridTexture: React.CSSProperties = {
+  backgroundImage:
+    'linear-gradient(currentColor 1px, transparent 1px), linear-gradient(90deg, currentColor 1px, transparent 1px)',
+  backgroundSize: '24px 24px',
+};
+
+/** Event banner image with a deterministic flat-tint fallback. */
 export function EventBanner({
   event,
   className = '',
-  rounded = 'rounded-2xl',
+  rounded = 'rounded',
 }: {
   event: { id: string; title: string; bannerImageUrl?: string | null; category?: string };
   className?: string;
@@ -22,12 +29,12 @@ export function EventBanner({
   }
   return (
     <div
-      className={`relative flex h-full w-full items-center justify-center overflow-hidden bg-gradient-to-br ${accentFor(
+      className={`relative flex h-full w-full items-center justify-center overflow-hidden ${accentFor(
         event.id,
       )} ${rounded} ${className}`}
     >
-      <div className="absolute inset-0 opacity-20 [background-image:radial-gradient(circle_at_1px_1px,white_1px,transparent_0)] [background-size:18px_18px]" />
-      <span className="relative px-6 text-center text-lg font-semibold tracking-tight text-white drop-shadow-sm">
+      <div className="absolute inset-0 opacity-[0.12]" style={gridTexture} aria-hidden />
+      <span className="relative px-6 text-center text-lg font-semibold tracking-tight">
         {event.title}
       </span>
     </div>

@@ -42,7 +42,12 @@ public class RegistrationOutboxPublisher {
     public int publishPending() {
         int publishedCount = 0;
         for (RegistrationOutboxMessage message : outboxRepository.findByStatusOrderByCreatedAtAsc(OutboxStatus.PENDING)) {
-            if (publishOne(message)) {
+            if (!publishOne(message)) {
+                // Broker is unreachable; later messages will fail too. Stop and
+                // retry the whole batch on the next scheduled run, preserving order.
+                break;
+            }
+            if (message.getStatus() == OutboxStatus.PUBLISHED) {
                 publishedCount++;
             }
         }
@@ -50,10 +55,27 @@ public class RegistrationOutboxPublisher {
     }
 
     private boolean publishOne(RegistrationOutboxMessage message) {
+        String routingKey;
+        try {
+            routingKey = routingKeyFor(message);
+        } catch (IllegalArgumentException ex) {
+            // Permanently unroutable message: mark FAILED so it never blocks the queue.
+            message.setStatus(OutboxStatus.FAILED);
+            outboxRepository.save(message);
+            log.error(
+                    "Unroutable registration outbox message action=publish_outbox messageId={} aggregateId={} eventType={} reason={}",
+                    message.getId(),
+                    message.getAggregateId(),
+                    message.getEventType(),
+                    ex.getMessage()
+            );
+            return true; // continue with the rest of the batch
+        }
+
         try {
             rabbitTemplate.convertAndSend(
                     properties.getExchange(),
-                    routingKeyFor(message),
+                    routingKey,
                     message.getPayloadJson(),
                     rabbitMessage -> {
                         MessageProperties messageProperties = rabbitMessage.getMessageProperties();
@@ -68,11 +90,11 @@ public class RegistrationOutboxPublisher {
             message.setPublishedAt(Instant.now());
             outboxRepository.save(message);
             return true;
-        } catch (AmqpException | IllegalArgumentException ex) {
-            message.setStatus(OutboxStatus.FAILED);
-            outboxRepository.save(message);
+        } catch (AmqpException ex) {
+            // Transient broker failure: leave PENDING so the next run retries it
+            // instead of silently dropping the event.
             log.warn(
-                    "Failed to publish registration outbox message action=publish_outbox messageId={} aggregateId={} eventType={} reason={}",
+                    "Failed to publish registration outbox message, will retry action=publish_outbox messageId={} aggregateId={} eventType={} reason={}",
                     message.getId(),
                     message.getAggregateId(),
                     message.getEventType(),

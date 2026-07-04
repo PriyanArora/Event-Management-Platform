@@ -2,24 +2,26 @@ import { forwardRef, type ButtonHTMLAttributes, type ReactNode } from 'react';
 import { Link, type LinkProps } from 'react-router-dom';
 import { Loader2 } from 'lucide-react';
 
-type Variant = 'primary' | 'dark' | 'outline' | 'ghost' | 'danger';
+type Variant = 'primary' | 'accent' | 'outline' | 'ghost' | 'danger';
 type Size = 'sm' | 'md' | 'lg';
 
 const base =
-  'inline-flex items-center justify-center gap-2 rounded-full font-medium transition-all duration-200 disabled:opacity-50 disabled:pointer-events-none whitespace-nowrap';
+  'inline-flex items-center justify-center gap-2 rounded font-medium transition-colors duration-200 disabled:opacity-40 disabled:pointer-events-none whitespace-nowrap';
 
 const variants: Record<Variant, string> = {
-  primary: 'bg-brand text-white hover:bg-brand-hover shadow-sm hover:shadow-md',
-  dark: 'bg-gray-900 text-white hover:bg-gray-800 shadow-sm',
-  outline: 'border border-gray-300 bg-white text-gray-900 hover:border-gray-900 hover:bg-gray-50',
-  ghost: 'text-gray-700 hover:bg-gray-100',
-  danger: 'border border-rose-200 bg-white text-rose-600 hover:bg-rose-50 hover:border-rose-300',
+  primary: 'bg-ink text-white hover:bg-zinc-700 active:bg-zinc-800',
+  accent: 'bg-accent text-white hover:bg-accent-hover active:bg-accent-ink',
+  outline:
+    'border border-zinc-300 bg-white text-ink hover:border-ink hover:bg-zinc-50 active:bg-zinc-100',
+  ghost: 'text-zinc-600 hover:bg-zinc-100 hover:text-ink active:bg-zinc-200',
+  danger:
+    'border border-red-200 bg-white text-red-700 hover:border-red-600 hover:bg-red-50 active:bg-red-100',
 };
 
 const sizes: Record<Size, string> = {
-  sm: 'h-9 px-4 text-[13px]',
-  md: 'h-11 px-5 text-sm',
-  lg: 'h-12 px-7 text-[15px]',
+  sm: 'h-8 px-3 text-[13px]',
+  md: 'h-10 px-4 text-sm',
+  lg: 'h-12 px-6 text-[15px]',
 };
 
 interface CommonProps {

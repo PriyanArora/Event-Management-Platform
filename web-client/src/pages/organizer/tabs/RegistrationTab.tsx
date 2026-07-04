@@ -79,21 +79,21 @@ function TypesSection() {
           {list.map((t) => (
             <Card key={t.id} className="flex items-center justify-between gap-4 p-4">
               <div className="flex items-start gap-3">
-                <GripVertical className="mt-0.5 h-4 w-4 shrink-0 text-gray-300" />
+                <GripVertical className="mt-0.5 h-4 w-4 shrink-0 text-zinc-300" />
                 <div>
                   <div className="flex items-center gap-2">
-                    <p className="font-medium text-gray-900">{t.name}</p>
-                    {!t.active && <Badge className="bg-gray-100 text-gray-500 ring-gray-200">Inactive</Badge>}
+                    <p className="font-medium text-ink">{t.name}</p>
+                    {!t.active && <Badge className="border-zinc-300 bg-zinc-100 text-zinc-500">Inactive</Badge>}
                   </div>
-                  {t.description && <p className="text-[13px] text-gray-500">{t.description}</p>}
+                  {t.description && <p className="text-[13px] text-zinc-500">{t.description}</p>}
                 </div>
               </div>
               <div className="flex items-center gap-3">
-                <Badge className="bg-brand-soft text-brand ring-brand/20">{t.capacity} seats</Badge>
-                <button onClick={() => setEditing(t)} className="rounded-lg p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-700" aria-label="Edit">
+                <Badge className="border-accent/40 bg-accent-soft text-accent-ink">{t.capacity} seats</Badge>
+                <button onClick={() => setEditing(t)} className="rounded p-2 text-zinc-400 hover:bg-zinc-100 hover:text-ink" aria-label="Edit">
                   <Pencil className="h-4 w-4" />
                 </button>
-                <button onClick={() => setRemoving(t)} className="rounded-lg p-2 text-gray-400 hover:bg-rose-50 hover:text-rose-600" aria-label="Remove">
+                <button onClick={() => setRemoving(t)} className="rounded p-2 text-zinc-400 hover:bg-red-50 hover:text-red-700" aria-label="Remove">
                   <Trash2 className="h-4 w-4" />
                 </button>
               </div>
@@ -250,21 +250,21 @@ function QuestionsSection() {
           {list.map((q) => (
             <Card key={q.id} className="flex items-center justify-between gap-4 p-4">
               <div className="flex items-start gap-3">
-                <GripVertical className="mt-0.5 h-4 w-4 shrink-0 text-gray-300" />
+                <GripVertical className="mt-0.5 h-4 w-4 shrink-0 text-zinc-300" />
                 <div>
                   <div className="flex flex-wrap items-center gap-2">
-                    <p className="font-medium text-gray-900">{q.questionText}</p>
-                    {q.required && <Badge className="bg-brand-soft text-brand ring-brand/20">Required</Badge>}
-                    {!q.active && <Badge className="bg-gray-100 text-gray-500 ring-gray-200">Inactive</Badge>}
+                    <p className="font-medium text-ink">{q.questionText}</p>
+                    {q.required && <Badge className="border-accent/40 bg-accent-soft text-accent-ink">Required</Badge>}
+                    {!q.active && <Badge className="border-zinc-300 bg-zinc-100 text-zinc-500">Inactive</Badge>}
                   </div>
-                  <p className="text-[13px] text-gray-500">{questionTypeLabel[q.questionType]}</p>
+                  <p className="text-[13px] text-zinc-500">{questionTypeLabel[q.questionType]}</p>
                 </div>
               </div>
               <div className="flex items-center gap-1">
-                <button onClick={() => setEditing(q)} className="rounded-lg p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-700" aria-label="Edit">
+                <button onClick={() => setEditing(q)} className="rounded p-2 text-zinc-400 hover:bg-zinc-100 hover:text-ink" aria-label="Edit">
                   <Pencil className="h-4 w-4" />
                 </button>
-                <button onClick={() => setRemoving(q)} className="rounded-lg p-2 text-gray-400 hover:bg-rose-50 hover:text-rose-600" aria-label="Remove">
+                <button onClick={() => setRemoving(q)} className="rounded p-2 text-zinc-400 hover:bg-red-50 hover:text-red-700" aria-label="Remove">
                   <Trash2 className="h-4 w-4" />
                 </button>
               </div>

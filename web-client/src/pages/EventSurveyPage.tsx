@@ -78,11 +78,11 @@ export function EventSurveyPage() {
     return (
       <Container size="md" className="py-16">
         <Card className="mx-auto max-w-md p-8 text-center">
-          <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-emerald-50 text-emerald-600">
+          <div className="mx-auto flex h-14 w-14 items-center justify-center rounded border border-emerald-300 bg-emerald-50 text-emerald-700">
             <CheckCircle2 className="h-7 w-7" />
           </div>
-          <h1 className="mt-5 text-xl font-semibold text-gray-900">Thank you!</h1>
-          <p className="mt-2 text-sm text-gray-500">Your feedback has been recorded.</p>
+          <h1 className="mt-5 text-xl font-semibold text-ink">Thank you!</h1>
+          <p className="mt-2 text-sm text-zinc-500">Your feedback has been recorded.</p>
           <div className="mt-6">
             <ButtonLink to={`/events/${eventId}`} variant="outline">Back to event</ButtonLink>
           </div>
@@ -92,7 +92,7 @@ export function EventSurveyPage() {
   }
 
   return (
-    <div className="bg-[#F5F5F5] py-10 sm:py-14">
+    <div className="bg-paper py-10 sm:py-14">
       <Container size="md">
         <PageHeader
           breadcrumbs={[

@@ -7,7 +7,7 @@ import {
 } from 'react';
 
 const control =
-  'w-full rounded-xl border border-gray-200 bg-white px-3.5 py-2.5 text-sm text-gray-900 placeholder:text-gray-400 transition-colors focus:border-brand focus:outline-none focus:ring-2 focus:ring-brand/20 disabled:bg-gray-50 disabled:text-gray-400';
+  'w-full rounded border border-zinc-300 bg-white px-3 py-2 text-sm text-ink placeholder:text-zinc-400 transition-colors focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/15 disabled:bg-zinc-50 disabled:text-zinc-400';
 
 export function Field({
   label,
@@ -27,14 +27,14 @@ export function Field({
   return (
     <div className="flex flex-col gap-1.5">
       {label && (
-        <label htmlFor={htmlFor} className="text-[13px] font-medium text-gray-700">
+        <label htmlFor={htmlFor} className="text-[13px] font-medium text-zinc-700">
           {label}
-          {required && <span className="ml-0.5 text-brand">*</span>}
+          {required && <span className="ml-0.5 text-accent" aria-hidden>*</span>}
         </label>
       )}
       {children}
-      {hint && !error && <p className="text-xs text-gray-400">{hint}</p>}
-      {error && <p className="text-xs text-rose-600">{error}</p>}
+      {hint && !error && <p className="text-xs text-zinc-400">{hint}</p>}
+      {error && <p className="text-xs text-red-700">{error}</p>}
     </div>
   );
 }
@@ -79,17 +79,17 @@ export function Toggle({
       className="inline-flex items-center gap-2.5"
     >
       <span
-        className={`relative h-6 w-11 rounded-full transition-colors ${
-          checked ? 'bg-brand' : 'bg-gray-300'
+        className={`relative h-5 w-9 rounded-full transition-colors duration-200 ${
+          checked ? 'bg-accent' : 'bg-zinc-300'
         }`}
       >
         <span
-          className={`absolute top-0.5 h-5 w-5 rounded-full bg-white shadow transition-transform ${
-            checked ? 'translate-x-[22px]' : 'translate-x-0.5'
+          className={`absolute top-0.5 h-4 w-4 rounded-full bg-white transition-transform duration-200 ${
+            checked ? 'translate-x-[18px]' : 'translate-x-0.5'
           }`}
         />
       </span>
-      {label && <span className="text-[13px] text-gray-700">{label}</span>}
+      {label && <span className="text-[13px] text-zinc-700">{label}</span>}
     </button>
   );
 }

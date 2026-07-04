@@ -85,6 +85,12 @@ async function request<T>(path: string, options: RequestOptions = {}): Promise<T
   const data = text ? parseJsonResponse(text, response) : null;
 
   if (!response.ok) {
+    // Expired/invalid session: drop the token and tell AuthProvider so the UI
+    // flips to logged-out instead of every call failing 401 until a reload.
+    if (response.status === 401 && auth && token) {
+      setToken(null);
+      window.dispatchEvent(new Event('qeue:unauthorized'));
+    }
     const message =
       (data && typeof data === 'object' && 'message' in data && (data as any).message) ||
       defaultMessage(response.status);

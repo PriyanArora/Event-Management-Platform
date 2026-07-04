@@ -103,48 +103,41 @@ export const questionTypeLabel: Record<QuestionType, string> = {
 type BadgeMeta = { label: string; className: string };
 
 export const eventStatusMeta: Record<EventStatus, BadgeMeta> = {
-  DRAFT: { label: 'Draft', className: 'bg-amber-50 text-amber-700 ring-amber-600/20' },
-  PUBLISHED: { label: 'Published', className: 'bg-emerald-50 text-emerald-700 ring-emerald-600/20' },
-  CANCELLED: { label: 'Cancelled', className: 'bg-rose-50 text-rose-700 ring-rose-600/20' },
+  DRAFT: { label: 'Draft', className: 'border-amber-300 bg-amber-50 text-amber-800' },
+  PUBLISHED: { label: 'Published', className: 'border-emerald-300 bg-emerald-50 text-emerald-800' },
+  CANCELLED: { label: 'Cancelled', className: 'border-red-300 bg-red-50 text-red-800' },
 };
 
 export const surveyStatusMeta: Record<SurveyStatus, BadgeMeta> = {
-  DRAFT: { label: 'Draft', className: 'bg-amber-50 text-amber-700 ring-amber-600/20' },
-  ACTIVE: { label: 'Active', className: 'bg-emerald-50 text-emerald-700 ring-emerald-600/20' },
-  CLOSED: { label: 'Closed', className: 'bg-gray-100 text-gray-600 ring-gray-500/20' },
+  DRAFT: { label: 'Draft', className: 'border-amber-300 bg-amber-50 text-amber-800' },
+  ACTIVE: { label: 'Active', className: 'border-emerald-300 bg-emerald-50 text-emerald-800' },
+  CLOSED: { label: 'Closed', className: 'border-zinc-300 bg-zinc-100 text-zinc-600' },
 };
 
 export const registrationStatusMeta: Record<RegistrationStatus, BadgeMeta> = {
-  CONFIRMED: { label: 'Confirmed', className: 'bg-emerald-50 text-emerald-700 ring-emerald-600/20' },
-  CANCELLED: { label: 'Cancelled', className: 'bg-rose-50 text-rose-700 ring-rose-600/20' },
+  CONFIRMED: { label: 'Confirmed', className: 'border-emerald-300 bg-emerald-50 text-emerald-800' },
+  CANCELLED: { label: 'Cancelled', className: 'border-red-300 bg-red-50 text-red-800' },
 };
 
 export const checkInMeta: Record<CheckInStatus, BadgeMeta> = {
-  NOT_CHECKED_IN: { label: 'Not checked in', className: 'bg-gray-100 text-gray-600 ring-gray-500/20' },
-  CHECKED_IN: { label: 'Checked in', className: 'bg-sky-50 text-sky-700 ring-sky-600/20' },
+  NOT_CHECKED_IN: { label: 'Not checked in', className: 'border-zinc-300 bg-zinc-100 text-zinc-600' },
+  CHECKED_IN: { label: 'Checked in', className: 'border-accent/40 bg-accent-soft text-accent-ink' },
 };
 
-/** Stable per-event accent for banner-less cards (hashed from id). */
+/** Stable flat placeholder tint for banner-less events (hashed from id). */
 export function accentFor(seed: string): string {
   const palette = [
-    'from-orange-400 to-rose-400',
-    'from-violet-400 to-indigo-400',
-    'from-emerald-400 to-teal-400',
-    'from-sky-400 to-blue-400',
-    'from-amber-400 to-orange-400',
-    'from-fuchsia-400 to-pink-400',
+    'bg-zinc-200 text-zinc-500',
+    'bg-accent-soft text-accent-ink',
+    'bg-zinc-100 text-zinc-500',
+    'bg-ink text-zinc-400',
   ];
   let hash = 0;
   for (let i = 0; i < seed.length; i++) hash = (hash * 31 + seed.charCodeAt(i)) >>> 0;
   return palette[hash % palette.length];
 }
 
-/** A short idempotency key for registration submissions. */
+/** A unique idempotency key for registration submissions. */
 export function idempotencyKey(): string {
-  return (
-    'reg-' +
-    Date.now().toString(36) +
-    '-' +
-    Math.random().toString(36).slice(2, 10)
-  );
+  return `reg-${crypto.randomUUID()}`;
 }

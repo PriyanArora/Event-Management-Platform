@@ -6,6 +6,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.*;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StreamUtils;
+import org.springframework.web.client.ResourceAccessException;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.server.ResponseStatusException;
@@ -39,6 +40,9 @@ public class ProxyService {
             return ResponseEntity.status(response.getStatusCode())
                     .headers(filterResponseHeaders(response.getHeaders()))
                     .body(response.getBody());
+        } catch (ResourceAccessException ex) {
+            // Connect/read timeout or connection refused.
+            throw new ResponseStatusException(HttpStatus.GATEWAY_TIMEOUT, "Downstream service timed out");
         } catch (RestClientException ex) {
             throw new ResponseStatusException(HttpStatus.BAD_GATEWAY, "Downstream service unavailable");
         }
@@ -89,6 +93,15 @@ public class ProxyService {
         if (accept != null && !accept.isBlank()) {
             headers.set(HttpHeaders.ACCEPT, accept);
         }
+        // identity-service is the JWT authority and re-validates the token itself
+        // (e.g. /api/auth/me), so the bearer token must reach it. Business services
+        // trust the X-User-* headers instead and never see the raw token.
+        if (request.getRequestURI().startsWith("/api/auth/")) {
+            String authorization = request.getHeader(HttpHeaders.AUTHORIZATION);
+            if (authorization != null && !authorization.isBlank()) {
+                headers.set(HttpHeaders.AUTHORIZATION, authorization);
+            }
+        }
         if (principal != null) {
             headers.set("X-User-Id", principal.userId().toString());
             headers.set("X-User-Email", principal.email());
@@ -101,6 +114,11 @@ public class ProxyService {
         HttpHeaders headers = new HttpHeaders();
         if (source.getContentType() != null) {
             headers.setContentType(source.getContentType());
+        }
+        // Needed so file downloads (e.g. the registrations CSV export) keep their filename.
+        String contentDisposition = source.getFirst(HttpHeaders.CONTENT_DISPOSITION);
+        if (contentDisposition != null) {
+            headers.set(HttpHeaders.CONTENT_DISPOSITION, contentDisposition);
         }
         return headers;
     }

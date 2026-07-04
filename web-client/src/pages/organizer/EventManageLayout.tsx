@@ -87,21 +87,21 @@ export function EventManageLayout() {
   };
 
   return (
-    <div className="bg-[#F5F5F5] pb-16">
+    <div className="bg-paper pb-16">
       {/* Header */}
-      <div className="border-b border-gray-200 bg-white">
+      <div className="border-b border-zinc-200 bg-white">
         <Container className="pt-8">
           <Breadcrumbs items={[{ label: 'Organizer', to: '/organizer' }, { label: event.title }]} />
           <div className="flex flex-wrap items-start justify-between gap-4 pb-5">
             <div>
               <div className="flex flex-wrap items-center gap-2.5">
                 <StatusBadge meta={eventStatusMeta[event.status]} />
-                <span className="text-[12px] font-medium text-gray-400">
+                <span className="font-mono text-[11px] font-medium uppercase tracking-[0.08em] text-zinc-400">
                   {eventFormatLabel[event.eventFormat]} · {event.category}
                 </span>
               </div>
-              <h1 className="mt-2 text-2xl font-semibold tracking-tight text-gray-900">{event.title}</h1>
-              <p className="mt-1 text-[13px] text-gray-500">
+              <h1 className="mt-2 text-2xl font-semibold tracking-tight text-ink">{event.title}</h1>
+              <p className="mt-1 font-mono text-[12px] text-zinc-500">
                 {formatDate(event.startsAt, event.timezone)} · {formatTime(event.startsAt, event.timezone)}–
                 {formatTime(event.endsAt, event.timezone)} · {event.timezone}
               </p>
@@ -140,8 +140,8 @@ export function EventManageLayout() {
                 className={({ isActive }) =>
                   `flex shrink-0 items-center gap-2 border-b-2 px-3.5 py-3 text-[13px] font-medium transition-colors ${
                     isActive
-                      ? 'border-brand text-gray-900'
-                      : 'border-transparent text-gray-500 hover:text-gray-900'
+                      ? 'border-accent text-ink'
+                      : 'border-transparent text-zinc-500 hover:text-ink'
                   }`
                 }
               >

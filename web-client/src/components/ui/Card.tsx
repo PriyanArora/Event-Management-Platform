@@ -10,7 +10,7 @@ export function Card({
   as?: 'div' | 'section' | 'article' | 'li';
 }) {
   return (
-    <Tag className={`rounded-2xl border border-gray-100 bg-white shadow-card ${className}`}>
+    <Tag className={`rounded border border-zinc-200 bg-white ${className}`}>
       {children}
     </Tag>
   );
@@ -28,8 +28,8 @@ export function SectionHeading({
   return (
     <div className="mb-6 flex flex-wrap items-end justify-between gap-4">
       <div>
-        <h2 className="text-xl font-semibold tracking-tight text-gray-900">{title}</h2>
-        {description && <p className="mt-1 max-w-2xl text-sm text-gray-500">{description}</p>}
+        <h2 className="text-lg font-semibold tracking-tight text-ink">{title}</h2>
+        {description && <p className="mt-1 max-w-2xl text-sm text-zinc-500">{description}</p>}
       </div>
       {action}
     </div>

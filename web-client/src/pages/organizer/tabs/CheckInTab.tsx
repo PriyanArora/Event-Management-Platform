@@ -54,7 +54,7 @@ export function CheckInTab() {
         <SectionHeading title="Check-in" description="Enter or scan an attendee's ticket code to check them in." />
         <Card className="p-6">
           <form onSubmit={submit}>
-            <label className="text-[13px] font-medium text-gray-700">Ticket code</label>
+            <label className="text-[13px] font-medium text-zinc-700">Ticket code</label>
             <div className="mt-2 flex gap-2.5">
               <Input
                 ref={inputRef}
@@ -73,12 +73,12 @@ export function CheckInTab() {
 
           {last && (
             <div
-              className={`mt-5 flex items-start gap-3 rounded-2xl border p-4 ${
+              className={`mt-5 flex items-start gap-3 rounded border p-4 ${
                 last.outcome === 'CHECKED_IN'
                   ? 'border-emerald-200 bg-emerald-50'
                   : last.outcome === 'ALREADY'
                     ? 'border-amber-200 bg-amber-50'
-                    : 'border-rose-200 bg-rose-50'
+                    : 'border-red-200 bg-red-50'
               }`}
             >
               {last.outcome === 'CHECKED_IN' ? (
@@ -86,7 +86,7 @@ export function CheckInTab() {
               ) : last.outcome === 'ALREADY' ? (
                 <AlertTriangle className="h-6 w-6 shrink-0 text-amber-600" />
               ) : (
-                <XCircle className="h-6 w-6 shrink-0 text-rose-600" />
+                <XCircle className="h-6 w-6 shrink-0 text-red-700" />
               )}
               <div>
                 <p
@@ -95,14 +95,14 @@ export function CheckInTab() {
                       ? 'text-emerald-800'
                       : last.outcome === 'ALREADY'
                         ? 'text-amber-800'
-                        : 'text-rose-800'
+                        : 'text-red-800'
                   }`}
                 >
                   {last.message}
                 </p>
-                {last.data?.attendeeEmail && <p className="text-[13px] text-gray-600">{last.data.attendeeEmail}</p>}
+                {last.data?.attendeeEmail && <p className="text-[13px] text-zinc-600">{last.data.attendeeEmail}</p>}
                 {last.data?.checkedInAt && (
-                  <p className="text-[12px] text-gray-500">at {formatTime(last.data.checkedInAt, event.timezone)}</p>
+                  <p className="text-[12px] text-zinc-500">at {formatTime(last.data.checkedInAt, event.timezone)}</p>
                 )}
               </div>
             </div>
@@ -114,9 +114,9 @@ export function CheckInTab() {
         <SectionHeading title="Recent activity" description="Check-ins from this session." />
         <Card className="p-2">
           {log.length === 0 ? (
-            <p className="px-4 py-10 text-center text-sm text-gray-400">No check-ins yet this session.</p>
+            <p className="px-4 py-10 text-center text-sm text-zinc-400">No check-ins yet this session.</p>
           ) : (
-            <ul className="divide-y divide-gray-50">
+            <ul className="divide-y divide-zinc-100">
               {log.map((e, i) => (
                 <li key={i} className="flex items-center gap-3 px-3 py-2.5">
                   {e.outcome === 'CHECKED_IN' ? (
@@ -124,13 +124,13 @@ export function CheckInTab() {
                   ) : e.outcome === 'ALREADY' ? (
                     <AlertTriangle className="h-4 w-4 text-amber-500" />
                   ) : (
-                    <XCircle className="h-4 w-4 text-rose-500" />
+                    <XCircle className="h-4 w-4 text-red-500" />
                   )}
                   <div className="min-w-0 flex-1">
-                    <p className="truncate text-[13px] text-gray-800">{e.email ?? e.message}</p>
-                    {e.email && <p className="text-[11px] text-gray-400">{e.message}</p>}
+                    <p className="truncate text-[13px] text-zinc-800">{e.email ?? e.message}</p>
+                    {e.email && <p className="text-[11px] text-zinc-400">{e.message}</p>}
                   </div>
-                  <span className="text-[11px] text-gray-400">{formatTime(e.at, event.timezone)}</span>
+                  <span className="text-[11px] text-zinc-400">{formatTime(e.at, event.timezone)}</span>
                 </li>
               ))}
             </ul>

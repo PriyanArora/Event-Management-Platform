@@ -17,7 +17,7 @@ prototype into a real, runnable, deployable application.
 ### Repo facts (so steps are concrete)
 
 - Services live in `services/`: `identity-service` (4001), `gateway-service` (8080),
-  `event-service` (4000), `registration-service` (HTTP 4002 / gRPC 9001),
+  `event-service` (4000), `registration-service` (4002),
   `notification-worker` (4003). Web UI in `web-client/` (Compose 3000, Vite dev 5173).
 - Local stack: `infra/docker-compose.yml`. Env template: `.env.example`.
 - Infra: PostgreSQL, RabbitMQ (UI 15672), MailHog (UI 8025).
@@ -35,9 +35,6 @@ prototype into a real, runnable, deployable application.
 | 5 | Observability (logs, health, metrics) | [ ] |
 | 6 | UI/UX polish | [ ] |
 | 7 | Data & reliability | [ ] |
-| 8 | Real deployment | [ ] |
-| 9 | Production readiness / ops | [ ] |
-
 ---
 
 ## Phase 0 — Run it exactly as-is (baseline)
@@ -231,43 +228,7 @@ loading/error/empty states and no console errors. **Do not proceed until this pa
 - [ ] Verify data survives `docker compose down && up` (named volumes intact).
 
 **🚧 GATE 7:** fresh-DB migration works, concurrency tests pass, outbox/consumers are
-proven idempotent and broker-restart-safe. **Do not proceed until this passes.**
-
----
-
-## Phase 8 — Real deployment
-
-**Goal:** run it somewhere other than your laptop.
-
-- [ ] Build and tag versioned images for every service + web-client (not `:local`).
-- [ ] Push images to a real container registry (GHCR/ECR/etc.).
-- [ ] Move secrets out of `deploy/k8s/base/secret.yaml` into a real secret store
-      (sealed-secrets / external-secrets / cloud secret manager).
-- [ ] Set production env via ConfigMap (real DB URLs, RabbitMQ host, CORS origin).
-- [ ] Apply the manifests to a real cluster: `kubectl apply -k deploy/k8s/overlays/<env>`.
-- [ ] Confirm resource requests/limits and replica counts are set per deployment.
-- [ ] Put the gateway/web-client behind an Ingress with a real domain + TLS certificate.
-- [ ] Run the full Phase 2 flow checklist against the deployed environment.
-
-**🚧 GATE 8:** the app is reachable on a real domain over HTTPS and all Phase 2 flows pass
-there. **Do not proceed until this passes.**
-
----
-
-## Phase 9 — Production readiness / ops
-
-**Goal:** keep it alive and know when it isn't.
-
-- [ ] Monitoring dashboards for the key metrics (request rate, errors, latency, queue depth).
-- [ ] Alerting on: service down, high error rate, DLQ growth, DB/broker unreachable.
-- [ ] Error tracking (e.g. Sentry) wired into services and the web client.
-- [ ] Automated DB backups running on a schedule with a tested restore.
-- [ ] A basic load test against the deployed env; record capacity limits.
-- [ ] A short runbook: how to deploy, roll back, rotate secrets, and triage common alerts.
-- [ ] Document the architecture and on-call expectations in the README.
-
-**🚧 GATE 9:** monitoring + alerting are live, backups are tested, and a runbook exists.
-**This is the finish line — the app is now a real, operable application.**
+proven idempotent and broker-restart-safe. **This is the finish line.**
 
 ---
 

@@ -1,5 +1,5 @@
-import { Suspense, lazy } from 'react';
-import { Routes, Route, Navigate } from 'react-router-dom';
+import { Suspense, lazy, useEffect } from 'react';
+import { Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import { AppLayout } from './components/layout/AppLayout';
 import { RequireAuth } from './components/layout/RequireAuth';
 import { LoadingBlock } from './components/ui/States';
@@ -28,7 +28,34 @@ const CheckInTab = lazy(() => import('./pages/organizer/tabs/CheckInTab').then((
 const AnalyticsTab = lazy(() => import('./pages/organizer/tabs/AnalyticsTab').then((m) => ({ default: m.AnalyticsTab })));
 const SurveysTab = lazy(() => import('./pages/organizer/tabs/SurveysTab').then((m) => ({ default: m.SurveysTab })));
 
+/** Route-driven document titles so browser tabs and history are readable. */
+const PAGE_TITLES: [RegExp, string][] = [
+  [/^\/login/, 'Sign in'],
+  [/^\/signup/, 'Sign up'],
+  [/^\/events\/[^/]+\/register/, 'Register'],
+  [/^\/events\/[^/]+\/survey/, 'Survey'],
+  [/^\/events\/[^/]+/, 'Event details'],
+  [/^\/events/, 'Browse events'],
+  [/^\/my\/registrations/, 'My registrations'],
+  [/^\/organizer\/events\/new/, 'Create event'],
+  [/^\/organizer\/events\//, 'Manage event'],
+  [/^\/organizer/, 'Organizer dashboard'],
+  [/^\/404/, 'Not found'],
+  [/^\/forbidden/, 'Forbidden'],
+];
+
+function usePageTitle() {
+  const { pathname } = useLocation();
+  useEffect(() => {
+    const match = PAGE_TITLES.find(([pattern]) => pattern.test(pathname));
+    document.title = match
+      ? `${match[1]} — Qeue`
+      : 'Qeue — Event management for organizers and attendees';
+  }, [pathname]);
+}
+
 export function App() {
+  usePageTitle();
   return (
     <Suspense fallback={<LoadingBlock />}>
       <Routes>

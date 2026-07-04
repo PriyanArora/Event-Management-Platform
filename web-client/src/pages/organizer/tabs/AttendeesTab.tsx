@@ -85,24 +85,24 @@ export function AttendeesTab() {
         }
       />
 
-      <div className="mb-5 flex flex-col gap-3 rounded-2xl border border-gray-100 bg-white p-3 shadow-card lg:flex-row lg:items-center">
+      <div className="mb-5 flex flex-col gap-3 rounded border border-zinc-200 bg-white p-3 lg:flex-row lg:items-center">
         <div className="relative flex-1">
-          <Search className="pointer-events-none absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400" />
-          <Input value={query} onChange={(e) => setQuery(e.target.value)} placeholder="Search name or email" className="border-transparent bg-gray-50 pl-10" />
+          <Search className="pointer-events-none absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-zinc-400" />
+          <Input value={query} onChange={(e) => setQuery(e.target.value)} placeholder="Search name or email" className="pl-10" />
         </div>
         <div className="flex flex-wrap items-center gap-2.5">
-          <Select value={status} onChange={(e) => setStatus(e.target.value as '' | RegistrationStatus)} className="w-auto border-transparent bg-gray-50">
+          <Select value={status} onChange={(e) => setStatus(e.target.value as '' | RegistrationStatus)} className="w-auto">
             <option value="">All statuses</option>
             <option value="CONFIRMED">Confirmed</option>
             <option value="CANCELLED">Cancelled</option>
           </Select>
-          <Select value={typeId} onChange={(e) => setTypeId(e.target.value)} className="w-auto border-transparent bg-gray-50">
+          <Select value={typeId} onChange={(e) => setTypeId(e.target.value)} className="w-auto">
             <option value="">All types</option>
             {(types ?? []).map((t) => (
               <option key={t.id} value={t.id}>{t.name}</option>
             ))}
           </Select>
-          <Select value={sort} onChange={(e) => setSort(e.target.value as RegistrationListParams['sort'])} className="w-auto border-transparent bg-gray-50">
+          <Select value={sort} onChange={(e) => setSort(e.target.value as RegistrationListParams['sort'])} className="w-auto">
             {SORTS.map((s) => (
               <option key={s.value} value={s.value}>{s.label}</option>
             ))}
@@ -122,7 +122,7 @@ export function AttendeesTab() {
           <div className="hidden overflow-x-auto md:block">
             <table className="w-full text-left text-sm">
               <thead>
-                <tr className="border-b border-gray-100 text-[12px] uppercase tracking-wide text-gray-400">
+                <tr className="border-b border-zinc-200 font-mono text-[11px] uppercase tracking-[0.12em] text-zinc-500">
                   <th className="px-5 py-3 font-medium">Attendee</th>
                   <th className="px-5 py-3 font-medium">Type</th>
                   <th className="px-5 py-3 font-medium">Status</th>
@@ -131,19 +131,19 @@ export function AttendeesTab() {
                   <th className="px-5 py-3" />
                 </tr>
               </thead>
-              <tbody className="divide-y divide-gray-50">
+              <tbody className="divide-y divide-zinc-100">
                 {(data ?? []).map((r) => (
-                  <tr key={r.registrationId} className="hover:bg-gray-50/60">
+                  <tr key={r.registrationId} className="hover:bg-zinc-50/60">
                     <td className="px-5 py-3.5">
-                      <p className="font-medium text-gray-900">{r.attendeeDisplayNameSnapshot}</p>
-                      <p className="text-[12px] text-gray-500">{r.attendeeEmail}</p>
+                      <p className="font-medium text-ink">{r.attendeeDisplayNameSnapshot}</p>
+                      <p className="text-[12px] text-zinc-500">{r.attendeeEmail}</p>
                     </td>
-                    <td className="px-5 py-3.5 text-gray-600">{r.registrationTypeNameSnapshot ?? '—'}</td>
+                    <td className="px-5 py-3.5 text-zinc-600">{r.registrationTypeNameSnapshot ?? '—'}</td>
                     <td className="px-5 py-3.5"><StatusBadge meta={registrationStatusMeta[r.status]} /></td>
                     <td className="px-5 py-3.5"><StatusBadge meta={checkInMeta[r.checkInStatus]} /></td>
-                    <td className="px-5 py-3.5 text-[12px] text-gray-500">{formatDateTime(r.createdAt)}</td>
+                    <td className="px-5 py-3.5 text-[12px] text-zinc-500">{formatDateTime(r.createdAt)}</td>
                     <td className="px-5 py-3.5 text-right">
-                      <button onClick={() => setDetail(r)} className="rounded-lg p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-700" aria-label="View detail">
+                      <button onClick={() => setDetail(r)} className="rounded p-2 text-zinc-400 hover:bg-zinc-100 hover:text-ink" aria-label="View detail">
                         <Eye className="h-4 w-4" />
                       </button>
                     </td>
@@ -154,18 +154,18 @@ export function AttendeesTab() {
           </div>
 
           {/* Mobile cards */}
-          <div className="divide-y divide-gray-100 md:hidden">
+          <div className="divide-y divide-zinc-200 md:hidden">
             {(data ?? []).map((r) => (
               <button key={r.registrationId} onClick={() => setDetail(r)} className="flex w-full items-center justify-between gap-3 p-4 text-left">
                 <div className="min-w-0">
-                  <p className="truncate font-medium text-gray-900">{r.attendeeDisplayNameSnapshot}</p>
-                  <p className="truncate text-[12px] text-gray-500">{r.attendeeEmail}</p>
+                  <p className="truncate font-medium text-ink">{r.attendeeDisplayNameSnapshot}</p>
+                  <p className="truncate text-[12px] text-zinc-500">{r.attendeeEmail}</p>
                   <div className="mt-1.5 flex flex-wrap gap-1.5">
                     <StatusBadge meta={registrationStatusMeta[r.status]} />
                     <StatusBadge meta={checkInMeta[r.checkInStatus]} />
                   </div>
                 </div>
-                <Eye className="h-4 w-4 shrink-0 text-gray-300" />
+                <Eye className="h-4 w-4 shrink-0 text-zinc-300" />
               </button>
             ))}
           </div>
@@ -173,7 +173,7 @@ export function AttendeesTab() {
       )}
 
       {(data ?? []).length > 0 && (
-        <p className="mt-3 text-[12px] text-gray-400">{(data ?? []).length} registration(s)</p>
+        <p className="mt-3 text-[12px] text-zinc-400">{(data ?? []).length} registration(s)</p>
       )}
 
       <RegistrationDetailModal registration={detail} onClose={() => setDetail(null)} />
@@ -203,19 +203,19 @@ function RegistrationDetailModal({
             <StatusBadge meta={checkInMeta[registration.checkInStatus]} />
           </div>
           {registration.checkedInAt && (
-            <p className="text-[13px] text-gray-500">Checked in at {formatDateTime(registration.checkedInAt)}</p>
+            <p className="text-[13px] text-zinc-500">Checked in at {formatDateTime(registration.checkedInAt)}</p>
           )}
           {registration.cancelledAt && (
-            <p className="text-[13px] text-rose-600">Cancelled at {formatDateTime(registration.cancelledAt)}</p>
+            <p className="text-[13px] text-red-700">Cancelled at {formatDateTime(registration.cancelledAt)}</p>
           )}
           {registration.answers.length > 0 && (
             <div>
-              <p className="mb-2 text-[12px] font-semibold uppercase tracking-wide text-gray-400">Answers</p>
+              <p className="mb-2 microlabel">Answers</p>
               <ul className="space-y-2">
                 {registration.answers.map((a, i) => (
-                  <li key={i} className="rounded-xl bg-gray-50 px-3.5 py-2.5">
-                    <p className="text-[12px] text-gray-400">Question {i + 1}</p>
-                    <p className="text-sm text-gray-800">{a.answerText}</p>
+                  <li key={i} className="rounded bg-zinc-50 px-3.5 py-2.5">
+                    <p className="text-[12px] text-zinc-400">Question {i + 1}</p>
+                    <p className="text-sm text-zinc-800">{a.answerText}</p>
                   </li>
                 ))}
               </ul>
@@ -230,8 +230,8 @@ function RegistrationDetailModal({
 function Info({ label, children }: { label: string; children: React.ReactNode }) {
   return (
     <div>
-      <p className="text-[12px] uppercase tracking-wide text-gray-400">{label}</p>
-      <p className="mt-0.5 break-words text-sm font-medium text-gray-800">{children}</p>
+      <p className="font-mono text-[11px] uppercase tracking-[0.12em] text-zinc-500">{label}</p>
+      <p className="mt-0.5 break-words text-sm font-medium text-zinc-800">{children}</p>
     </div>
   );
 }

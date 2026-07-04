@@ -1,22 +1,11 @@
 import { useMemo } from 'react';
 import { Link } from 'react-router-dom';
-import {
-  CalendarPlus,
-  CalendarDays,
-  Clock,
-  MapPin,
-  Users,
-  ArrowUpRight,
-  LayoutGrid,
-  CheckCircle2,
-  PencilRuler,
-} from 'lucide-react';
+import { CalendarPlus, MapPin, ArrowUpRight } from 'lucide-react';
 import { organizerApi } from '../../lib/api';
 import { useApi } from '../../hooks/useApi';
 import { useAuth } from '../../lib/auth';
 import { eventFormatLabel, eventStatusMeta, formatDate, formatTime } from '../../lib/format';
 import { Container, PageHeader } from '../../components/layout/Page';
-import { Card } from '../../components/ui/Card';
 import { Stat } from '../../components/ui/Stat';
 import { ButtonLink } from '../../components/ui/Button';
 import { StatusBadge } from '../../components/ui/Badge';
@@ -40,7 +29,7 @@ export function OrganizerDashboardPage() {
   const sorted = (data ?? []).slice().sort((a, b) => +new Date(b.startsAt) - +new Date(a.startsAt));
 
   return (
-    <div className="bg-[#F5F5F5] py-10 sm:py-14">
+    <div className="bg-paper py-10 sm:py-14">
       <Container>
         <PageHeader
           eyebrow="Organizer"
@@ -54,13 +43,13 @@ export function OrganizerDashboardPage() {
         />
 
         <div className="mb-8 grid grid-cols-2 gap-4 lg:grid-cols-4">
-          <Stat label="All events" value={stats.total} icon={<LayoutGrid className="h-4 w-4" />} accent="brand" />
-          <Stat label="Published" value={stats.published} icon={<CheckCircle2 className="h-4 w-4" />} accent="emerald" />
-          <Stat label="Drafts" value={stats.drafts} icon={<PencilRuler className="h-4 w-4" />} accent="amber" />
-          <Stat label="Total capacity" value={stats.capacity} icon={<Users className="h-4 w-4" />} accent="sky" />
+          <Stat label="All events" value={stats.total} />
+          <Stat label="Published" value={stats.published} />
+          <Stat label="Drafts" value={stats.drafts} />
+          <Stat label="Total capacity" value={stats.capacity} />
         </div>
 
-        <h2 className="mb-4 text-sm font-semibold uppercase tracking-wide text-gray-400">Your events</h2>
+        <h2 className="microlabel mb-4">Your events</h2>
 
         {loading ? (
           <LoadingBlock />
@@ -79,36 +68,30 @@ export function OrganizerDashboardPage() {
               <Link
                 key={e.id}
                 to={`/organizer/events/${e.id}`}
-                className="group flex flex-col overflow-hidden rounded-2xl border border-gray-100 bg-white shadow-card transition-all hover:-translate-y-0.5 hover:shadow-card-hover"
+                className="group flex flex-col overflow-hidden rounded border border-zinc-200 bg-white transition-colors duration-200 hover:border-ink"
               >
-                <div className="relative h-32 overflow-hidden">
+                <div className="relative h-28 overflow-hidden border-b border-zinc-200">
                   <EventBanner event={e} rounded="rounded-none" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
                   <div className="absolute left-3 top-3">
                     <StatusBadge meta={eventStatusMeta[e.status]} />
                   </div>
-                  <span className="absolute right-3 top-3 rounded-full bg-white/90 px-2 py-0.5 text-[10px] font-medium text-gray-700">
+                  <span className="absolute right-3 top-3 rounded-sm bg-ink px-1.5 py-0.5 font-mono text-[10px] font-medium uppercase tracking-[0.08em] text-white">
                     {eventFormatLabel[e.eventFormat]}
                   </span>
                 </div>
                 <div className="flex flex-1 flex-col p-4">
                   <div className="flex items-start justify-between gap-2">
-                    <h3 className="line-clamp-2 text-[15px] font-semibold text-gray-900 group-hover:text-brand">
+                    <h3 className="line-clamp-2 text-[15px] font-semibold text-ink group-hover:text-accent">
                       {e.title}
                     </h3>
-                    <ArrowUpRight className="h-4 w-4 shrink-0 text-gray-300 transition-colors group-hover:text-brand" />
+                    <ArrowUpRight className="h-4 w-4 shrink-0 text-zinc-300 transition-colors group-hover:text-accent" />
                   </div>
-                  <div className="mt-2.5 flex flex-col gap-1 text-[12px] text-gray-500">
-                    <span className="flex items-center gap-1.5">
-                      <CalendarDays className="h-3.5 w-3.5 text-gray-400" />
-                      {formatDate(e.startsAt, e.timezone)}
+                  <div className="mt-2.5 flex flex-col gap-1 text-[12px] text-zinc-500">
+                    <span className="font-mono">
+                      {formatDate(e.startsAt, e.timezone)} · {formatTime(e.startsAt, e.timezone)}
                     </span>
                     <span className="flex items-center gap-1.5">
-                      <Clock className="h-3.5 w-3.5 text-gray-400" />
-                      {formatTime(e.startsAt, e.timezone)}
-                    </span>
-                    <span className="flex items-center gap-1.5">
-                      <MapPin className="h-3.5 w-3.5 text-gray-400" />
+                      <MapPin className="h-3.5 w-3.5 text-zinc-400" />
                       <span className="truncate">
                         {e.eventFormat === 'ONLINE' ? 'Online' : `${e.venueName}, ${e.venueCity}`}
                       </span>

@@ -45,46 +45,40 @@ export function TicketModal({
   return (
     <Modal open={open} onClose={onClose} title="Your ticket" description={registration?.eventTitle}>
       {!ticket && !error && (
-        <div className="flex items-center justify-center gap-2 py-12 text-gray-400">
+        <div className="flex items-center justify-center gap-2 py-12 font-mono text-[13px] text-zinc-400">
           <Loader2 className="h-5 w-5 animate-spin" /> Issuing ticket…
         </div>
       )}
-      {error && <p className="py-8 text-center text-sm text-rose-600">{error}</p>}
+      {error && <p className="py-8 text-center text-sm text-red-700">{error}</p>}
       {ticket && (
-        <div className="overflow-hidden rounded-2xl border border-gray-200">
-          <div className="flex items-center gap-3 bg-gray-900 px-5 py-4 text-white">
-            <TicketIcon className="h-5 w-5 text-brand" />
+        <div className="overflow-hidden rounded border border-zinc-200">
+          <div className="flex items-center gap-3 bg-ink px-5 py-4 text-white">
+            <TicketIcon className="h-5 w-5 text-accent" />
             <div className="min-w-0">
               <p className="truncate text-sm font-semibold">{registration?.eventTitle}</p>
-              <p className="text-[12px] text-white/60">
+              <p className="text-[12px] text-zinc-400">
                 {registration?.attendeeDisplayNameSnapshot}
               </p>
             </div>
           </div>
-          <div className="relative bg-white px-5 py-6">
-            {/* perforated edge */}
-            <div className="absolute -top-2.5 left-0 right-0 flex justify-between px-2">
-              {Array.from({ length: 16 }).map((_, i) => (
-                <span key={i} className="h-5 w-5 -translate-y-1/2 rounded-full bg-gray-900/0" />
-              ))}
-            </div>
-            <p className="text-center text-[11px] font-semibold uppercase tracking-widest text-gray-400">
-              Ticket code
-            </p>
+          {/* Perforation between stub header and body. */}
+          <div className="border-t border-dashed border-zinc-300" aria-hidden />
+          <div className="bg-white px-5 py-6">
+            <p className="microlabel text-center">Ticket code</p>
             <div className="mt-2 flex items-center justify-center gap-3">
-              <code className="select-all rounded-lg bg-gray-50 px-4 py-2 font-mono text-2xl font-bold tracking-[0.2em] text-gray-900">
+              <code className="select-all rounded border border-zinc-200 bg-zinc-50 px-4 py-2 font-mono text-2xl font-medium tracking-[0.2em] text-ink">
                 {ticket.ticketCode}
               </code>
               <button
                 onClick={copy}
-                className="rounded-lg border border-gray-200 p-2.5 text-gray-500 transition-colors hover:border-gray-300 hover:text-gray-900"
+                className="rounded border border-zinc-300 p-2.5 text-zinc-500 transition-colors hover:border-ink hover:text-ink"
                 aria-label="Copy ticket code"
               >
-                {copied ? <Check className="h-4 w-4 text-emerald-600" /> : <Copy className="h-4 w-4" />}
+                {copied ? <Check className="h-4 w-4 text-emerald-700" /> : <Copy className="h-4 w-4" />}
               </button>
             </div>
             <FakeBarcode seed={ticket.ticketCode} />
-            <p className="mt-4 text-center text-[12px] text-gray-400">
+            <p className="mt-4 text-center font-mono text-[11px] text-zinc-400">
               Issued {formatDateTime(ticket.issuedAt)} · Present this code at check-in
             </p>
           </div>
@@ -102,9 +96,9 @@ function FakeBarcode({ seed }: { seed: string }) {
     bars.push(((c >> i % 5) & 3) + 1);
   }
   return (
-    <div className="mt-5 flex h-12 items-end justify-center gap-[2px]">
+    <div className="mt-5 flex h-12 items-end justify-center gap-[2px]" aria-hidden>
       {bars.map((w, i) => (
-        <span key={i} className="bg-gray-900" style={{ width: w, height: `${60 + ((w * 13) % 40)}%` }} />
+        <span key={i} className="bg-ink" style={{ width: w, height: `${60 + ((w * 13) % 40)}%` }} />
       ))}
     </div>
   );
