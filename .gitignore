@@ -5,6 +5,9 @@
 .agents/
 .claude/
 
+# GitHub Actions kept local until CI is wired in
+.github/
+
 target/
 build/
 out/
