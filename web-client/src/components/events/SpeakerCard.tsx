@@ -2,16 +2,16 @@ import type { Speaker } from '../../lib/types';
 
 export function SpeakerCard({ speaker }: { speaker: Speaker }) {
   return (
-    <div className="flex gap-4 rounded border border-zinc-200 bg-white p-4">
+    <div className="flex gap-4 rounded-lg border border-zinc-200 bg-surface p-4">
       {speaker.photoUrl ? (
         <img
           src={speaker.photoUrl}
           alt={speaker.name}
           loading="lazy"
-          className="h-16 w-16 shrink-0 rounded object-cover"
+          className="h-16 w-16 shrink-0 rounded-lg object-cover"
         />
       ) : (
-        <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded bg-ink font-mono text-lg font-medium text-white">
+        <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-lg bg-ink font-mono text-lg font-medium text-paper">
           {speakerInitials(speaker.name)}
         </div>
       )}

@@ -16,12 +16,12 @@ export function LoadingBlock({ label = 'Loading…' }: { label?: string }) {
 }
 
 export function Skeleton({ className = '' }: { className?: string }) {
-  return <div className={`skeleton rounded ${className}`} />;
+  return <div className={`skeleton rounded-lg ${className}`} />;
 }
 
 export function ErrorState({ message, onRetry }: { message: string; onRetry?: () => void }) {
   return (
-    <div className="flex flex-col items-center justify-center gap-3 rounded border border-red-200 bg-red-50/50 py-16 text-center">
+    <div className="flex flex-col items-center justify-center gap-3 rounded-lg border border-red-200 bg-red-50/50 py-16 text-center">
       <AlertCircle className="h-7 w-7 text-red-400" />
       <p className="max-w-sm text-sm text-red-800">{message}</p>
       {onRetry && (
@@ -45,8 +45,8 @@ export function EmptyState({
   action?: ReactNode;
 }) {
   return (
-    <div className="flex flex-col items-center justify-center gap-3 rounded border border-dashed border-zinc-300 bg-white/60 px-6 py-16 text-center">
-      <div className="flex h-11 w-11 items-center justify-center rounded border border-zinc-200 bg-zinc-50 text-zinc-400">
+    <div className="flex flex-col items-center justify-center gap-3 rounded-lg border border-dashed border-zinc-300 bg-white/[0.02] px-6 py-16 text-center">
+      <div className="flex h-11 w-11 items-center justify-center rounded-lg border border-zinc-200 bg-zinc-50 text-zinc-400">
         {icon ?? <Inbox className="h-5 w-5" />}
       </div>
       <h3 className="text-base font-semibold text-ink">{title}</h3>

@@ -50,7 +50,7 @@ export function OverviewTab() {
                   </span>
                   <span className="flex items-center gap-2 text-[13px] text-zinc-400">
                     <span
-                      className={`rounded-sm border px-1.5 py-0.5 font-mono text-[11px] font-medium ${
+                      className={`rounded border px-1.5 py-0.5 font-mono text-[11px] font-medium ${
                         c.count > 0
                           ? 'border-emerald-300 bg-emerald-50 text-emerald-700'
                           : 'border-zinc-300 bg-zinc-100 text-zinc-400'

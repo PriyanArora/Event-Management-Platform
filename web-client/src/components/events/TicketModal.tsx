@@ -51,8 +51,8 @@ export function TicketModal({
       )}
       {error && <p className="py-8 text-center text-sm text-red-700">{error}</p>}
       {ticket && (
-        <div className="overflow-hidden rounded border border-zinc-200">
-          <div className="flex items-center gap-3 bg-ink px-5 py-4 text-white">
+        <div className="overflow-hidden rounded-lg border border-zinc-200">
+          <div className="flex items-center gap-3 bg-ink px-5 py-4 text-paper">
             <TicketIcon className="h-5 w-5 text-accent" />
             <div className="min-w-0">
               <p className="truncate text-sm font-semibold">{registration?.eventTitle}</p>
@@ -63,15 +63,15 @@ export function TicketModal({
           </div>
           {/* Perforation between stub header and body. */}
           <div className="border-t border-dashed border-zinc-300" aria-hidden />
-          <div className="bg-white px-5 py-6">
+          <div className="bg-surface px-5 py-6">
             <p className="microlabel text-center">Ticket code</p>
             <div className="mt-2 flex items-center justify-center gap-3">
-              <code className="select-all rounded border border-zinc-200 bg-zinc-50 px-4 py-2 font-mono text-2xl font-medium tracking-[0.2em] text-ink">
+              <code className="select-all rounded-lg border border-zinc-200 bg-zinc-50 px-4 py-2 font-mono text-2xl font-medium tracking-[0.2em] text-ink">
                 {ticket.ticketCode}
               </code>
               <button
                 onClick={copy}
-                className="rounded border border-zinc-300 p-2.5 text-zinc-500 transition-colors hover:border-ink hover:text-ink"
+                className="rounded-lg border border-zinc-300 p-2.5 text-zinc-500 transition-colors hover:border-ink hover:text-ink"
                 aria-label="Copy ticket code"
               >
                 {copied ? <Check className="h-4 w-4 text-emerald-700" /> : <Copy className="h-4 w-4" />}

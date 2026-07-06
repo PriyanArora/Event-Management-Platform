@@ -77,9 +77,9 @@ export function SiteHeader() {
             <div className="relative" ref={menuRef}>
               <button
                 onClick={() => setMenuOpen((v) => !v)}
-                className="flex items-center gap-2 rounded border border-zinc-300 bg-white py-1 pl-1 pr-2.5 transition-colors hover:border-ink"
+                className="flex items-center gap-2 rounded-lg border border-zinc-300 bg-surface py-1 pl-1 pr-2.5 transition-colors hover:border-ink"
               >
-                <span className="flex h-6 w-6 items-center justify-center rounded-sm bg-ink font-mono text-[10px] font-medium text-white">
+                <span className="flex h-6 w-6 items-center justify-center rounded bg-ink font-mono text-[10px] font-medium text-white">
                   {initials(user?.displayName || user?.email || '?')}
                 </span>
                 <span className="max-w-[120px] truncate text-[13px] font-medium text-ink">
@@ -88,11 +88,11 @@ export function SiteHeader() {
                 <ChevronDown className="h-4 w-4 text-zinc-400" />
               </button>
               {menuOpen && (
-                <div className="absolute right-0 mt-2 w-60 overflow-hidden rounded border border-zinc-200 bg-white p-1 shadow-pop animate-scale-in">
+                <div className="absolute right-0 mt-2 w-60 overflow-hidden rounded-lg border border-zinc-200 bg-surface p-1 shadow-pop animate-scale-in">
                   <div className="px-3 py-2">
                     <p className="truncate text-sm font-medium text-ink">{user?.displayName}</p>
                     <p className="truncate text-xs text-zinc-500">{user?.email}</p>
-                    <span className="mt-1.5 inline-block rounded-sm border border-accent/40 bg-accent-soft px-1.5 py-0.5 font-mono text-[10px] font-medium uppercase tracking-[0.08em] text-accent-ink">
+                    <span className="mt-1.5 inline-block rounded border border-accent/40 bg-accent-soft px-1.5 py-0.5 font-mono text-[10px] font-medium uppercase tracking-[0.08em] text-accent-ink">
                       {user?.role === 'ORGANIZER' ? 'Organizer' : 'Attendee'}
                     </span>
                   </div>
@@ -111,7 +111,7 @@ export function SiteHeader() {
                   </MenuItem>
                   <button
                     onClick={handleLogout}
-                    className="flex w-full items-center gap-2.5 rounded-sm px-3 py-2 text-left text-sm text-zinc-700 transition-colors hover:bg-zinc-100 hover:text-ink"
+                    className="flex w-full items-center gap-2.5 rounded px-3 py-2 text-left text-sm text-zinc-700 transition-colors hover:bg-zinc-100 hover:text-ink"
                   >
                     <LogOut className="h-4 w-4" />
                     Sign out
@@ -125,7 +125,7 @@ export function SiteHeader() {
         {/* Mobile toggle */}
         <button
           onClick={() => setMobileOpen((v) => !v)}
-          className="rounded border border-zinc-300 bg-white p-2 text-ink md:hidden"
+          className="rounded-lg border border-zinc-300 bg-surface p-2 text-ink md:hidden"
           aria-label="Toggle menu"
         >
           {mobileOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
@@ -134,7 +134,7 @@ export function SiteHeader() {
 
       {/* Mobile sheet */}
       {mobileOpen && (
-        <div className="border-t border-zinc-200 bg-white px-5 py-4 md:hidden">
+        <div className="border-t border-zinc-200 bg-surface px-5 py-4 md:hidden">
           <nav className="flex flex-col gap-1">
             <MobileLink to="/events" onClick={() => setMobileOpen(false)}>Browse events</MobileLink>
             {isAuthenticated && !isOrganizer && (
@@ -157,7 +157,7 @@ export function SiteHeader() {
             ) : (
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-2.5">
-                  <span className="flex h-9 w-9 items-center justify-center rounded-sm bg-ink font-mono text-[11px] font-medium text-white">
+                  <span className="flex h-9 w-9 items-center justify-center rounded bg-ink font-mono text-[11px] font-medium text-white">
                     {initials(user?.displayName || '?')}
                   </span>
                   <div>
@@ -165,7 +165,7 @@ export function SiteHeader() {
                     <p className="text-xs text-zinc-500">{user?.email}</p>
                   </div>
                 </div>
-                <button onClick={handleLogout} className="rounded p-2 text-zinc-500 hover:bg-zinc-100" aria-label="Sign out">
+                <button onClick={handleLogout} className="rounded-lg p-2 text-zinc-500 hover:bg-zinc-100" aria-label="Sign out">
                   <LogOut className="h-5 w-5" />
                 </button>
               </div>
@@ -192,7 +192,7 @@ function MenuItem({
     <Link
       to={to}
       onClick={onClick}
-      className="flex items-center gap-2.5 rounded-sm px-3 py-2 text-sm text-zinc-700 transition-colors hover:bg-zinc-100 hover:text-ink"
+      className="flex items-center gap-2.5 rounded px-3 py-2 text-sm text-zinc-700 transition-colors hover:bg-zinc-100 hover:text-ink"
     >
       {icon}
       {children}
@@ -206,7 +206,7 @@ function MobileLink({ to, children, onClick }: { to: string; children: React.Rea
       to={to}
       onClick={onClick}
       className={({ isActive }) =>
-        `flex items-center gap-2 rounded px-3 py-2.5 text-[15px] ${
+        `flex items-center gap-2 rounded-lg px-3 py-2.5 text-[15px] ${
           isActive ? 'bg-zinc-100 font-medium text-ink' : 'text-zinc-700'
         }`
       }

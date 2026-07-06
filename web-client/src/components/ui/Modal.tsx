@@ -36,11 +36,11 @@ export function Modal({
 
   return createPortal(
     <div className="fixed inset-0 z-[90] flex items-end justify-center sm:items-center">
-      <div className="absolute inset-0 bg-ink/40" onClick={onClose} />
+      <div className="absolute inset-0 bg-black/70" onClick={onClose} />
       <div
         role="dialog"
         aria-modal="true"
-        className={`relative z-10 m-0 flex max-h-[92vh] w-full ${maxW} flex-col overflow-hidden rounded-t border border-zinc-200 bg-white shadow-pop animate-slide-up sm:m-4 sm:rounded sm:animate-scale-in`}
+        className={`relative z-10 m-0 flex max-h-[92vh] w-full ${maxW} flex-col glass-heavy overflow-hidden rounded-t-2xl shadow-pop animate-slide-up sm:m-4 sm:rounded-2xl sm:animate-scale-in`}
       >
         <div className="flex items-start justify-between gap-4 border-b border-zinc-200 px-6 py-4">
           <div>
@@ -49,7 +49,7 @@ export function Modal({
           </div>
           <button
             onClick={onClose}
-            className="rounded p-1.5 text-zinc-400 transition-colors hover:bg-zinc-100 hover:text-ink"
+            className="rounded-lg p-1.5 text-zinc-400 transition-colors hover:bg-zinc-100 hover:text-ink"
             aria-label="Close"
           >
             <X className="h-5 w-5" />

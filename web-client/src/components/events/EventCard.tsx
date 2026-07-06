@@ -9,11 +9,11 @@ export function EventCard({ event }: { event: EventSummary }) {
   return (
     <Link
       to={`/events/${event.id}`}
-      className="group flex flex-col overflow-hidden rounded border border-zinc-200 bg-white transition-colors duration-200 hover:border-ink"
+      className="group flex flex-col overflow-hidden rounded-lg border border-zinc-200 bg-surface transition-colors duration-200 hover:border-ink"
     >
       <div className="relative aspect-[16/9] overflow-hidden border-b border-zinc-200">
         <EventBanner event={event} rounded="rounded-none" />
-        <span className="absolute right-3 top-3 rounded-sm bg-ink px-1.5 py-0.5 font-mono text-[10px] font-medium uppercase tracking-[0.08em] text-white">
+        <span className="absolute right-3 top-3 rounded bg-ink px-1.5 py-0.5 font-mono text-[10px] font-medium uppercase tracking-[0.08em] text-paper">
           {eventFormatLabel[event.eventFormat]}
         </span>
       </div>
@@ -56,7 +56,7 @@ export function EventCard({ event }: { event: EventSummary }) {
 
 export function EventCardSkeleton() {
   return (
-    <div className="overflow-hidden rounded border border-zinc-200 bg-white">
+    <div className="overflow-hidden rounded-lg border border-zinc-200 bg-surface">
       <div className="skeleton aspect-[16/9]" />
       <div className="space-y-2.5 p-4">
         <div className="skeleton h-3 w-20" />

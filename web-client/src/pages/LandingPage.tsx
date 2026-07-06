@@ -77,7 +77,7 @@ export function LandingPage() {
       </section>
 
       {/* Features — hairline grid, no icon chips: the index and the words do the work. */}
-      <section className="border-y border-zinc-200 bg-white py-16 sm:py-20">
+      <section className="border-y border-zinc-200 bg-surface py-16 sm:py-20">
         <Container>
           <div className="max-w-2xl">
             <p className="microlabel mb-2">02 — One platform, end to end</p>
@@ -90,10 +90,10 @@ export function LandingPage() {
             </p>
           </div>
 
-          <div className="mt-10 overflow-hidden rounded border border-zinc-200 bg-zinc-200">
+          <div className="mt-10 overflow-hidden rounded-lg border border-zinc-200 bg-zinc-200">
             <div className="grid grid-cols-1 gap-px sm:grid-cols-2 lg:grid-cols-4">
               {FEATURES.map((f, i) => (
-                <div key={f.title} className="bg-white p-5 transition-colors hover:bg-zinc-50">
+                <div key={f.title} className="bg-surface p-5 transition-colors hover:bg-zinc-50">
                   <p className="font-mono text-[11px] font-medium tracking-[0.12em] text-accent">
                     {String(i + 1).padStart(2, '0')}
                   </p>
@@ -147,8 +147,8 @@ function AudienceCard({
   const dark = tone === 'dark';
   return (
     <div
-      className={`flex flex-col justify-between gap-8 rounded border p-8 sm:p-10 ${
-        dark ? 'border-ink bg-ink text-white' : 'border-zinc-200 bg-white text-ink'
+      className={`flex flex-col justify-between gap-8 rounded-lg border p-8 sm:p-10 ${
+        dark ? 'border-ink bg-ink text-white' : 'border-zinc-200 bg-surface text-ink'
       }`}
     >
       <div>

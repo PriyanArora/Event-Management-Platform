@@ -125,7 +125,7 @@ function RegSection({
     <section>
       <h2 className="microlabel mb-4 flex items-center gap-2">
         {title}
-        <span className="rounded-sm border border-zinc-300 bg-white px-1.5 py-0.5 font-mono text-[10px] text-zinc-600">
+        <span className="rounded border border-zinc-300 bg-surface px-1.5 py-0.5 font-mono text-[10px] text-zinc-600">
           {count}
         </span>
       </h2>

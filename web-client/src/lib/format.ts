@@ -127,10 +127,10 @@ export const checkInMeta: Record<CheckInStatus, BadgeMeta> = {
 /** Stable flat placeholder tint for banner-less events (hashed from id). */
 export function accentFor(seed: string): string {
   const palette = [
-    'bg-zinc-200 text-zinc-500',
-    'bg-accent-soft text-accent-ink',
     'bg-zinc-100 text-zinc-500',
-    'bg-ink text-zinc-400',
+    'bg-accent-soft text-accent-ink',
+    'bg-zinc-50 text-zinc-500',
+    'bg-zinc-200 text-zinc-600',
   ];
   let hash = 0;
   for (let i = 0; i < seed.length; i++) hash = (hash * 31 + seed.charCodeAt(i)) >>> 0;

@@ -7,7 +7,7 @@ import {
 } from 'react';
 
 const control =
-  'w-full rounded border border-zinc-300 bg-white px-3 py-2 text-sm text-ink placeholder:text-zinc-400 transition-colors focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/15 disabled:bg-zinc-50 disabled:text-zinc-400';
+  'w-full rounded-lg border border-zinc-300 bg-surface px-3 py-2 text-sm text-ink placeholder:text-zinc-400 transition-colors focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/15 disabled:bg-zinc-50 disabled:text-zinc-400';
 
 export function Field({
   label,
@@ -84,7 +84,7 @@ export function Toggle({
         }`}
       >
         <span
-          className={`absolute top-0.5 h-4 w-4 rounded-full bg-white transition-transform duration-200 ${
+          className={`absolute top-0.5 h-4 w-4 rounded-full bg-surface transition-transform duration-200 ${
             checked ? 'translate-x-[18px]' : 'translate-x-0.5'
           }`}
         />

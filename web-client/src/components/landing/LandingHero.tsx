@@ -60,10 +60,10 @@ export function LandingHero() {
         </div>
 
         {/* Lifecycle strip: the product, stated as a pipeline. */}
-        <div className="mt-16 overflow-hidden rounded border border-zinc-200 bg-zinc-200">
+        <div className="mt-16 overflow-hidden rounded-lg border border-zinc-200 bg-zinc-200">
           <ol className="grid grid-cols-1 gap-px sm:grid-cols-2 lg:grid-cols-5">
             {LIFECYCLE.map((s) => (
-              <li key={s.step} className="bg-white p-4">
+              <li key={s.step} className="bg-surface p-4">
                 <p className="font-mono text-[11px] font-medium tracking-[0.12em] text-accent">
                   {s.step}
                 </p>

@@ -6,16 +6,18 @@ type Variant = 'primary' | 'accent' | 'outline' | 'ghost' | 'danger';
 type Size = 'sm' | 'md' | 'lg';
 
 const base =
-  'inline-flex items-center justify-center gap-2 rounded font-medium transition-colors duration-200 disabled:opacity-40 disabled:pointer-events-none whitespace-nowrap';
+  'inline-flex items-center justify-center gap-2 rounded-lg font-medium transition-all duration-200 disabled:opacity-40 disabled:pointer-events-none whitespace-nowrap';
 
 const variants: Record<Variant, string> = {
-  primary: 'bg-ink text-white hover:bg-zinc-700 active:bg-zinc-800',
-  accent: 'bg-accent text-white hover:bg-accent-hover active:bg-accent-ink',
+  // Dark-canvas hierarchy: primary is the bright button.
+  primary:
+    'bg-ink text-paper hover:bg-white hover:shadow-[0_0_24px_rgba(255,255,255,0.12)] active:bg-zinc-800',
+  accent: 'bg-accent text-white hover:bg-accent-hover hover:shadow-glow active:bg-accent',
   outline:
-    'border border-zinc-300 bg-white text-ink hover:border-ink hover:bg-zinc-50 active:bg-zinc-100',
-  ghost: 'text-zinc-600 hover:bg-zinc-100 hover:text-ink active:bg-zinc-200',
+    'border border-zinc-300 bg-white/[0.03] text-ink hover:border-zinc-400 hover:bg-white/[0.06] active:bg-white/[0.08]',
+  ghost: 'text-zinc-600 hover:bg-white/[0.06] hover:text-ink active:bg-white/[0.08]',
   danger:
-    'border border-red-200 bg-white text-red-700 hover:border-red-600 hover:bg-red-50 active:bg-red-100',
+    'border border-red-200 bg-red-50 text-red-700 hover:border-red-300 hover:bg-red-100 active:bg-red-100',
 };
 
 const sizes: Record<Size, string> = {

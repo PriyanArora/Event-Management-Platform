@@ -57,7 +57,7 @@ export function EventDetailPage() {
   return (
     <div className="bg-paper pb-20">
       {/* Banner + title: flat, bordered, title on the page — not overlaid. */}
-      <div className="border-b border-zinc-200 bg-white">
+      <div className="border-b border-zinc-200 bg-surface">
         <Container className="pb-8 pt-8">
           <Link
             to="/events"
@@ -65,7 +65,7 @@ export function EventDetailPage() {
           >
             ← Back to events
           </Link>
-          <div className="aspect-[21/8] w-full overflow-hidden rounded border border-zinc-200">
+          <div className="aspect-[21/8] w-full overflow-hidden rounded-lg border border-zinc-200">
             <EventBanner event={event} rounded="rounded-none" />
           </div>
           <div className="mt-6 flex flex-wrap items-center gap-2">
@@ -83,7 +83,7 @@ export function EventDetailPage() {
 
       <Container className="mt-8">
         {cancelled && (
-          <div className="mb-6 rounded border border-red-200 bg-red-50 px-5 py-4 text-sm text-red-800">
+          <div className="mb-6 rounded-lg border border-red-200 bg-red-50 px-5 py-4 text-sm text-red-800">
             This event has been cancelled by the organizer.
           </div>
         )}
@@ -160,13 +160,13 @@ export function EventDetailPage() {
                     {activeTypes.map((t) => (
                       <li
                         key={t.id}
-                        className="flex items-start justify-between gap-3 rounded border border-zinc-200 bg-zinc-50 px-3 py-2.5"
+                        className="flex items-start justify-between gap-3 rounded-lg border border-zinc-200 bg-zinc-50 px-3 py-2.5"
                       >
                         <div>
                           <p className="text-[13px] font-medium text-ink">{t.name}</p>
                           {t.description && <p className="text-[12px] text-zinc-500">{t.description}</p>}
                         </div>
-                        <Badge className="border-zinc-300 bg-white text-zinc-500">
+                        <Badge className="border-zinc-300 bg-surface text-zinc-500">
                           {t.capacity} seats
                         </Badge>
                       </li>
@@ -207,7 +207,7 @@ export function EventDetailPage() {
                     Register for this event
                   </Button>
                 ) : (
-                  <div className="rounded border border-zinc-200 bg-zinc-50 px-4 py-3 text-center text-[13px] text-zinc-500">
+                  <div className="rounded-lg border border-zinc-200 bg-zinc-50 px-4 py-3 text-center text-[13px] text-zinc-500">
                     <Building2 className="mx-auto mb-1.5 h-4 w-4 text-zinc-400" />
                     You&rsquo;re signed in as an organizer. Switch to an attendee account to register.
                   </div>

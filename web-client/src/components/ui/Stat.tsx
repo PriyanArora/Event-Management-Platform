@@ -14,7 +14,7 @@ export function Stat({
   hint?: string;
 }) {
   return (
-    <div className="rounded border border-zinc-200 bg-white p-5">
+    <div className="rounded-lg border border-zinc-200 bg-surface p-5">
       <p className="microlabel">{label}</p>
       <p className="mt-3 font-mono text-3xl font-medium tracking-tight text-ink">{value}</p>
       {hint && <p className="mt-1 text-[12px] text-zinc-400">{hint}</p>}

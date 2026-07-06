@@ -39,10 +39,10 @@ export function QuestionField({
               type="button"
               onClick={() => onChange(opt)}
               aria-pressed={value === opt}
-              className={`flex-1 rounded border px-4 py-2.5 text-sm font-medium transition-colors duration-200 ${
+              className={`flex-1 rounded-lg border px-4 py-2.5 text-sm font-medium transition-colors duration-200 ${
                 value === opt
                   ? 'border-accent bg-accent-soft text-accent-ink'
-                  : 'border-zinc-300 bg-white text-zinc-600 hover:border-ink hover:text-ink'
+                  : 'border-zinc-300 bg-surface text-zinc-600 hover:border-ink hover:text-ink'
               }`}
             >
               {opt === 'YES' ? 'Yes' : 'No'}
@@ -61,7 +61,7 @@ export function QuestionField({
                 onClick={() => onChange(String(n))}
                 aria-label={`${n} star${n > 1 ? 's' : ''}`}
                 aria-pressed={Number(value) === n}
-                className="rounded p-1 transition-colors hover:bg-zinc-100"
+                className="rounded-lg p-1 transition-colors hover:bg-zinc-100"
               >
                 <Star
                   className={`h-6 w-6 ${active ? 'fill-accent text-accent' : 'fill-transparent text-zinc-300'}`}

@@ -73,7 +73,7 @@ export function CheckInTab() {
 
           {last && (
             <div
-              className={`mt-5 flex items-start gap-3 rounded border p-4 ${
+              className={`mt-5 flex items-start gap-3 rounded-lg border p-4 ${
                 last.outcome === 'CHECKED_IN'
                   ? 'border-emerald-200 bg-emerald-50'
                   : last.outcome === 'ALREADY'

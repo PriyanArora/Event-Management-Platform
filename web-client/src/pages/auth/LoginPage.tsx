@@ -50,7 +50,7 @@ export function LoginPage() {
     >
       <form onSubmit={submit} className="space-y-4">
         {error && (
-          <div className="rounded border border-red-200 bg-red-50 px-3.5 py-2.5 text-[13px] text-red-800">
+          <div className="rounded-lg border border-red-200 bg-red-50 px-3.5 py-2.5 text-[13px] text-red-800">
             {error}
           </div>
         )}
@@ -81,7 +81,7 @@ export function LoginPage() {
         </Button>
       </form>
 
-      <div className="mt-6 rounded border border-zinc-200 bg-zinc-50 p-3.5 text-[12px] leading-relaxed text-zinc-500">
+      <div className="mt-6 rounded-lg border border-zinc-200 bg-zinc-50 p-3.5 text-[12px] leading-relaxed text-zinc-500">
         <p className="microlabel">Local demo accounts</p>
         <p className="mt-2 font-mono text-[12px]">
           Organizer — <span className="text-zinc-700">organizer@qeue.local</span>
