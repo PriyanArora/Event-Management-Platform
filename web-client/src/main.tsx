@@ -4,6 +4,7 @@ import { BrowserRouter } from 'react-router-dom';
 import { App } from './App';
 import { AuthProvider } from './lib/auth';
 import { ToastProvider } from './components/ui/Toast';
+import '@fontsource-variable/instrument-sans';
 import '@fontsource-variable/space-grotesk';
 import '@fontsource/ibm-plex-mono/400.css';
 import '@fontsource/ibm-plex-mono/500.css';

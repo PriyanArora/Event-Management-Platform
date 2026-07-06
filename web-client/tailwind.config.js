@@ -1,7 +1,8 @@
 /**
  * Aesthetic direction — "Signal Dark"
  * Raycast-style: near-black canvas, glass surfaces, one hot accent.
- * - Type: Space Grotesk (display + body), IBM Plex Mono for data & labels.
+ * - Type: Instrument Sans (body), Space Grotesk (wordmark/buttons), IBM Plex
+ *   Mono for data & labels.
  * - Color: dark-first. Paper #0A0A0B canvas, glass panels, electric-blue accent
  *   (#5B8CFF family) for interaction signals and glow. The `zinc` ramp is
  *   REMAPPED for dark: low numbers = raised dark surfaces/borders, high
@@ -82,7 +83,16 @@ export default {
         },
       },
       fontFamily: {
+        // Body: Helvetica-style grotesque. Display: the wordmark face,
+        // used by the logo and buttons.
         sans: [
+          '"Instrument Sans Variable"',
+          '"Instrument Sans"',
+          'ui-sans-serif',
+          'system-ui',
+          'sans-serif',
+        ],
+        display: [
           '"Space Grotesk Variable"',
           '"Space Grotesk"',
           'ui-sans-serif',

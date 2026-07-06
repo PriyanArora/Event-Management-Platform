@@ -69,14 +69,14 @@ export const MacbookScroll = ({
   return (
     <div
       ref={ref}
-      className="flex min-h-[200vh] shrink-0 scale-[0.35] transform flex-col items-center justify-start py-0 [perspective:800px] sm:scale-50 md:scale-100 md:py-80"
+      className="flex min-h-[200vh] shrink-0 scale-[0.35] transform flex-col items-center justify-start py-0 [perspective:800px] sm:scale-50 md:scale-100 md:pb-80 md:pt-16"
     >
       <motion.h2
         style={{
           translateY: textTransform,
           opacity: textOpacity,
         }}
-        className="mb-20 text-center text-3xl font-bold text-ink"
+        className="mb-12 text-center text-3xl font-bold text-ink"
       >
         {title || (
           <span>
@@ -149,7 +149,7 @@ export const Lid = ({
           }}
           className="absolute inset-0 flex items-center justify-center rounded-lg bg-[#010101]"
         >
-          <span className="text-lg font-semibold lowercase tracking-tight text-white">qeue</span>
+          <span className="font-display text-lg font-semibold lowercase tracking-tight text-white">qeue</span>
         </div>
       </div>
       <motion.div

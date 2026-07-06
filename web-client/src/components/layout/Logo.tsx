@@ -5,7 +5,7 @@ export function Logo({ to = '/', className = '' }: { light?: boolean; to?: strin
   return (
     <Link
       to={to}
-      className={`inline-flex items-baseline text-[22px] font-semibold lowercase leading-none tracking-[-0.045em] text-ink transition-opacity hover:opacity-80 ${className}`}
+      className={`inline-flex items-baseline font-display text-[22px] font-semibold lowercase leading-none tracking-[-0.045em] text-ink transition-opacity hover:opacity-80 ${className}`}
     >
       qeue
     </Link>
