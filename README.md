@@ -1,3 +1,21 @@
+<div align="center">
+
+<img src="image.png" alt="Qeue logo" width="320" />
+
+**Event management, built as small microservices.**
+
+Organizers publish events. Attendees register. Capacity never oversells.
+
+![Java](https://img.shields.io/badge/Java-21-orange)
+![Spring Boot](https://img.shields.io/badge/Spring%20Boot-4-6DB33F)
+![React](https://img.shields.io/badge/React-19-61DAFB)
+![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-16-4169E1)
+![RabbitMQ](https://img.shields.io/badge/RabbitMQ-topic%20exchange-FF6600)
+![Docker](https://img.shields.io/badge/Docker-Compose-2496ED)
+
+</div>
+
 # Qeue
 
 Qeue is a Java and Spring event-management platform for organizers and attendees. It is a learning portfolio project built as a small microservice system.
@@ -296,6 +314,6 @@ Changes from the July 2026 simplification and hardening pass:
 - **Gateway passes `Content-Disposition` through**, so the registrations CSV export keeps its server-provided filename.
 - **Web client UI theme refresh** built on Tailwind CSS.
 - **Web client session expiry handling.** A `401` on an authenticated request now clears the stored token and flips the UI to logged-out, instead of leaving a stale session where every call fails until a manual reload.
-- **Route-driven document titles** in the web client, so browser tabs and history show the page (`Browse events — Qeue`) rather than one static title.
+- **Route-driven document titles** in the web client, so browser tabs and history show the page (`Browse events | Qeue`) rather than one static title.
 - **Notification template rendering** fetches the active template once per delivery instead of twice.
 - **Registration idempotency keys** use `crypto.randomUUID()` instead of `Math.random`, making collisions practically impossible.
