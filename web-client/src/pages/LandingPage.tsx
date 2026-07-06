@@ -34,7 +34,7 @@ export function LandingPage() {
       <LandingHero />
 
       {/* Upcoming events */}
-      <section className="bg-paper py-16 sm:py-20">
+      <section className="py-16 sm:py-20">
         <Container>
           <div className="mb-8 flex flex-wrap items-end justify-between gap-4">
             <div>
@@ -45,7 +45,7 @@ export function LandingPage() {
             </div>
             <Link
               to="/events"
-              className="group inline-flex items-center gap-1.5 text-sm font-medium text-ink"
+              className="group inline-flex items-center gap-1.5 text-sm font-medium text-ink transition-colors hover:text-accent-ink"
             >
               View all events
               <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
@@ -76,49 +76,58 @@ export function LandingPage() {
         </Container>
       </section>
 
-      {/* Features — hairline grid, no icon chips: the index and the words do the work. */}
-      <section className="border-y border-zinc-200 bg-surface py-16 sm:py-20">
-        <Container>
+      {/* Features — glass grid: the index and the words do the work. */}
+      <section className="relative border-y border-white/[0.06] py-16 sm:py-20">
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-0"
+          style={{
+            background:
+              'radial-gradient(ellipse 60% 80% at 80% 10%, rgba(255,99,99,0.06), transparent 65%)',
+          }}
+        />
+        <Container className="relative">
           <div className="max-w-2xl">
             <p className="microlabel mb-2">02 — One platform, end to end</p>
             <h2 className="text-2xl font-semibold leading-tight tracking-tight text-ink sm:text-[2rem]">
               Everything you need to run an event
             </h2>
             <p className="mt-3 text-sm leading-relaxed text-zinc-500">
-              From the first draft to the post-event survey, Qeue covers the whole lifecycle so you
+              From the first draft to the post-event survey, qeue covers the whole lifecycle so you
               never duct-tape five tools together again.
             </p>
           </div>
 
-          <div className="mt-10 overflow-hidden rounded-lg border border-zinc-200 bg-zinc-200">
-            <div className="grid grid-cols-1 gap-px sm:grid-cols-2 lg:grid-cols-4">
-              {FEATURES.map((f, i) => (
-                <div key={f.title} className="bg-surface p-5 transition-colors hover:bg-zinc-50">
-                  <p className="font-mono text-[11px] font-medium tracking-[0.12em] text-accent">
-                    {String(i + 1).padStart(2, '0')}
-                  </p>
-                  <h3 className="mt-3 text-[15px] font-semibold text-ink">{f.title}</h3>
-                  <p className="mt-1.5 text-[13px] leading-relaxed text-zinc-500">{f.desc}</p>
-                </div>
-              ))}
-            </div>
+          <div className="mt-10 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">
+            {FEATURES.map((f, i) => (
+              <div
+                key={f.title}
+                className="glass group rounded-xl p-5 transition-all duration-200 hover:border-white/20 hover:bg-white/[0.06]"
+              >
+                <p className="font-mono text-[11px] font-medium tracking-[0.12em] text-accent">
+                  {String(i + 1).padStart(2, '0')}
+                </p>
+                <h3 className="mt-3 text-[15px] font-semibold text-ink">{f.title}</h3>
+                <p className="mt-1.5 text-[13px] leading-relaxed text-zinc-500">{f.desc}</p>
+              </div>
+            ))}
           </div>
         </Container>
       </section>
 
       {/* Split audience CTA */}
-      <section className="bg-paper py-16 sm:py-20">
+      <section className="py-16 sm:py-20">
         <Container>
           <div className="grid grid-cols-1 gap-5 lg:grid-cols-2">
             <AudienceCard
-              tone="dark"
+              tone="accent"
               eyebrow="For organizers"
               title="Launch your next event in minutes"
               points={['Build & publish events', 'Manage attendees & check-in', 'Track live analytics']}
               cta={{ label: 'Start organizing', to: '/signup' }}
             />
             <AudienceCard
-              tone="light"
+              tone="glass"
               eyebrow="For attendees"
               title="Find events and keep your tickets in one place"
               points={['Register in a few clicks', 'Access tickets anytime', 'Take post-event surveys']}
@@ -138,29 +147,34 @@ function AudienceCard({
   points,
   cta,
 }: {
-  tone: 'dark' | 'light';
+  tone: 'accent' | 'glass';
   eyebrow: string;
   title: string;
   points: string[];
   cta: { label: string; to: string };
 }) {
-  const dark = tone === 'dark';
+  const accent = tone === 'accent';
   return (
     <div
-      className={`flex flex-col justify-between gap-8 rounded-lg border p-8 sm:p-10 ${
-        dark ? 'border-ink bg-ink text-white' : 'border-zinc-200 bg-surface text-ink'
-      }`}
+      className="glass glass-edge relative flex flex-col justify-between gap-8 overflow-hidden rounded-2xl p-8 sm:p-10"
     >
-      <div>
-        <p className={`microlabel ${dark ? 'text-zinc-400' : ''}`}>{eyebrow}</p>
-        <h3 className="mt-3 max-w-sm text-2xl font-semibold tracking-tight">{title}</h3>
+      {accent && (
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-0"
+          style={{
+            background:
+              'radial-gradient(ellipse 80% 90% at 15% 0%, rgba(255,99,99,0.18), transparent 65%)',
+          }}
+        />
+      )}
+      <div className="relative">
+        <p className="microlabel">{eyebrow}</p>
+        <h3 className="mt-3 max-w-sm text-2xl font-semibold tracking-tight text-ink">{title}</h3>
         <ul className="mt-5 space-y-2">
           {points.map((p) => (
-            <li
-              key={p}
-              className={`flex items-center gap-2.5 text-sm ${dark ? 'text-zinc-300' : 'text-zinc-600'}`}
-            >
-              <span className="h-1 w-1 bg-accent" aria-hidden />
+            <li key={p} className="flex items-center gap-2.5 text-sm text-zinc-600">
+              <span className="h-1 w-1 rounded-full bg-accent" aria-hidden />
               {p}
             </li>
           ))}
@@ -168,8 +182,8 @@ function AudienceCard({
       </div>
       <ButtonLink
         to={cta.to}
-        variant={dark ? 'accent' : 'primary'}
-        className="w-fit"
+        variant={accent ? 'accent' : 'primary'}
+        className="relative w-fit"
         rightIcon={<ArrowRight className="h-4 w-4" />}
       >
         {cta.label}

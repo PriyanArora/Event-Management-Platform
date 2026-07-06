@@ -3,13 +3,6 @@ import { ArrowRight } from 'lucide-react';
 import { ButtonLink } from '../ui/Button';
 import { useAuth } from '../../lib/auth';
 
-/* Fine engineering-grid backdrop drawn in CSS — no images, no shaders. */
-const gridBg: React.CSSProperties = {
-  backgroundImage:
-    'linear-gradient(rgba(22,22,26,0.055) 1px, transparent 1px), linear-gradient(90deg, rgba(22,22,26,0.055) 1px, transparent 1px)',
-  backgroundSize: '48px 48px',
-};
-
 const LIFECYCLE = [
   { step: '01', title: 'Draft', desc: 'Build the event: venue, schedule, capacity.' },
   { step: '02', title: 'Publish', desc: 'Go live and open registration.' },
@@ -32,26 +25,73 @@ export function LandingHero() {
       : 'Find an event';
 
   return (
-    <section className="relative border-b border-zinc-200 bg-paper" style={gridBg}>
-      <div className="relative mx-auto flex max-w-7xl flex-col px-5 pb-14 pt-16 sm:px-8 sm:pb-16 sm:pt-20 lg:px-12 lg:pb-20 lg:pt-24">
-        <CornerTicks />
+    <section className="relative overflow-hidden">
+      {/* Aurora glow: drifting accent blooms behind the headline. */}
+      <div aria-hidden className="pointer-events-none absolute inset-0">
+        <div
+          className="absolute left-1/2 top-[-30%] h-[70vh] w-[120vw] -translate-x-1/2 animate-glow-drift"
+          style={{
+            background:
+              'radial-gradient(ellipse 55% 60% at 50% 30%, rgba(255,99,99,0.22), transparent 70%)',
+            filter: 'blur(40px)',
+          }}
+        />
+        <div
+          className="absolute left-[15%] top-[10%] h-[50vh] w-[60vw] animate-glow-drift"
+          style={{
+            background:
+              'radial-gradient(ellipse 50% 50% at 50% 50%, rgba(255,60,120,0.1), transparent 70%)',
+            filter: 'blur(60px)',
+            animationDelay: '-7s',
+          }}
+        />
+        {/* Fine grid, faded toward the edges. */}
+        <div
+          className="absolute inset-0"
+          style={{
+            backgroundImage:
+              'linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px)',
+            backgroundSize: '56px 56px',
+            maskImage: 'radial-gradient(ellipse 70% 60% at 50% 35%, black 30%, transparent 75%)',
+            WebkitMaskImage:
+              'radial-gradient(ellipse 70% 60% at 50% 35%, black 30%, transparent 75%)',
+          }}
+        />
+      </div>
 
-        <p className="microlabel mb-6">Event operations platform</p>
+      <div className="relative mx-auto flex max-w-5xl flex-col items-center px-5 pb-16 pt-16 text-center sm:px-8 sm:pt-24 lg:pb-24">
+        <Link
+          to="/events"
+          className="glass animate-fade-in-up rounded-full px-3.5 py-1.5 font-mono text-[11px] font-medium uppercase tracking-[0.14em] text-zinc-600 transition-colors hover:text-ink"
+        >
+          <span className="mr-2 inline-block h-1.5 w-1.5 rounded-full bg-accent align-middle" />
+          Event operations platform
+        </Link>
 
-        <h1 className="max-w-4xl font-semibold leading-[1.02] tracking-[-0.03em] text-ink text-[clamp(2.2rem,7vw,4.75rem)]">
-          Run events people
-          <br className="hidden sm:block" />
-          <span className="sm:hidden"> </span>
-          actually <span className="text-accent">show up</span> to.
+        <h1
+          className="mt-8 max-w-3xl animate-fade-in-up font-semibold leading-[1.04] tracking-[-0.035em] text-ink text-[clamp(2.5rem,7vw,4.5rem)]"
+          style={{ animationDelay: '80ms' }}
+        >
+          Run events people actually{' '}
+          <span className="bg-gradient-to-r from-accent via-[#FF8A7A] to-[#FFB199] bg-clip-text text-transparent">
+            show up
+          </span>{' '}
+          to.
         </h1>
 
-        <p className="mt-6 max-w-xl text-[15px] leading-relaxed text-zinc-600 sm:text-base">
+        <p
+          className="mt-6 max-w-xl animate-fade-in-up text-[15px] leading-relaxed text-zinc-500 sm:text-base"
+          style={{ animationDelay: '160ms' }}
+        >
           Build and publish events, register attendees without overselling, issue tickets, check
-          people in, and measure it all — from one exact workspace.
+          people in, and measure it all — from one fast workspace.
         </p>
 
-        <div className="mt-9 flex flex-col items-start gap-3 sm:flex-row sm:items-center">
-          <ButtonLink to={primaryTo} size="lg" rightIcon={<ArrowRight className="h-4 w-4" />}>
+        <div
+          className="mt-9 flex animate-fade-in-up flex-col items-center gap-3 sm:flex-row"
+          style={{ animationDelay: '240ms' }}
+        >
+          <ButtonLink to={primaryTo} size="lg" variant="accent" rightIcon={<ArrowRight className="h-4 w-4" />}>
             {primaryLabel}
           </ButtonLink>
           <ButtonLink to="/events" size="lg" variant="outline">
@@ -59,11 +99,17 @@ export function LandingHero() {
           </ButtonLink>
         </div>
 
-        {/* Lifecycle strip: the product, stated as a pipeline. */}
-        <div className="mt-16 overflow-hidden rounded-lg border border-zinc-200 bg-zinc-200">
-          <ol className="grid grid-cols-1 gap-px sm:grid-cols-2 lg:grid-cols-5">
+        {/* Lifecycle strip: the product, stated as a pipeline, on glass. */}
+        <div
+          className="glass glass-edge mt-16 w-full animate-fade-in-up rounded-2xl p-2 sm:mt-20"
+          style={{ animationDelay: '320ms' }}
+        >
+          <ol className="grid grid-cols-1 gap-1 sm:grid-cols-2 lg:grid-cols-5">
             {LIFECYCLE.map((s) => (
-              <li key={s.step} className="bg-surface p-4">
+              <li
+                key={s.step}
+                className="rounded-xl p-4 text-left transition-colors hover:bg-white/[0.05]"
+              >
                 <p className="font-mono text-[11px] font-medium tracking-[0.12em] text-accent">
                   {s.step}
                 </p>
@@ -73,29 +119,7 @@ export function LandingHero() {
             ))}
           </ol>
         </div>
-
-        <p className="mt-4 font-mono text-[11px] uppercase tracking-[0.12em] text-zinc-400">
-          Draft → Publish → Register → Check in → Measure —{' '}
-          <Link to="/events" className="text-zinc-600 underline decoration-zinc-300 underline-offset-4 hover:text-ink">
-            see what&rsquo;s live
-          </Link>
-        </p>
       </div>
     </section>
-  );
-}
-
-/* Crosshair ticks marking the hero's grid corners — the "precision" signature. */
-function CornerTicks() {
-  return (
-    <svg
-      className="pointer-events-none absolute right-5 top-16 hidden text-zinc-300 sm:right-8 lg:right-12 lg:block"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      aria-hidden="true"
-    >
-      <path d="M12 2v20M2 12h20" stroke="currentColor" strokeWidth="1" />
-    </svg>
   );
 }
