@@ -1,6 +1,6 @@
-import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 import { ButtonLink } from '../ui/Button';
+import { DitherShader } from '../ui/DitherShader';
 import { FlipWords } from '../ui/FlipWords';
 import { useAuth } from '../../lib/auth';
 
@@ -27,52 +27,30 @@ export function LandingHero() {
 
   return (
     <section className="relative overflow-hidden">
-      {/* Aurora glow: drifting accent blooms behind the headline. */}
+      {/* Dithered conference crowd in brand duotone, fading into the page canvas. */}
       <div aria-hidden className="pointer-events-none absolute inset-0">
-        <div
-          className="absolute left-1/2 top-[-30%] h-[70vh] w-[120vw] -translate-x-1/2 animate-glow-drift"
-          style={{
-            background:
-              'radial-gradient(ellipse 55% 60% at 50% 30%, rgba(91,140,255,0.22), transparent 70%)',
-            filter: 'blur(40px)',
-          }}
+        <DitherShader
+          src="/hero-dither.jpg"
+          gridSize={3}
+          ditherMode="bayer"
+          colorMode="duotone"
+          primaryColor="#0A0A0B"
+          secondaryColor="#44639F"
+          threshold={0.5}
+          animated={false}
+          className="h-full w-full"
         />
-        <div
-          className="absolute left-[15%] top-[10%] h-[50vh] w-[60vw] animate-glow-drift"
-          style={{
-            background:
-              'radial-gradient(ellipse 50% 50% at 50% 50%, rgba(124,90,255,0.1), transparent 70%)',
-            filter: 'blur(60px)',
-            animationDelay: '-7s',
-          }}
-        />
-        {/* Fine grid, faded toward the edges. */}
         <div
           className="absolute inset-0"
           style={{
-            backgroundImage:
-              'linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px)',
-            backgroundSize: '56px 56px',
-            maskImage: 'radial-gradient(ellipse 70% 60% at 50% 35%, black 30%, transparent 75%)',
-            WebkitMaskImage:
-              'radial-gradient(ellipse 70% 60% at 50% 35%, black 30%, transparent 75%)',
+            background:
+              'linear-gradient(to bottom, rgba(10,10,11,0.6) 0%, rgba(10,10,11,0.45) 45%, #0A0A0B 100%)',
           }}
         />
       </div>
 
-      <div className="relative mx-auto flex max-w-5xl flex-col items-center px-5 pb-16 pt-16 text-center sm:px-8 sm:pt-24 lg:pb-24">
-        <Link
-          to="/events"
-          className="glass animate-fade-in-up rounded-full px-3.5 py-1.5 font-mono text-[11px] font-medium uppercase tracking-[0.14em] text-zinc-600 transition-colors hover:text-ink"
-        >
-          <span className="mr-2 inline-block h-1.5 w-1.5 rounded-full bg-accent align-middle" />
-          Event operations platform
-        </Link>
-
-        <h1
-          className="mt-8 max-w-3xl animate-fade-in-up font-semibold leading-[1.04] tracking-[-0.035em] text-ink text-[clamp(2.5rem,7vw,4.5rem)]"
-          style={{ animationDelay: '80ms' }}
-        >
+      <div className="relative mx-auto flex max-w-5xl flex-col items-center px-5 pb-16 pt-20 text-center sm:px-8 sm:pt-28 lg:pb-24">
+        <h1 className="max-w-3xl animate-fade-in-up font-semibold leading-[1.04] tracking-[-0.035em] text-ink text-[clamp(2.5rem,7vw,4.5rem)]">
           Run events people actually{' '}
           {/* Real product flows only: registration, check-in, attendance. */}
           <FlipWords
