@@ -34,7 +34,9 @@ export function LandingHero() {
       : 'Find an event';
 
   return (
-    <section className="relative overflow-hidden">
+    // Pulled up under the floating pill navbar (pt-3 + h-12 = 60px) so the
+    // dither reaches the top of the viewport instead of cutting off below it.
+    <section className="relative -mt-[60px] overflow-hidden">
       {/* Dithered conference crowd in brand duotone, fading into the page canvas. */}
       <div aria-hidden className="pointer-events-none absolute inset-0">
         <DitherShader
@@ -57,7 +59,7 @@ export function LandingHero() {
         />
       </div>
 
-      <div className="relative mx-auto flex max-w-5xl flex-col items-center px-5 pb-16 pt-20 text-center sm:px-8 sm:pt-28 lg:pb-24">
+      <div className="relative mx-auto flex max-w-5xl flex-col items-center px-5 pb-16 pt-36 text-center sm:px-8 sm:pt-44 lg:pb-24">
         <h1 className="max-w-3xl animate-fade-in-up font-semibold leading-[1.04] tracking-[-0.035em] text-ink text-[clamp(2.5rem,7vw,4.5rem)]">
           Run events people actually{' '}
           {/* Real product flows only: registration, check-in, attendance. */}
