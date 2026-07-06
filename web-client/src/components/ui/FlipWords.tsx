@@ -8,21 +8,13 @@ import { AnimatePresence, MotionConfig, motion } from 'motion/react';
  * and every word renders invisibly in the same grid cell so the headline
  * never reflows between words. Respects reduced-motion via MotionConfig.
  */
-export function FlipWords({
-  words,
-  duration = 3000,
-  className = '',
-}: {
-  words: string[];
-  duration?: number;
-  className?: string;
-}) {
+export function FlipWords({ words, className = '' }: { words: string[]; className?: string }) {
   const [index, setIndex] = useState(0);
 
   useEffect(() => {
-    const id = setInterval(() => setIndex((i) => (i + 1) % words.length), duration);
+    const id = setInterval(() => setIndex((i) => (i + 1) % words.length), 3000);
     return () => clearInterval(id);
-  }, [duration, words.length]);
+  }, [words.length]);
 
   return (
     <MotionConfig reducedMotion="user">

@@ -15,12 +15,6 @@ export interface AuthResponse extends User {
   expiresAt: string;
 }
 
-export interface ApiErrorBody {
-  error: string;
-  message: string;
-  fields?: Record<string, string>;
-}
-
 // ----- Events -----
 
 export type EventFormat = 'IN_PERSON' | 'ONLINE' | 'HYBRID';
