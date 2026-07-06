@@ -1,14 +1,7 @@
 import type { ReactNode } from 'react';
 import { Logo } from '../../components/layout/Logo';
 
-/* Fine grid on ink — same engineering-grid signature as the landing hero. */
-const gridBg: React.CSSProperties = {
-  backgroundImage:
-    'linear-gradient(rgba(255,255,255,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.06) 1px, transparent 1px)',
-  backgroundSize: '48px 48px',
-};
-
-/** Two-pane auth layout: form on the left, brand panel on the right. */
+/** Two-pane auth layout: form on the left, glowing brand panel on the right. */
 export function AuthShell({
   title,
   subtitle,
@@ -31,13 +24,36 @@ export function AuthShell({
         </div>
       </div>
 
-      <div className="relative hidden overflow-hidden bg-ink lg:block" style={gridBg}>
+      <div className="relative hidden overflow-hidden border-l border-white/[0.06] lg:block">
+        {/* Aurora bloom + fine grid, matching the landing hero. */}
+        <div aria-hidden className="pointer-events-none absolute inset-0">
+          <div
+            className="absolute right-[-20%] top-[-10%] h-[70%] w-[90%] animate-glow-drift"
+            style={{
+              background:
+                'radial-gradient(ellipse 50% 50% at 50% 50%, rgba(255,99,99,0.16), transparent 70%)',
+              filter: 'blur(50px)',
+            }}
+          />
+          <div
+            className="absolute inset-0"
+            style={{
+              backgroundImage:
+                'linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px)',
+              backgroundSize: '48px 48px',
+              maskImage: 'radial-gradient(ellipse 80% 80% at 70% 30%, black 20%, transparent 80%)',
+              WebkitMaskImage:
+                'radial-gradient(ellipse 80% 80% at 70% 30%, black 20%, transparent 80%)',
+            }}
+          />
+        </div>
+
         <div className="relative flex h-full flex-col justify-between p-14">
           <p className="font-mono text-[11px] font-medium uppercase tracking-[0.12em] text-zinc-500">
             Event operations platform
           </p>
           <div>
-            <h2 className="max-w-md text-3xl font-semibold leading-tight tracking-tight text-white">
+            <h2 className="max-w-md text-3xl font-semibold leading-tight tracking-tight text-ink">
               The exact way to build, publish, and run your events.
             </h2>
             <ol className="mt-8 space-y-3">
@@ -46,7 +62,7 @@ export function AuthShell({
                 'Issue tickets and check attendees in at the door',
                 'Measure turnout with live analytics and surveys',
               ].map((p, i) => (
-                <li key={p} className="flex items-center gap-3 text-sm text-zinc-300">
+                <li key={p} className="flex items-center gap-3 text-sm text-zinc-600">
                   <span className="font-mono text-[11px] font-medium tracking-[0.12em] text-accent">
                     {String(i + 1).padStart(2, '0')}
                   </span>
@@ -56,7 +72,7 @@ export function AuthShell({
             </ol>
           </div>
           <p className="font-mono text-[11px] uppercase tracking-[0.12em] text-zinc-400">
-            © {new Date().getFullYear()} Qeue
+            © {new Date().getFullYear()} qeue
           </p>
         </div>
       </div>
