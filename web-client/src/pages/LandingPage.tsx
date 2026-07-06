@@ -4,6 +4,13 @@ import { eventsApi } from '../lib/api';
 import { useApi } from '../hooks/useApi';
 import { LandingHero } from '../components/landing/LandingHero';
 import { MacbookScroll } from '../components/ui/MacbookScroll';
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from '../components/ui/Carousel';
 import { Container } from '../components/layout/Page';
 import { EventCard, EventCardSkeleton } from '../components/events/EventCard';
 import { ButtonLink } from '../components/ui/Button';
@@ -53,12 +60,9 @@ export function LandingPage() {
       <section className="py-16 sm:py-20">
         <Container>
           <div className="mb-8 flex flex-wrap items-end justify-between gap-4">
-            <div>
-              <p className="microlabel mb-2">Happening soon</p>
-              <h2 className="text-2xl font-semibold tracking-tight text-ink sm:text-3xl">
-                Upcoming events
-              </h2>
-            </div>
+            <h2 className="text-2xl font-semibold tracking-tight text-ink sm:text-3xl">
+              Upcoming events
+            </h2>
             <Link
               to="/events"
               className="group inline-flex items-center gap-1.5 text-sm font-medium text-ink transition-colors hover:text-accent-ink"
@@ -104,7 +108,6 @@ export function LandingPage() {
         />
         <Container className="relative">
           <div className="max-w-2xl">
-            <p className="microlabel mb-2">One platform, end to end</p>
             <h2 className="text-2xl font-semibold leading-tight tracking-tight text-ink sm:text-[2rem]">
               Everything you need to run an event
             </h2>
@@ -114,93 +117,24 @@ export function LandingPage() {
             </p>
           </div>
 
-          <div className="mt-10 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">
-            {FEATURES.map((f) => (
-              <div
-                key={f.title}
-                className="glass group rounded-xl p-5 transition-all duration-200 hover:border-white/20 hover:bg-white/[0.06]"
-              >
-                <h3 className="text-[15px] font-semibold text-ink">{f.title}</h3>
-                <p className="mt-1.5 text-[13px] leading-relaxed text-zinc-500">{f.desc}</p>
-              </div>
-            ))}
-          </div>
+          {/* Feature cards slide sideways (embla via shadcn Carousel). */}
+          <Carousel opts={{ align: 'start' }} className="mt-10">
+            <CarouselContent className="-ml-3">
+              {FEATURES.map((f) => (
+                <CarouselItem key={f.title} className="pl-3 sm:basis-1/2 lg:basis-1/3">
+                  <div className="glass group h-full rounded-xl p-6 transition-all duration-200 hover:border-white/20 hover:bg-white/[0.06]">
+                    <h3 className="text-[15px] font-semibold text-ink">{f.title}</h3>
+                    <p className="mt-1.5 text-[13px] leading-relaxed text-zinc-500">{f.desc}</p>
+                  </div>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+            <CarouselPrevious className="-top-12 left-auto right-10 translate-y-0" />
+            <CarouselNext className="-top-12 left-auto right-0 translate-y-0" />
+          </Carousel>
         </Container>
       </section>
 
-      {/* Split audience CTA */}
-      <section className="py-16 sm:py-20">
-        <Container>
-          <div className="grid grid-cols-1 gap-5 lg:grid-cols-2">
-            <AudienceCard
-              tone="accent"
-              eyebrow="For organizers"
-              title="Launch your next event in minutes"
-              points={['Build & publish events', 'Manage attendees & check-in', 'Track live analytics']}
-              cta={{ label: 'Start organizing', to: '/signup' }}
-            />
-            <AudienceCard
-              tone="glass"
-              eyebrow="For attendees"
-              title="Find events and keep your tickets in one place"
-              points={['Register in a few clicks', 'Access tickets anytime', 'Take post-event surveys']}
-              cta={{ label: 'Browse events', to: '/events' }}
-            />
-          </div>
-        </Container>
-      </section>
     </>
-  );
-}
-
-function AudienceCard({
-  tone,
-  eyebrow,
-  title,
-  points,
-  cta,
-}: {
-  tone: 'accent' | 'glass';
-  eyebrow: string;
-  title: string;
-  points: string[];
-  cta: { label: string; to: string };
-}) {
-  const accent = tone === 'accent';
-  return (
-    <div
-      className="glass glass-edge relative flex flex-col justify-between gap-8 overflow-hidden rounded-2xl p-8 sm:p-10"
-    >
-      {accent && (
-        <div
-          aria-hidden
-          className="pointer-events-none absolute inset-0"
-          style={{
-            background:
-              'radial-gradient(ellipse 80% 90% at 15% 0%, rgba(91,140,255,0.18), transparent 65%)',
-          }}
-        />
-      )}
-      <div className="relative">
-        <p className="microlabel">{eyebrow}</p>
-        <h3 className="mt-3 max-w-sm text-2xl font-semibold tracking-tight text-ink">{title}</h3>
-        <ul className="mt-5 space-y-2">
-          {points.map((p) => (
-            <li key={p} className="flex items-center gap-2.5 text-sm text-zinc-600">
-              <span className="h-1 w-1 rounded-full bg-accent" aria-hidden />
-              {p}
-            </li>
-          ))}
-        </ul>
-      </div>
-      <ButtonLink
-        to={cta.to}
-        variant={accent ? 'accent' : 'primary'}
-        className="relative w-fit"
-        rightIcon={<ArrowRight className="h-4 w-4" />}
-      >
-        {cta.label}
-      </ButtonLink>
-    </div>
   );
 }

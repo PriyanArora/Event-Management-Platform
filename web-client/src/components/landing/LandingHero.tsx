@@ -1,15 +1,23 @@
 import { ArrowRight } from 'lucide-react';
+import {
+  IconChartBar,
+  IconPencil,
+  IconTicket,
+  IconUserPlus,
+  IconWorld,
+} from '@tabler/icons-react';
 import { ButtonLink } from '../ui/Button';
+import { BentoGrid, BentoGridItem } from '../ui/BentoGrid';
 import { DitherShader } from '../ui/DitherShader';
 import { FlipWords } from '../ui/FlipWords';
 import { useAuth } from '../../lib/auth';
 
 const LIFECYCLE = [
-  { title: 'Draft', desc: 'Build the event: venue, schedule, capacity.' },
-  { title: 'Publish', desc: 'Go live and open registration.' },
-  { title: 'Register', desc: 'Capacity-safe. Never oversold.' },
-  { title: 'Check in', desc: 'Hashed ticket codes at the door.' },
-  { title: 'Measure', desc: 'Analytics, no-shows, surveys.' },
+  { title: 'Draft', desc: 'Build the event: venue, schedule, capacity.', icon: IconPencil },
+  { title: 'Publish', desc: 'Go live and open registration.', icon: IconWorld },
+  { title: 'Register', desc: 'Capacity-safe. Never oversold.', icon: IconUserPlus },
+  { title: 'Check in', desc: 'Hashed ticket codes at the door.', icon: IconTicket },
+  { title: 'Measure', desc: 'Analytics, no-shows, surveys.', icon: IconChartBar },
 ];
 
 export function LandingHero() {
@@ -79,22 +87,23 @@ export function LandingHero() {
           </ButtonLink>
         </div>
 
-        {/* Lifecycle strip: the product, stated as a pipeline, on glass. */}
+        {/* Lifecycle bento: the product, stated as a pipeline. First card
+            spans two columns so five entries fill two even rows. */}
         <div
-          className="glass glass-edge mt-16 w-full animate-fade-in-up rounded-2xl p-2 sm:mt-20"
+          className="mt-16 w-full animate-fade-in-up text-left sm:mt-20"
           style={{ animationDelay: '320ms' }}
         >
-          <ol className="grid grid-cols-1 gap-1 sm:grid-cols-2 lg:grid-cols-5">
-            {LIFECYCLE.map((s) => (
-              <li
+          <BentoGrid className="max-w-none gap-3 md:auto-rows-[9rem]">
+            {LIFECYCLE.map((s, i) => (
+              <BentoGridItem
                 key={s.title}
-                className="rounded-xl p-4 text-left transition-colors hover:bg-white/[0.05]"
-              >
-                <h3 className="text-[14px] font-semibold text-ink">{s.title}</h3>
-                <p className="mt-1 text-[12px] leading-snug text-zinc-500">{s.desc}</p>
-              </li>
+                title={s.title}
+                description={s.desc}
+                icon={<s.icon className="h-5 w-5 text-accent" aria-hidden />}
+                className={i === 0 ? 'md:col-span-2' : ''}
+              />
             ))}
-          </ol>
+          </BentoGrid>
         </div>
       </div>
     </section>
