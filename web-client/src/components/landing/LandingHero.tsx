@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 import { ButtonLink } from '../ui/Button';
+import { FlipWords } from '../ui/FlipWords';
 import { useAuth } from '../../lib/auth';
 
 const LIFECYCLE = [
@@ -73,10 +74,11 @@ export function LandingHero() {
           style={{ animationDelay: '80ms' }}
         >
           Run events people actually{' '}
-          <span className="bg-gradient-to-r from-accent via-[#8FB0FF] to-[#C4D6FF] bg-clip-text text-transparent">
-            show up
-          </span>{' '}
-          to.
+          {/* Real product flows only: registration, check-in, attendance. */}
+          <FlipWords
+            words={['show up to', 'register for', 'check in to']}
+            className="text-accent"
+          />
         </h1>
 
         <p
