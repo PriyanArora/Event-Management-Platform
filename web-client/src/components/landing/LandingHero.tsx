@@ -30,7 +30,7 @@ export function LandingHero() {
       {/* Dithered conference crowd in brand duotone, fading into the page canvas. */}
       <div aria-hidden className="pointer-events-none absolute inset-0">
         <DitherShader
-          src="/hero-dither.jpg"
+          src="https://images.unsplash.com/photo-1493246507139-91e8fad9978e?q=80&w=2670&auto=format&fit=crop"
           gridSize={3}
           ditherMode="bayer"
           colorMode="duotone"
