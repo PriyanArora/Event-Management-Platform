@@ -61,11 +61,9 @@ export function AuthShell({
                 'Publish events and never oversell capacity',
                 'Issue tickets and check attendees in at the door',
                 'Measure turnout with live analytics and surveys',
-              ].map((p, i) => (
+              ].map((p) => (
                 <li key={p} className="flex items-center gap-3 text-sm text-zinc-600">
-                  <span className="font-mono text-[11px] font-medium tracking-[0.12em] text-accent">
-                    {String(i + 1).padStart(2, '0')}
-                  </span>
+                  <span className="h-1 w-1 rounded-full bg-accent" aria-hidden />
                   {p}
                 </li>
               ))}

@@ -138,7 +138,7 @@ export function AttendeesTab() {
                       <p className="font-medium text-ink">{r.attendeeDisplayNameSnapshot}</p>
                       <p className="text-[12px] text-zinc-500">{r.attendeeEmail}</p>
                     </td>
-                    <td className="px-5 py-3.5 text-zinc-600">{r.registrationTypeNameSnapshot ?? '—'}</td>
+                    <td className="px-5 py-3.5 text-zinc-600">{r.registrationTypeNameSnapshot ?? '-'}</td>
                     <td className="px-5 py-3.5"><StatusBadge meta={registrationStatusMeta[r.status]} /></td>
                     <td className="px-5 py-3.5"><StatusBadge meta={checkInMeta[r.checkInStatus]} /></td>
                     <td className="px-5 py-3.5 text-[12px] text-zinc-500">{formatDateTime(r.createdAt)}</td>
@@ -195,7 +195,7 @@ function RegistrationDetailModal({
           <div className="grid grid-cols-2 gap-3">
             <Info label="Name">{registration.attendeeDisplayNameSnapshot}</Info>
             <Info label="Email">{registration.attendeeEmail}</Info>
-            <Info label="Type">{registration.registrationTypeNameSnapshot ?? '—'}</Info>
+            <Info label="Type">{registration.registrationTypeNameSnapshot ?? '-'}</Info>
             <Info label="Registered">{formatDateTime(registration.createdAt)}</Info>
           </div>
           <div className="flex flex-wrap gap-2">

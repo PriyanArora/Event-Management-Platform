@@ -76,7 +76,7 @@ async function request<T>(path: string, options: RequestOptions = {}): Promise<T
     });
   } catch (err) {
     if ((err as Error).name === 'AbortError') throw err;
-    throw new ApiError(0, 'Network error — is the gateway running?');
+    throw new ApiError(0, 'Network error. Is the gateway running?');
   }
 
   if (response.status === 204) return undefined as T;

@@ -4,11 +4,11 @@ import { ButtonLink } from '../ui/Button';
 import { useAuth } from '../../lib/auth';
 
 const LIFECYCLE = [
-  { step: '01', title: 'Draft', desc: 'Build the event: venue, schedule, capacity.' },
-  { step: '02', title: 'Publish', desc: 'Go live and open registration.' },
-  { step: '03', title: 'Register', desc: 'Capacity-safe. Never oversold.' },
-  { step: '04', title: 'Check in', desc: 'Hashed ticket codes at the door.' },
-  { step: '05', title: 'Measure', desc: 'Analytics, no-shows, surveys.' },
+  { title: 'Draft', desc: 'Build the event: venue, schedule, capacity.' },
+  { title: 'Publish', desc: 'Go live and open registration.' },
+  { title: 'Register', desc: 'Capacity-safe. Never oversold.' },
+  { title: 'Check in', desc: 'Hashed ticket codes at the door.' },
+  { title: 'Measure', desc: 'Analytics, no-shows, surveys.' },
 ];
 
 export function LandingHero() {
@@ -84,7 +84,7 @@ export function LandingHero() {
           style={{ animationDelay: '160ms' }}
         >
           Build and publish events, register attendees without overselling, issue tickets, check
-          people in, and measure it all — from one fast workspace.
+          people in, and measure it all from one fast workspace.
         </p>
 
         <div
@@ -107,13 +107,10 @@ export function LandingHero() {
           <ol className="grid grid-cols-1 gap-1 sm:grid-cols-2 lg:grid-cols-5">
             {LIFECYCLE.map((s) => (
               <li
-                key={s.step}
+                key={s.title}
                 className="rounded-xl p-4 text-left transition-colors hover:bg-white/[0.05]"
               >
-                <p className="font-mono text-[11px] font-medium tracking-[0.12em] text-accent">
-                  {s.step}
-                </p>
-                <h3 className="mt-2 text-[14px] font-semibold text-ink">{s.title}</h3>
+                <h3 className="text-[14px] font-semibold text-ink">{s.title}</h3>
                 <p className="mt-1 text-[12px] leading-snug text-zinc-500">{s.desc}</p>
               </li>
             ))}

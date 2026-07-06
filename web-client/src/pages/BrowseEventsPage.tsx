@@ -43,7 +43,7 @@ export function BrowseEventsPage() {
         <PageHeader
           eyebrow="Discover"
           title="Browse events"
-          description="Find published events to register for — filter by format, category, or search."
+          description="Find published events to register for. Filter by format, category, or search."
         />
 
         {/* Filters */}
@@ -103,7 +103,7 @@ export function BrowseEventsPage() {
             description={
               data && data.length > 0
                 ? 'Try clearing your search or changing the format and category.'
-                : 'Check back soon — organizers are still preparing events.'
+                : 'Check back soon. Organizers are still preparing events.'
             }
           />
         ) : (

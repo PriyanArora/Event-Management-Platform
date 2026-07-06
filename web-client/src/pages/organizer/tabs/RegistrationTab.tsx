@@ -57,7 +57,7 @@ function TypesSection() {
     <section>
       <SectionHeading
         title="Registration types"
-        description="Offer tiers like General, VIP, or Student — each with its own capacity."
+        description="Offer tiers like General, VIP, or Student, each with its own capacity."
         action={
           <Button size="sm" onClick={() => setCreating(true)} leftIcon={<Plus className="h-4 w-4" />}>
             Add type

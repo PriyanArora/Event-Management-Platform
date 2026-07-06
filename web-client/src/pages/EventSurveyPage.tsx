@@ -102,7 +102,7 @@ export function EventSurveyPage() {
           ]}
           eyebrow="Feedback"
           title={survey.title}
-          description="Help the organizer improve future events — it only takes a minute."
+          description="Help the organizer improve future events. It only takes a minute."
         />
         <form onSubmit={submit}>
           <Card className="space-y-6 p-6">

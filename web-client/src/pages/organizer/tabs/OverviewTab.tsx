@@ -29,10 +29,10 @@ export function OverviewTab() {
     <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
       <div className="space-y-6 lg:col-span-2">
         <div className="grid grid-cols-2 gap-4 lg:grid-cols-4">
-          <Stat label="Confirmed" value={analytics?.confirmedRegistrations ?? '—'} />
-          <Stat label="Seats left" value={analytics?.availableSeats ?? '—'} />
-          <Stat label="Checked in" value={analytics?.checkIns ?? '—'} />
-          <Stat label="No-shows" value={analytics?.noShows ?? '—'} />
+          <Stat label="Confirmed" value={analytics?.confirmedRegistrations ?? '-'} />
+          <Stat label="Seats left" value={analytics?.availableSeats ?? '-'} />
+          <Stat label="Checked in" value={analytics?.checkIns ?? '-'} />
+          <Stat label="No-shows" value={analytics?.noShows ?? '-'} />
         </div>
 
         <Card className="p-6">

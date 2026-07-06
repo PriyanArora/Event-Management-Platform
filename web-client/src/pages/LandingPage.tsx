@@ -9,7 +9,7 @@ import { ButtonLink } from '../components/ui/Button';
 import { EmptyState, ErrorState } from '../components/ui/States';
 
 const FEATURES = [
-  { title: 'Event builder', desc: 'Format, category, banner, venue, timezone, schedule, capacity — with a draft, publish, and cancel lifecycle.' },
+  { title: 'Event builder', desc: 'Format, category, banner, venue, timezone, schedule, and capacity, with a draft, publish, and cancel lifecycle.' },
   { title: 'Registration forms', desc: 'Custom questions and registration types with per-type capacity enforcement.' },
   { title: 'Tickets', desc: 'Every confirmed attendee gets a ticket with a securely hashed code.' },
   { title: 'Check-in', desc: 'Key in ticket codes at the door and track who actually showed up.' },
@@ -38,7 +38,7 @@ export function LandingPage() {
         <Container>
           <div className="mb-8 flex flex-wrap items-end justify-between gap-4">
             <div>
-              <p className="microlabel mb-2">01 — Happening soon</p>
+              <p className="microlabel mb-2">Happening soon</p>
               <h2 className="text-2xl font-semibold tracking-tight text-ink sm:text-3xl">
                 Upcoming events
               </h2>
@@ -76,7 +76,7 @@ export function LandingPage() {
         </Container>
       </section>
 
-      {/* Features — glass grid: the index and the words do the work. */}
+      {/* Features: glass grid, the words do the work. */}
       <section className="relative border-y border-white/[0.06] py-16 sm:py-20">
         <div
           aria-hidden
@@ -88,7 +88,7 @@ export function LandingPage() {
         />
         <Container className="relative">
           <div className="max-w-2xl">
-            <p className="microlabel mb-2">02 — One platform, end to end</p>
+            <p className="microlabel mb-2">One platform, end to end</p>
             <h2 className="text-2xl font-semibold leading-tight tracking-tight text-ink sm:text-[2rem]">
               Everything you need to run an event
             </h2>
@@ -99,15 +99,12 @@ export function LandingPage() {
           </div>
 
           <div className="mt-10 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">
-            {FEATURES.map((f, i) => (
+            {FEATURES.map((f) => (
               <div
                 key={f.title}
                 className="glass group rounded-xl p-5 transition-all duration-200 hover:border-white/20 hover:bg-white/[0.06]"
               >
-                <p className="font-mono text-[11px] font-medium tracking-[0.12em] text-accent">
-                  {String(i + 1).padStart(2, '0')}
-                </p>
-                <h3 className="mt-3 text-[15px] font-semibold text-ink">{f.title}</h3>
+                <h3 className="text-[15px] font-semibold text-ink">{f.title}</h3>
                 <p className="mt-1.5 text-[13px] leading-relaxed text-zinc-500">{f.desc}</p>
               </div>
             ))}

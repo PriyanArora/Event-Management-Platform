@@ -84,11 +84,11 @@ export function LoginPage() {
       <div className="mt-6 rounded-lg border border-zinc-200 bg-zinc-50 p-3.5 text-[12px] leading-relaxed text-zinc-500">
         <p className="microlabel">Local demo accounts</p>
         <p className="mt-2 font-mono text-[12px]">
-          Organizer — <span className="text-zinc-700">organizer@qeue.local</span>
+          Organizer: <span className="text-zinc-700">organizer@qeue.local</span>
           <br />
-          Attendee — <span className="text-zinc-700">attendee@qeue.local</span>
+          Attendee: <span className="text-zinc-700">attendee@qeue.local</span>
           <br />
-          Password — <span className="text-zinc-700">LocalDevPassword1!</span>
+          Password: <span className="text-zinc-700">LocalDevPassword1!</span>
         </p>
       </div>
     </AuthShell>

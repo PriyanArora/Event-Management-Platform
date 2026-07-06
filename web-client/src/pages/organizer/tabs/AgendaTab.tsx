@@ -181,7 +181,7 @@ function SpeakerModal({
             <Input value={form.organization} onChange={(e) => setForm({ ...form, organization: e.target.value })} placeholder="Qeue" />
           </Field>
         </div>
-        <Field label="Photo URL" hint="Optional — initials are shown if blank.">
+        <Field label="Photo URL" hint="Optional. Initials are shown if blank.">
           <Input value={form.photoUrl} onChange={(e) => setForm({ ...form, photoUrl: e.target.value })} placeholder="https://…" />
         </Field>
         <Field label="Bio">

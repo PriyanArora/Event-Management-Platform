@@ -9,7 +9,7 @@ export function SiteFooter() {
           <div className="max-w-xs">
             <Logo />
             <p className="mt-4 text-sm leading-relaxed text-zinc-500">
-              Build, publish, and run events end to end — registration, tickets, check-in,
+              Build, publish, and run events end to end: registration, tickets, check-in,
               analytics, and surveys in one place.
             </p>
           </div>

@@ -228,7 +228,7 @@ function ResponsesModal({
                         <span className="ml-1 text-zinc-500">{a.ratingValue}/5</span>
                       </span>
                     ) : (
-                      <p className="mt-0.5 text-sm text-zinc-800">{a.answerText || '—'}</p>
+                      <p className="mt-0.5 text-sm text-zinc-800">{a.answerText || '-'}</p>
                     )}
                   </li>
                 ))}

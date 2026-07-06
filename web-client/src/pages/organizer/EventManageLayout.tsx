@@ -70,7 +70,7 @@ export function EventManageLayout() {
   const publish = async () => {
     try {
       await organizerApi.publish(eventId);
-      toast.success('Event published — it’s now public.');
+      toast.success('Event published. It’s now public.');
       reload();
     } catch (err) {
       toast.error(err instanceof ApiError ? err.message : 'Could not publish.');

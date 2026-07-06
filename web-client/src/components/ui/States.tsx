@@ -21,7 +21,7 @@ export function Skeleton({ className = '' }: { className?: string }) {
 
 export function ErrorState({ message, onRetry }: { message: string; onRetry?: () => void }) {
   return (
-    <div className="flex flex-col items-center justify-center gap-3 rounded-lg border border-red-200 bg-red-50/50 py-16 text-center">
+    <div className="flex flex-col items-center justify-center gap-3 rounded-lg border border-red-200 bg-red-50 py-16 text-center">
       <AlertCircle className="h-7 w-7 text-red-400" />
       <p className="max-w-sm text-sm text-red-800">{message}</p>
       {onRetry && (
