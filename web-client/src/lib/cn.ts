@@ -1,4 +1,8 @@
-/** Tiny class joiner for components ported from shadcn-style registries. */
-export function cn(...classes: Array<string | false | null | undefined>): string {
-  return classes.filter(Boolean).join(' ');
+// shadcn's canonical cn: clsx for conditionals + tailwind-merge so later
+// Tailwind classes actually override earlier conflicting ones.
+import { clsx, type ClassValue } from 'clsx';
+import { twMerge } from 'tailwind-merge';
+
+export function cn(...inputs: ClassValue[]) {
+  return twMerge(clsx(inputs));
 }
