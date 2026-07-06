@@ -41,10 +41,10 @@ export function SiteHeader() {
   };
 
   return (
-    <header className="sticky top-0 z-40 px-3 pt-3 sm:px-5">
-      {/* Floating glass command bar. */}
-      <div className="glass-heavy glass-edge mx-auto max-w-6xl rounded-2xl">
-        <div className="flex h-14 items-center justify-between gap-4 px-4 sm:px-5">
+    <header className="sticky top-0 z-40 border-b border-white/[0.06] bg-paper/60 backdrop-blur-xl backdrop-saturate-150">
+      {/* Full-width translucent bar: the page shows through the blur. */}
+      <div className="mx-auto max-w-6xl">
+        <div className="flex h-14 items-center justify-between gap-4 px-5 sm:px-8">
           <div className="flex items-center gap-6">
             <Logo />
             <nav className="hidden items-center gap-1 md:flex">
@@ -139,7 +139,7 @@ export function SiteHeader() {
 
         {/* Mobile sheet */}
         {mobileOpen && (
-          <div className="border-t border-white/10 px-4 py-4 md:hidden">
+          <div className="border-t border-white/10 px-5 py-4 md:hidden">
             <nav className="flex flex-col gap-1">
               <MobileLink to="/events" onClick={() => setMobileOpen(false)}>Browse events</MobileLink>
               {isAuthenticated && !isOrganizer && (
