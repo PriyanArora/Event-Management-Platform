@@ -41,10 +41,14 @@ export function SiteHeader() {
   };
 
   return (
-    <header className="sticky top-0 z-40 border-b border-white/[0.06] bg-paper/60 backdrop-blur-xl backdrop-saturate-150">
-      {/* Full-width translucent bar: the page shows through the blur. */}
-      <div className="mx-auto max-w-6xl">
-        <div className="flex h-14 items-center justify-between gap-4 px-5 sm:px-8">
+    <header className="sticky top-0 z-40 px-4 pt-3">
+      {/* Floating glass pill: the page scrolls through the blur behind it. */}
+      <div
+        className={`mx-auto max-w-5xl border border-white/10 bg-paper/60 shadow-pop backdrop-blur-xl backdrop-saturate-150 ${
+          mobileOpen ? 'rounded-3xl' : 'rounded-full'
+        }`}
+      >
+        <div className="flex h-12 items-center justify-between gap-4 pl-5 pr-3 sm:pl-6 sm:pr-3">
           <div className="flex items-center gap-6">
             <Logo />
             <nav className="hidden items-center gap-1 md:flex">
@@ -130,7 +134,7 @@ export function SiteHeader() {
           {/* Mobile toggle */}
           <button
             onClick={() => setMobileOpen((v) => !v)}
-            className="rounded-lg border border-white/10 bg-white/[0.04] p-2 text-ink md:hidden"
+            className="rounded-full border border-white/10 bg-white/[0.04] p-2 text-ink md:hidden"
             aria-label="Toggle menu"
           >
             {mobileOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
