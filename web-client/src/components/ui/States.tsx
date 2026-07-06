@@ -2,21 +2,13 @@ import type { ReactNode } from 'react';
 import { Loader2, AlertCircle, Inbox } from 'lucide-react';
 import { Button } from './Button';
 
-export function Spinner({ className = '' }: { className?: string }) {
-  return <Loader2 className={`animate-spin text-zinc-400 ${className}`} />;
-}
-
 export function LoadingBlock({ label = 'Loading…' }: { label?: string }) {
   return (
     <div className="flex flex-col items-center justify-center gap-3 py-20 text-zinc-400">
-      <Spinner className="h-6 w-6" />
+      <Loader2 className="h-6 w-6 animate-spin text-zinc-400" />
       <p className="font-mono text-[13px]">{label}</p>
     </div>
   );
-}
-
-export function Skeleton({ className = '' }: { className?: string }) {
-  return <div className={`skeleton rounded-lg ${className}`} />;
 }
 
 export function ErrorState({ message, onRetry }: { message: string; onRetry?: () => void }) {

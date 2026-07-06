@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 
 /** Plain lowercase wordmark — no glyph, the type is the brand. */
-export function Logo({ to = '/', className = '' }: { light?: boolean; to?: string; className?: string }) {
+export function Logo({ to = '/', className = '' }: { to?: string; className?: string }) {
   return (
     <Link
       to={to}

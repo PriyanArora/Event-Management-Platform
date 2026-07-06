@@ -68,23 +68,6 @@
     -webkit-backdrop-filter: blur(24px) saturate(1.4);
   }
 
-  /* Hairline top highlight that makes glass edges catch light. */
-  .glass-edge {
-    position: relative;
-  }
-  .glass-edge::before {
-    content: '';
-    position: absolute;
-    inset: 0 0 auto 0;
-    height: 1px;
-    background: linear-gradient(
-      90deg,
-      transparent,
-      rgba(255, 255, 255, 0.18),
-      transparent
-    );
-    pointer-events: none;
-  }
 }
 
 /* Skeleton shimmer used by loading placeholders. */

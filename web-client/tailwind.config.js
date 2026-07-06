@@ -110,14 +110,8 @@ export default {
       boxShadow: {
         // Elevation for popovers/modals/toasts on a dark canvas.
         pop: '0 12px 40px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(255, 255, 255, 0.06)',
-        // Accent glow for primary CTAs and hero elements.
-        glow: '0 0 32px rgba(91, 140, 255, 0.35)',
       },
       keyframes: {
-        'fade-in': {
-          from: { opacity: '0', transform: 'translateY(4px)' },
-          to: { opacity: '1', transform: 'translateY(0)' },
-        },
         'fade-in-up': {
           from: { opacity: '0', transform: 'translateY(16px)' },
           to: { opacity: '1', transform: 'translateY(0)' },
@@ -130,16 +124,12 @@ export default {
           from: { transform: 'translateY(100%)' },
           to: { transform: 'translateY(0)' },
         },
-        shimmer: {
-          '100%': { transform: 'translateX(100%)' },
-        },
         'glow-drift': {
           '0%, 100%': { transform: 'translate(0, 0) scale(1)' },
           '50%': { transform: 'translate(4%, -3%) scale(1.06)' },
         },
       },
       animation: {
-        'fade-in': 'fade-in 0.3s ease both',
         'fade-in-up': 'fade-in-up 0.6s cubic-bezier(0.22, 1, 0.36, 1) both',
         'scale-in': 'scale-in 0.2s ease both',
         'slide-up': 'slide-up 0.35s cubic-bezier(0.32,0.72,0,1) both',
