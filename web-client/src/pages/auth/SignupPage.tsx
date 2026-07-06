@@ -54,7 +54,7 @@ export function SignupPage() {
     >
       <form onSubmit={submit} className="space-y-4">
         {error && (
-          <div className="rounded border border-red-200 bg-red-50 px-3.5 py-2.5 text-[13px] text-red-800">
+          <div className="rounded-lg border border-red-200 bg-red-50 px-3.5 py-2.5 text-[13px] text-red-800">
             {error}
           </div>
         )}
@@ -144,14 +144,14 @@ function RoleOption({
       type="button"
       onClick={onClick}
       aria-pressed={active}
-      className={`flex flex-col items-start gap-2 rounded border p-3.5 text-left transition-colors duration-200 ${
+      className={`flex flex-col items-start gap-2 rounded-lg border p-3.5 text-left transition-colors duration-200 ${
         active
           ? 'border-accent bg-accent-soft'
-          : 'border-zinc-300 bg-white hover:border-ink'
+          : 'border-zinc-300 bg-surface hover:border-ink'
       }`}
     >
       <span
-        className={`flex h-9 w-9 items-center justify-center rounded ${
+        className={`flex h-9 w-9 items-center justify-center rounded-lg ${
           active ? 'bg-accent text-white' : 'bg-zinc-100 text-zinc-500'
         }`}
       >

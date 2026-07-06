@@ -49,8 +49,8 @@ function usePageTitle() {
   useEffect(() => {
     const match = PAGE_TITLES.find(([pattern]) => pattern.test(pathname));
     document.title = match
-      ? `${match[1]} — Qeue`
-      : 'Qeue — Event management for organizers and attendees';
+      ? `${match[1]} | qeue`
+      : 'qeue | Event management for organizers and attendees';
   }, [pathname]);
 }
 

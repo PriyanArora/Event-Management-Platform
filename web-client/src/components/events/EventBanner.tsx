@@ -11,7 +11,7 @@ const gridTexture: React.CSSProperties = {
 export function EventBanner({
   event,
   className = '',
-  rounded = 'rounded',
+  rounded = 'rounded-lg',
 }: {
   event: { id: string; title: string; bannerImageUrl?: string | null; category?: string };
   className?: string;

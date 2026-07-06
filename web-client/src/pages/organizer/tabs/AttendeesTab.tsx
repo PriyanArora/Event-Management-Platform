@@ -85,7 +85,7 @@ export function AttendeesTab() {
         }
       />
 
-      <div className="mb-5 flex flex-col gap-3 rounded border border-zinc-200 bg-white p-3 lg:flex-row lg:items-center">
+      <div className="mb-5 flex flex-col gap-3 rounded-lg border border-zinc-200 bg-surface p-3 lg:flex-row lg:items-center">
         <div className="relative flex-1">
           <Search className="pointer-events-none absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-zinc-400" />
           <Input value={query} onChange={(e) => setQuery(e.target.value)} placeholder="Search name or email" className="pl-10" />
@@ -138,12 +138,12 @@ export function AttendeesTab() {
                       <p className="font-medium text-ink">{r.attendeeDisplayNameSnapshot}</p>
                       <p className="text-[12px] text-zinc-500">{r.attendeeEmail}</p>
                     </td>
-                    <td className="px-5 py-3.5 text-zinc-600">{r.registrationTypeNameSnapshot ?? '—'}</td>
+                    <td className="px-5 py-3.5 text-zinc-600">{r.registrationTypeNameSnapshot ?? '-'}</td>
                     <td className="px-5 py-3.5"><StatusBadge meta={registrationStatusMeta[r.status]} /></td>
                     <td className="px-5 py-3.5"><StatusBadge meta={checkInMeta[r.checkInStatus]} /></td>
                     <td className="px-5 py-3.5 text-[12px] text-zinc-500">{formatDateTime(r.createdAt)}</td>
                     <td className="px-5 py-3.5 text-right">
-                      <button onClick={() => setDetail(r)} className="rounded p-2 text-zinc-400 hover:bg-zinc-100 hover:text-ink" aria-label="View detail">
+                      <button onClick={() => setDetail(r)} className="rounded-lg p-2 text-zinc-400 hover:bg-zinc-100 hover:text-ink" aria-label="View detail">
                         <Eye className="h-4 w-4" />
                       </button>
                     </td>
@@ -195,7 +195,7 @@ function RegistrationDetailModal({
           <div className="grid grid-cols-2 gap-3">
             <Info label="Name">{registration.attendeeDisplayNameSnapshot}</Info>
             <Info label="Email">{registration.attendeeEmail}</Info>
-            <Info label="Type">{registration.registrationTypeNameSnapshot ?? '—'}</Info>
+            <Info label="Type">{registration.registrationTypeNameSnapshot ?? '-'}</Info>
             <Info label="Registered">{formatDateTime(registration.createdAt)}</Info>
           </div>
           <div className="flex flex-wrap gap-2">
@@ -213,7 +213,7 @@ function RegistrationDetailModal({
               <p className="mb-2 microlabel">Answers</p>
               <ul className="space-y-2">
                 {registration.answers.map((a, i) => (
-                  <li key={i} className="rounded bg-zinc-50 px-3.5 py-2.5">
+                  <li key={i} className="rounded-lg bg-zinc-50 px-3.5 py-2.5">
                     <p className="text-[12px] text-zinc-400">Question {i + 1}</p>
                     <p className="text-sm text-zinc-800">{a.answerText}</p>
                   </li>

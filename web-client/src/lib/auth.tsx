@@ -8,7 +8,11 @@ import {
   type ReactNode,
 } from 'react';
 import { ApiError, authApi, getToken, setToken } from './api';
-import type { Role, User } from './types';
+import type { AuthResponse, Role, User } from './types';
+
+function toUser({ userId, email, displayName, role }: AuthResponse): User {
+  return { userId, email, displayName, role };
+}
 
 interface AuthState {
   user: User | null;
@@ -66,12 +70,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const login = useCallback(async (email: string, password: string) => {
     const res = await authApi.login({ email, password });
     setToken(res.accessToken);
-    const u: User = {
-      userId: res.userId,
-      email: res.email,
-      displayName: res.displayName,
-      role: res.role,
-    };
+    const u = toUser(res);
     setUser(u);
     return u;
   }, []);
@@ -80,12 +79,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     async (input: { email: string; password: string; displayName: string; role: Role }) => {
       const res = await authApi.register(input);
       setToken(res.accessToken);
-      const u: User = {
-        userId: res.userId,
-        email: res.email,
-        displayName: res.displayName,
-        role: res.role,
-      };
+      const u = toUser(res);
       setUser(u);
       return u;
     },

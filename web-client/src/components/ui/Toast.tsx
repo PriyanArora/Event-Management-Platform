@@ -71,7 +71,7 @@ function ToastCard({ toast, onClose }: { toast: Toast; onClose: () => void }) {
         ? 'text-red-700'
         : 'text-accent';
   return (
-    <div className="pointer-events-auto flex items-start gap-3 rounded border border-zinc-200 bg-white p-3.5 shadow-pop animate-scale-in">
+    <div className="pointer-events-auto flex items-start gap-3 glass-heavy rounded-xl p-3.5 shadow-pop animate-scale-in">
       <Icon className={`mt-0.5 h-5 w-5 shrink-0 ${color}`} />
       <p className="flex-1 text-[13px] leading-snug text-ink">{toast.message}</p>
       <button

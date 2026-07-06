@@ -40,7 +40,7 @@ export function AnalyticsTab() {
               <span className="font-mono text-4xl font-medium tracking-tight text-ink">{fillPct}%</span>
               <span className="font-mono text-[12px] text-zinc-400">{data.availableSeats} seats left</span>
             </div>
-            <div className="mt-3 h-2 overflow-hidden rounded-sm bg-zinc-100">
+            <div className="mt-3 h-2 overflow-hidden rounded bg-zinc-100">
               <div className="h-full bg-accent transition-all" style={{ width: `${fillPct}%` }} />
             </div>
           </div>
@@ -54,7 +54,7 @@ export function AnalyticsTab() {
               <span className="font-mono text-4xl font-medium tracking-tight text-ink">{checkInPct}%</span>
               <span className="font-mono text-[12px] text-zinc-400">{data.noShows} no-shows</span>
             </div>
-            <div className="mt-3 h-2 overflow-hidden rounded-sm bg-zinc-100">
+            <div className="mt-3 h-2 overflow-hidden rounded bg-zinc-100">
               <div className="h-full bg-emerald-600 transition-all" style={{ width: `${checkInPct}%` }} />
             </div>
           </div>
@@ -73,7 +73,7 @@ export function AnalyticsTab() {
                     <span className="font-medium text-zinc-800">{t.registrationTypeName}</span>
                     <span className="font-mono text-zinc-500">{t.confirmedCount}</span>
                   </div>
-                  <div className="h-2 overflow-hidden rounded-sm bg-zinc-100">
+                  <div className="h-2 overflow-hidden rounded bg-zinc-100">
                     <div
                       className="h-full bg-ink transition-all"
                       style={{ width: `${Math.round((t.confirmedCount / maxType) * 100)}%` }}

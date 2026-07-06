@@ -70,7 +70,7 @@ export function EventManageLayout() {
   const publish = async () => {
     try {
       await organizerApi.publish(eventId);
-      toast.success('Event published — it’s now public.');
+      toast.success('Event published. It’s now public.');
       reload();
     } catch (err) {
       toast.error(err instanceof ApiError ? err.message : 'Could not publish.');
@@ -89,7 +89,7 @@ export function EventManageLayout() {
   return (
     <div className="bg-paper pb-16">
       {/* Header */}
-      <div className="border-b border-zinc-200 bg-white">
+      <div className="border-b border-zinc-200 bg-surface">
         <Container className="pt-8">
           <Breadcrumbs items={[{ label: 'Organizer', to: '/organizer' }, { label: event.title }]} />
           <div className="flex flex-wrap items-start justify-between gap-4 pb-5">

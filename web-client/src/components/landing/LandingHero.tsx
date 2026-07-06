@@ -1,21 +1,23 @@
-import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
+import {
+  IconChartBar,
+  IconPencil,
+  IconTicket,
+  IconUserPlus,
+  IconWorld,
+} from '@tabler/icons-react';
 import { ButtonLink } from '../ui/Button';
+import { BentoGrid, BentoGridItem } from '../ui/BentoGrid';
+import { DitherShader } from '../ui/DitherShader';
+import { FlipWords } from '../ui/FlipWords';
 import { useAuth } from '../../lib/auth';
 
-/* Fine engineering-grid backdrop drawn in CSS — no images, no shaders. */
-const gridBg: React.CSSProperties = {
-  backgroundImage:
-    'linear-gradient(rgba(22,22,26,0.055) 1px, transparent 1px), linear-gradient(90deg, rgba(22,22,26,0.055) 1px, transparent 1px)',
-  backgroundSize: '48px 48px',
-};
-
 const LIFECYCLE = [
-  { step: '01', title: 'Draft', desc: 'Build the event: venue, schedule, capacity.' },
-  { step: '02', title: 'Publish', desc: 'Go live and open registration.' },
-  { step: '03', title: 'Register', desc: 'Capacity-safe. Never oversold.' },
-  { step: '04', title: 'Check in', desc: 'Hashed ticket codes at the door.' },
-  { step: '05', title: 'Measure', desc: 'Analytics, no-shows, surveys.' },
+  { title: 'Draft', desc: 'Build the event: venue, schedule, capacity.', icon: IconPencil },
+  { title: 'Publish', desc: 'Go live and open registration.', icon: IconWorld },
+  { title: 'Register', desc: 'Capacity-safe. Never oversold.', icon: IconUserPlus },
+  { title: 'Check in', desc: 'Hashed ticket codes at the door.', icon: IconTicket },
+  { title: 'Measure', desc: 'Analytics, no-shows, surveys.', icon: IconChartBar },
 ];
 
 export function LandingHero() {
@@ -32,26 +34,54 @@ export function LandingHero() {
       : 'Find an event';
 
   return (
-    <section className="relative border-b border-zinc-200 bg-paper" style={gridBg}>
-      <div className="relative mx-auto flex max-w-7xl flex-col px-5 pb-14 pt-16 sm:px-8 sm:pb-16 sm:pt-20 lg:px-12 lg:pb-20 lg:pt-24">
-        <CornerTicks />
+    // Pulled up under the floating pill navbar (pt-3 + h-12 = 60px) so the
+    // dither reaches the top of the viewport instead of cutting off below it.
+    <section className="relative -mt-[60px] overflow-hidden">
+      {/* Dithered conference crowd in brand duotone, fading into the page canvas. */}
+      <div aria-hidden className="pointer-events-none absolute inset-0">
+        <DitherShader
+          src="https://images.unsplash.com/photo-1493246507139-91e8fad9978e?q=80&w=2670&auto=format&fit=crop"
+          gridSize={3}
+          ditherMode="bayer"
+          colorMode="duotone"
+          primaryColor="#0A0A0B"
+          secondaryColor="#44639F"
+          threshold={0.5}
+          animated={false}
+          className="h-full w-full"
+        />
+        <div
+          className="absolute inset-0"
+          style={{
+            background:
+              'linear-gradient(to bottom, rgba(10,10,11,0.6) 0%, rgba(10,10,11,0.45) 45%, #0A0A0B 100%)',
+          }}
+        />
+      </div>
 
-        <p className="microlabel mb-6">Event operations platform</p>
-
-        <h1 className="max-w-4xl font-semibold leading-[1.02] tracking-[-0.03em] text-ink text-[clamp(2.2rem,7vw,4.75rem)]">
-          Run events people
-          <br className="hidden sm:block" />
-          <span className="sm:hidden"> </span>
-          actually <span className="text-accent">show up</span> to.
+      <div className="relative mx-auto flex max-w-5xl flex-col items-center px-5 pb-16 pt-36 text-center sm:px-8 sm:pt-44 lg:pb-24">
+        <h1 className="max-w-3xl animate-fade-in-up font-semibold leading-[1.04] tracking-[-0.035em] text-ink text-[clamp(2.5rem,7vw,4.5rem)]">
+          Run events people actually{' '}
+          {/* Real product flows only: registration, check-in, attendance. */}
+          <FlipWords
+            words={['show up to', 'register for', 'check in to']}
+            className="text-accent"
+          />
         </h1>
 
-        <p className="mt-6 max-w-xl text-[15px] leading-relaxed text-zinc-600 sm:text-base">
+        <p
+          className="mt-6 max-w-xl animate-fade-in-up text-[15px] leading-relaxed text-zinc-500 sm:text-base"
+          style={{ animationDelay: '160ms' }}
+        >
           Build and publish events, register attendees without overselling, issue tickets, check
-          people in, and measure it all — from one exact workspace.
+          people in, and measure it all from one fast workspace.
         </p>
 
-        <div className="mt-9 flex flex-col items-start gap-3 sm:flex-row sm:items-center">
-          <ButtonLink to={primaryTo} size="lg" rightIcon={<ArrowRight className="h-4 w-4" />}>
+        <div
+          className="mt-9 flex animate-fade-in-up flex-col items-center gap-3 sm:flex-row"
+          style={{ animationDelay: '240ms' }}
+        >
+          <ButtonLink to={primaryTo} size="lg" variant="accent" rightIcon={<ArrowRight className="h-4 w-4" />}>
             {primaryLabel}
           </ButtonLink>
           <ButtonLink to="/events" size="lg" variant="outline">
@@ -59,43 +89,25 @@ export function LandingHero() {
           </ButtonLink>
         </div>
 
-        {/* Lifecycle strip: the product, stated as a pipeline. */}
-        <div className="mt-16 overflow-hidden rounded border border-zinc-200 bg-zinc-200">
-          <ol className="grid grid-cols-1 gap-px sm:grid-cols-2 lg:grid-cols-5">
-            {LIFECYCLE.map((s) => (
-              <li key={s.step} className="bg-white p-4">
-                <p className="font-mono text-[11px] font-medium tracking-[0.12em] text-accent">
-                  {s.step}
-                </p>
-                <h3 className="mt-2 text-[14px] font-semibold text-ink">{s.title}</h3>
-                <p className="mt-1 text-[12px] leading-snug text-zinc-500">{s.desc}</p>
-              </li>
+        {/* Lifecycle bento: the product, stated as a pipeline. First card
+            spans two columns so five entries fill two even rows. */}
+        <div
+          className="mt-16 w-full animate-fade-in-up text-left sm:mt-20"
+          style={{ animationDelay: '320ms' }}
+        >
+          <BentoGrid className="max-w-none gap-3 md:auto-rows-[9rem]">
+            {LIFECYCLE.map((s, i) => (
+              <BentoGridItem
+                key={s.title}
+                title={s.title}
+                description={s.desc}
+                icon={<s.icon className="h-5 w-5 text-accent" aria-hidden />}
+                className={i === 0 ? 'md:col-span-2' : ''}
+              />
             ))}
-          </ol>
+          </BentoGrid>
         </div>
-
-        <p className="mt-4 font-mono text-[11px] uppercase tracking-[0.12em] text-zinc-400">
-          Draft → Publish → Register → Check in → Measure —{' '}
-          <Link to="/events" className="text-zinc-600 underline decoration-zinc-300 underline-offset-4 hover:text-ink">
-            see what&rsquo;s live
-          </Link>
-        </p>
       </div>
     </section>
-  );
-}
-
-/* Crosshair ticks marking the hero's grid corners — the "precision" signature. */
-function CornerTicks() {
-  return (
-    <svg
-      className="pointer-events-none absolute right-5 top-16 hidden text-zinc-300 sm:right-8 lg:right-12 lg:block"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      aria-hidden="true"
-    >
-      <path d="M12 2v20M2 12h20" stroke="currentColor" strokeWidth="1" />
-    </svg>
   );
 }

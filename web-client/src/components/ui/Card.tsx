@@ -10,7 +10,7 @@ export function Card({
   as?: 'div' | 'section' | 'article' | 'li';
 }) {
   return (
-    <Tag className={`rounded border border-zinc-200 bg-white ${className}`}>
+    <Tag className={`rounded-lg border border-zinc-200 bg-surface ${className}`}>
       {children}
     </Tag>
   );

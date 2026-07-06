@@ -155,7 +155,7 @@ function CreateSurveyModal({
           </div>
           <div className="space-y-3">
             {questions.map((q, i) => (
-              <div key={i} className="rounded border border-zinc-200 p-3.5">
+              <div key={i} className="rounded-lg border border-zinc-200 p-3.5">
                 <div className="flex items-start gap-2">
                   <span className="mt-2.5 text-[13px] font-semibold text-zinc-400">{i + 1}</span>
                   <div className="flex-1 space-y-3">
@@ -167,13 +167,13 @@ function CreateSurveyModal({
                         ))}
                       </Select>
                       <label className="flex items-center gap-2 text-[13px] text-zinc-600">
-                        <input type="checkbox" checked={q.required} onChange={(e) => update(i, { required: e.target.checked })} className="h-4 w-4 rounded-sm border-zinc-300 text-accent focus:ring-accent" />
+                        <input type="checkbox" checked={q.required} onChange={(e) => update(i, { required: e.target.checked })} className="h-4 w-4 rounded border-zinc-300 text-accent focus:ring-accent" />
                         Required
                       </label>
                     </div>
                   </div>
                   {questions.length > 1 && (
-                    <button onClick={() => removeQuestion(i)} className="mt-1 rounded p-2 text-zinc-400 hover:bg-red-50 hover:text-red-700" aria-label="Remove question">
+                    <button onClick={() => removeQuestion(i)} className="mt-1 rounded-lg p-2 text-zinc-400 hover:bg-red-50 hover:text-red-700" aria-label="Remove question">
                       <Trash2 className="h-4 w-4" />
                     </button>
                   )}
@@ -214,7 +214,7 @@ function ResponsesModal({
       ) : (
         <div className="space-y-4">
           {(data ?? []).map((sub) => (
-            <div key={sub.submissionId} className="rounded border border-zinc-200 bg-zinc-50/60 p-4">
+            <div key={sub.submissionId} className="rounded-lg border border-zinc-200 bg-zinc-50/60 p-4">
               <p className="mb-2.5 text-[12px] text-zinc-400">Submitted {formatDateTime(sub.submittedAt)}</p>
               <ul className="space-y-2.5">
                 {sub.answers.map((a, i) => (
@@ -228,7 +228,7 @@ function ResponsesModal({
                         <span className="ml-1 text-zinc-500">{a.ratingValue}/5</span>
                       </span>
                     ) : (
-                      <p className="mt-0.5 text-sm text-zinc-800">{a.answerText || '—'}</p>
+                      <p className="mt-0.5 text-sm text-zinc-800">{a.answerText || '-'}</p>
                     )}
                   </li>
                 ))}

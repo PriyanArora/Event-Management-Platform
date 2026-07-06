@@ -68,14 +68,14 @@ export function OrganizerDashboardPage() {
               <Link
                 key={e.id}
                 to={`/organizer/events/${e.id}`}
-                className="group flex flex-col overflow-hidden rounded border border-zinc-200 bg-white transition-colors duration-200 hover:border-ink"
+                className="group flex flex-col overflow-hidden rounded-lg border border-zinc-200 bg-surface transition-colors duration-200 hover:border-ink"
               >
                 <div className="relative h-28 overflow-hidden border-b border-zinc-200">
                   <EventBanner event={e} rounded="rounded-none" />
                   <div className="absolute left-3 top-3">
                     <StatusBadge meta={eventStatusMeta[e.status]} />
                   </div>
-                  <span className="absolute right-3 top-3 rounded-sm bg-ink px-1.5 py-0.5 font-mono text-[10px] font-medium uppercase tracking-[0.08em] text-white">
+                  <span className="absolute right-3 top-3 rounded bg-ink px-1.5 py-0.5 font-mono text-[10px] font-medium uppercase tracking-[0.08em] text-paper">
                     {eventFormatLabel[e.eventFormat]}
                   </span>
                 </div>

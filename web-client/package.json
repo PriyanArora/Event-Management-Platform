@@ -9,12 +9,18 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@fontsource-variable/instrument-sans": "^5.2.8",
     "@fontsource-variable/space-grotesk": "^5.2.10",
     "@fontsource/ibm-plex-mono": "^5.2.7",
+    "@tabler/icons-react": "^3.44.0",
+    "clsx": "^2.1.1",
+    "embla-carousel-react": "^8.6.0",
     "lucide-react": "^0.456.0",
+    "motion": "^12.42.2",
     "react": "^19.2.3",
     "react-dom": "^19.2.3",
-    "react-router-dom": "^6.30.4"
+    "react-router-dom": "^6.30.4",
+    "tailwind-merge": "^3.6.0"
   },
   "devDependencies": {
     "@types/react": "^19.2.7",

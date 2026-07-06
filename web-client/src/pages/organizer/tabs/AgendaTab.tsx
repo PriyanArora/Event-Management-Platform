@@ -83,10 +83,10 @@ function SpeakersSection({
             <div key={sp.id} className="group relative">
               <SpeakerCard speaker={sp} />
               <div className="absolute right-3 top-3 flex gap-1 opacity-0 transition-opacity group-hover:opacity-100">
-                <button onClick={() => setEditing(sp)} className="rounded bg-white p-1.5 text-zinc-400 shadow-sm hover:text-ink" aria-label="Edit">
+                <button onClick={() => setEditing(sp)} className="rounded-lg bg-surface p-1.5 text-zinc-400 shadow-sm hover:text-ink" aria-label="Edit">
                   <Pencil className="h-3.5 w-3.5" />
                 </button>
-                <button onClick={() => setRemoving(sp)} className="rounded bg-white p-1.5 text-zinc-400 shadow-sm hover:text-red-700" aria-label="Remove">
+                <button onClick={() => setRemoving(sp)} className="rounded-lg bg-surface p-1.5 text-zinc-400 shadow-sm hover:text-red-700" aria-label="Remove">
                   <Trash2 className="h-3.5 w-3.5" />
                 </button>
               </div>
@@ -181,7 +181,7 @@ function SpeakerModal({
             <Input value={form.organization} onChange={(e) => setForm({ ...form, organization: e.target.value })} placeholder="Qeue" />
           </Field>
         </div>
-        <Field label="Photo URL" hint="Optional — initials are shown if blank.">
+        <Field label="Photo URL" hint="Optional. Initials are shown if blank.">
           <Input value={form.photoUrl} onChange={(e) => setForm({ ...form, photoUrl: e.target.value })} placeholder="https://…" />
         </Field>
         <Field label="Bio">
@@ -266,10 +266,10 @@ function SessionsSection({
                 )}
               </div>
               <div className="flex shrink-0 items-center gap-1">
-                <button onClick={() => setEditing(s)} className="rounded p-2 text-zinc-400 hover:bg-zinc-100 hover:text-ink" aria-label="Edit">
+                <button onClick={() => setEditing(s)} className="rounded-lg p-2 text-zinc-400 hover:bg-zinc-100 hover:text-ink" aria-label="Edit">
                   <Pencil className="h-4 w-4" />
                 </button>
-                <button onClick={() => setRemoving(s)} className="rounded p-2 text-zinc-400 hover:bg-red-50 hover:text-red-700" aria-label="Remove">
+                <button onClick={() => setRemoving(s)} className="rounded-lg p-2 text-zinc-400 hover:bg-red-50 hover:text-red-700" aria-label="Remove">
                   <Trash2 className="h-4 w-4" />
                 </button>
               </div>
@@ -412,7 +412,7 @@ function SessionModal({
                     type="button"
                     onClick={() => toggleSpeaker(sp.id)}
                     className={`rounded-full border px-3 py-1.5 text-[13px] font-medium transition-all ${
-                      on ? 'border-accent bg-accent-soft text-accent-ink' : 'border-zinc-300 bg-white text-zinc-600 hover:border-ink'
+                      on ? 'border-accent bg-accent-soft text-accent-ink' : 'border-zinc-300 bg-surface text-zinc-600 hover:border-ink'
                     }`}
                   >
                     {sp.name}

@@ -97,7 +97,7 @@ export function EventRegisterPage() {
     return (
       <Container size="md" className="py-16">
         <Card className="mx-auto max-w-md p-8 text-center">
-          <div className="mx-auto flex h-14 w-14 items-center justify-center rounded border border-emerald-300 bg-emerald-50 text-emerald-700">
+          <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-lg border border-emerald-300 bg-emerald-50 text-emerald-700">
             <CheckCircle2 className="h-7 w-7" />
           </div>
           <h1 className="mt-5 text-xl font-semibold text-ink">You're registered!</h1>
@@ -142,10 +142,10 @@ export function EventRegisterPage() {
                       type="button"
                       onClick={() => setTypeId(t.id)}
                       aria-pressed={typeId === t.id}
-                      className={`flex flex-col items-start rounded border p-4 text-left transition-colors duration-200 ${
+                      className={`flex flex-col items-start rounded-lg border p-4 text-left transition-colors duration-200 ${
                         typeId === t.id
                           ? 'border-accent bg-accent-soft'
-                          : 'border-zinc-300 bg-white hover:border-ink'
+                          : 'border-zinc-300 bg-surface hover:border-ink'
                       }`}
                     >
                       <span className="text-sm font-semibold text-ink">{t.name}</span>

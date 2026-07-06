@@ -17,10 +17,10 @@ export function AgendaList({ sessions, timezone }: { sessions: Session[]; timezo
       {Array.from(groups.entries()).map(([day, items]) => (
         <div key={day}>
           <p className="microlabel mb-3">{day}</p>
-          <div className="overflow-hidden rounded border border-zinc-200 bg-zinc-200">
+          <div className="overflow-hidden rounded-lg border border-zinc-200 bg-zinc-200">
             <div className="grid gap-px">
               {items.map((s) => (
-                <div key={s.id} className="flex gap-4 bg-white p-4">
+                <div key={s.id} className="flex gap-4 bg-surface p-4">
                   <div className="w-20 shrink-0 text-right font-mono">
                     <p className="text-[13px] font-medium text-ink">{formatTime(s.startsAt, timezone)}</p>
                     <p className="text-[12px] text-zinc-400">{formatTime(s.endsAt, timezone)}</p>
@@ -44,7 +44,7 @@ export function AgendaList({ sessions, timezone }: { sessions: Session[]; timezo
                             {s.speakers.slice(0, 3).map((sp) => (
                               <span
                                 key={sp.id}
-                                className="flex h-5 w-5 items-center justify-center rounded-sm bg-ink font-mono text-[9px] font-medium text-white ring-2 ring-white"
+                                className="flex h-5 w-5 items-center justify-center rounded bg-ink font-mono text-[9px] font-medium text-paper ring-2 ring-surface"
                                 title={sp.name}
                               >
                                 {sp.name.charAt(0).toUpperCase()}

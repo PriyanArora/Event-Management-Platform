@@ -137,7 +137,7 @@ export function EventForm({
             <Input value={form.category} onChange={(e) => set('category')(e.target.value)} placeholder="Product, Music, Tech…" />
           </Field>
         </div>
-        <Field label="Banner image URL" hint="Optional — leave blank for a generated cover." error={err('bannerImageUrl')}>
+        <Field label="Banner image URL" hint="Optional. Leave blank for a generated cover." error={err('bannerImageUrl')}>
           <Input value={form.bannerImageUrl} onChange={(e) => set('bannerImageUrl')(e.target.value)} placeholder="https://…" />
         </Field>
       </Card>
@@ -180,7 +180,7 @@ export function EventForm({
         </div>
         {form.eventFormat === 'ONLINE' && (
           <p className="text-[12px] text-zinc-400">
-            For online events, venue fields are still stored — use them for the platform name or a note.
+            For online events, venue fields are still stored. Use them for the platform name or a note.
           </p>
         )}
       </Card>

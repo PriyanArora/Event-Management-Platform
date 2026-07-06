@@ -33,7 +33,7 @@ export function EventCreatePage() {
         <PageHeader
           breadcrumbs={[{ label: 'Organizer', to: '/organizer' }, { label: 'New event' }]}
           title="Create an event"
-          description="Start as a draft — you can add registration types, speakers, and an agenda before you publish."
+          description="Start as a draft. You can add registration types, speakers, and an agenda before you publish."
         />
         <EventForm
           submitLabel="Create event"

@@ -57,7 +57,7 @@ function TypesSection() {
     <section>
       <SectionHeading
         title="Registration types"
-        description="Offer tiers like General, VIP, or Student — each with its own capacity."
+        description="Offer tiers like General, VIP, or Student, each with its own capacity."
         action={
           <Button size="sm" onClick={() => setCreating(true)} leftIcon={<Plus className="h-4 w-4" />}>
             Add type
@@ -90,10 +90,10 @@ function TypesSection() {
               </div>
               <div className="flex items-center gap-3">
                 <Badge className="border-accent/40 bg-accent-soft text-accent-ink">{t.capacity} seats</Badge>
-                <button onClick={() => setEditing(t)} className="rounded p-2 text-zinc-400 hover:bg-zinc-100 hover:text-ink" aria-label="Edit">
+                <button onClick={() => setEditing(t)} className="rounded-lg p-2 text-zinc-400 hover:bg-zinc-100 hover:text-ink" aria-label="Edit">
                   <Pencil className="h-4 w-4" />
                 </button>
-                <button onClick={() => setRemoving(t)} className="rounded p-2 text-zinc-400 hover:bg-red-50 hover:text-red-700" aria-label="Remove">
+                <button onClick={() => setRemoving(t)} className="rounded-lg p-2 text-zinc-400 hover:bg-red-50 hover:text-red-700" aria-label="Remove">
                   <Trash2 className="h-4 w-4" />
                 </button>
               </div>
@@ -261,10 +261,10 @@ function QuestionsSection() {
                 </div>
               </div>
               <div className="flex items-center gap-1">
-                <button onClick={() => setEditing(q)} className="rounded p-2 text-zinc-400 hover:bg-zinc-100 hover:text-ink" aria-label="Edit">
+                <button onClick={() => setEditing(q)} className="rounded-lg p-2 text-zinc-400 hover:bg-zinc-100 hover:text-ink" aria-label="Edit">
                   <Pencil className="h-4 w-4" />
                 </button>
-                <button onClick={() => setRemoving(q)} className="rounded p-2 text-zinc-400 hover:bg-red-50 hover:text-red-700" aria-label="Remove">
+                <button onClick={() => setRemoving(q)} className="rounded-lg p-2 text-zinc-400 hover:bg-red-50 hover:text-red-700" aria-label="Remove">
                   <Trash2 className="h-4 w-4" />
                 </button>
               </div>

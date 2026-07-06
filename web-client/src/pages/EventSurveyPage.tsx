@@ -78,7 +78,7 @@ export function EventSurveyPage() {
     return (
       <Container size="md" className="py-16">
         <Card className="mx-auto max-w-md p-8 text-center">
-          <div className="mx-auto flex h-14 w-14 items-center justify-center rounded border border-emerald-300 bg-emerald-50 text-emerald-700">
+          <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-lg border border-emerald-300 bg-emerald-50 text-emerald-700">
             <CheckCircle2 className="h-7 w-7" />
           </div>
           <h1 className="mt-5 text-xl font-semibold text-ink">Thank you!</h1>
@@ -102,7 +102,7 @@ export function EventSurveyPage() {
           ]}
           eyebrow="Feedback"
           title={survey.title}
-          description="Help the organizer improve future events — it only takes a minute."
+          description="Help the organizer improve future events. It only takes a minute."
         />
         <form onSubmit={submit}>
           <Card className="space-y-6 p-6">
