@@ -32,7 +32,7 @@ export function LandingHero() {
           className="absolute left-1/2 top-[-30%] h-[70vh] w-[120vw] -translate-x-1/2 animate-glow-drift"
           style={{
             background:
-              'radial-gradient(ellipse 55% 60% at 50% 30%, rgba(255,99,99,0.22), transparent 70%)',
+              'radial-gradient(ellipse 55% 60% at 50% 30%, rgba(91,140,255,0.22), transparent 70%)',
             filter: 'blur(40px)',
           }}
         />
@@ -40,7 +40,7 @@ export function LandingHero() {
           className="absolute left-[15%] top-[10%] h-[50vh] w-[60vw] animate-glow-drift"
           style={{
             background:
-              'radial-gradient(ellipse 50% 50% at 50% 50%, rgba(255,60,120,0.1), transparent 70%)',
+              'radial-gradient(ellipse 50% 50% at 50% 50%, rgba(124,90,255,0.1), transparent 70%)',
             filter: 'blur(60px)',
             animationDelay: '-7s',
           }}
@@ -73,7 +73,7 @@ export function LandingHero() {
           style={{ animationDelay: '80ms' }}
         >
           Run events people actually{' '}
-          <span className="bg-gradient-to-r from-accent via-[#FF8A7A] to-[#FFB199] bg-clip-text text-transparent">
+          <span className="bg-gradient-to-r from-accent via-[#8FB0FF] to-[#C4D6FF] bg-clip-text text-transparent">
             show up
           </span>{' '}
           to.

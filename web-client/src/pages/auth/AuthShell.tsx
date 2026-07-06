@@ -31,7 +31,7 @@ export function AuthShell({
             className="absolute right-[-20%] top-[-10%] h-[70%] w-[90%] animate-glow-drift"
             style={{
               background:
-                'radial-gradient(ellipse 50% 50% at 50% 50%, rgba(255,99,99,0.16), transparent 70%)',
+                'radial-gradient(ellipse 50% 50% at 50% 50%, rgba(91,140,255,0.16), transparent 70%)',
               filter: 'blur(50px)',
             }}
           />

@@ -83,7 +83,7 @@ export function LandingPage() {
           className="pointer-events-none absolute inset-0"
           style={{
             background:
-              'radial-gradient(ellipse 60% 80% at 80% 10%, rgba(255,99,99,0.06), transparent 65%)',
+              'radial-gradient(ellipse 60% 80% at 80% 10%, rgba(91,140,255,0.06), transparent 65%)',
           }}
         />
         <Container className="relative">
@@ -164,7 +164,7 @@ function AudienceCard({
           className="pointer-events-none absolute inset-0"
           style={{
             background:
-              'radial-gradient(ellipse 80% 90% at 15% 0%, rgba(255,99,99,0.18), transparent 65%)',
+              'radial-gradient(ellipse 80% 90% at 15% 0%, rgba(91,140,255,0.18), transparent 65%)',
           }}
         />
       )}

@@ -2,8 +2,8 @@
  * Aesthetic direction — "Signal Dark"
  * Raycast-style: near-black canvas, glass surfaces, one hot accent.
  * - Type: Space Grotesk (display + body), IBM Plex Mono for data & labels.
- * - Color: dark-first. Paper #0A0A0B canvas, glass panels, coral-red accent
- *   (#FF6363 family) for interaction signals and glow. The `zinc` ramp is
+ * - Color: dark-first. Paper #0A0A0B canvas, glass panels, electric-blue accent
+ *   (#5B8CFF family) for interaction signals and glow. The `zinc` ramp is
  *   REMAPPED for dark: low numbers = raised dark surfaces/borders, high
  *   numbers = light text. Semantics ("zinc-500 is muted text", "zinc-200 is
  *   a border") are preserved from the old light theme, so components keep
@@ -30,10 +30,10 @@ export default {
           soft: '#9C9CA6',
         },
         accent: {
-          DEFAULT: '#FF6363',
-          hover: '#FF7B7B',
-          soft: 'rgba(255, 99, 99, 0.12)',
-          ink: '#FFA8A8',
+          DEFAULT: '#5B8CFF',
+          hover: '#7AA2FF',
+          soft: 'rgba(91, 140, 255, 0.12)',
+          ink: '#A9C4FF',
         },
         zinc: {
           50: '#18181B',
@@ -101,7 +101,7 @@ export default {
         // Elevation for popovers/modals/toasts on a dark canvas.
         pop: '0 12px 40px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(255, 255, 255, 0.06)',
         // Accent glow for primary CTAs and hero elements.
-        glow: '0 0 32px rgba(255, 99, 99, 0.35)',
+        glow: '0 0 32px rgba(91, 140, 255, 0.35)',
       },
       keyframes: {
         'fade-in': {
