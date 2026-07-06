@@ -3,6 +3,7 @@ import { ArrowRight } from 'lucide-react';
 import { eventsApi } from '../lib/api';
 import { useApi } from '../hooks/useApi';
 import { LandingHero } from '../components/landing/LandingHero';
+import { MacbookScroll } from '../components/ui/MacbookScroll';
 import { Container } from '../components/layout/Page';
 import { EventCard, EventCardSkeleton } from '../components/events/EventCard';
 import { ButtonLink } from '../components/ui/Button';
@@ -32,6 +33,21 @@ export function LandingPage() {
   return (
     <>
       <LandingHero />
+
+      {/* Scroll-driven MacBook showcase: the lid opens onto the app itself. */}
+      <section className="overflow-hidden">
+        <MacbookScroll
+          title={
+            <span>
+              From draft to check-in.
+              <br />
+              One workspace.
+            </span>
+          }
+          src="/macbook-screen.png"
+          showGradient={false}
+        />
+      </section>
 
       {/* Upcoming events */}
       <section className="py-16 sm:py-20">
