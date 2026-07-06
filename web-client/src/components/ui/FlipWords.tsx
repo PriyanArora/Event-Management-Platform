@@ -1,10 +1,12 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { AnimatePresence, MotionConfig, motion } from 'motion/react';
 
 /**
- * FlipWords from Aceternity UI (https://ui.aceternity.com/components/flip-words),
- * adapted for this codebase: cn() inlined, colors come from the caller's className,
- * and reduced-motion preferences are respected via MotionConfig.
+ * Rotating-word effect based on Aceternity UI's FlipWords
+ * (https://ui.aceternity.com/components/flip-words), smoothed for this site:
+ * the whole word crossfades with a soft blur instead of per-letter staggering,
+ * and every word renders invisibly in the same grid cell so the headline
+ * never reflows between words. Respects reduced-motion via MotionConfig.
  */
 export function FlipWords({
   words,
@@ -15,64 +17,35 @@ export function FlipWords({
   duration?: number;
   className?: string;
 }) {
-  const [currentWord, setCurrentWord] = useState(words[0]);
-  const [isAnimating, setIsAnimating] = useState(false);
-
-  const startAnimation = useCallback(() => {
-    const word = words[words.indexOf(currentWord) + 1] || words[0];
-    setCurrentWord(word);
-    setIsAnimating(true);
-  }, [currentWord, words]);
+  const [index, setIndex] = useState(0);
 
   useEffect(() => {
-    if (!isAnimating) {
-      const id = setTimeout(startAnimation, duration);
-      return () => clearTimeout(id);
-    }
-  }, [isAnimating, duration, startAnimation]);
+    const id = setInterval(() => setIndex((i) => (i + 1) % words.length), duration);
+    return () => clearInterval(id);
+  }, [duration, words.length]);
 
   return (
     <MotionConfig reducedMotion="user">
-      <AnimatePresence onExitComplete={() => setIsAnimating(false)}>
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ type: 'spring', stiffness: 100, damping: 10 }}
-          exit={{
-            opacity: 0,
-            y: -40,
-            x: 40,
-            filter: 'blur(8px)',
-            scale: 2,
-            position: 'absolute',
-          }}
-          className={`relative z-10 inline-block text-left ${className}`}
-          key={currentWord}
-        >
-          {currentWord.split(' ').map((word, wordIndex) => (
-            <motion.span
-              key={word + wordIndex}
-              initial={{ opacity: 0, y: 10, filter: 'blur(8px)' }}
-              animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
-              transition={{ delay: wordIndex * 0.3, duration: 0.3 }}
-              className="inline-block whitespace-nowrap"
-            >
-              {word.split('').map((letter, letterIndex) => (
-                <motion.span
-                  key={word + letterIndex}
-                  initial={{ opacity: 0, y: 10, filter: 'blur(8px)' }}
-                  animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
-                  transition={{ delay: wordIndex * 0.3 + letterIndex * 0.05, duration: 0.2 }}
-                  className="inline-block"
-                >
-                  {letter}
-                </motion.span>
-              ))}
-              <span className="inline-block">&nbsp;</span>
-            </motion.span>
-          ))}
-        </motion.div>
-      </AnimatePresence>
+      <span className={`relative inline-grid text-left ${className}`}>
+        {/* Invisible copies size the slot to the widest word. */}
+        {words.map((w) => (
+          <span key={w} aria-hidden className="invisible col-start-1 row-start-1 whitespace-nowrap">
+            {w}
+          </span>
+        ))}
+        <AnimatePresence initial={false}>
+          <motion.span
+            key={words[index]}
+            initial={{ opacity: 0, y: 14, filter: 'blur(8px)' }}
+            animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+            exit={{ opacity: 0, y: -14, filter: 'blur(8px)' }}
+            transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
+            className="col-start-1 row-start-1 whitespace-nowrap"
+          >
+            {words[index]}
+          </motion.span>
+        </AnimatePresence>
+      </span>
     </MotionConfig>
   );
 }
